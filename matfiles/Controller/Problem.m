@@ -12,11 +12,13 @@ problem.analyticDeriv.jacConst=[];
 problem.settings=@settings;
 
 % Store data
-load('../racetrack.mat');
+load('racetrack.mat');
 [auxdata.s,auxdata.kr] = prepareTrack(t_r,t_l);
 
 
 %% Problem setup
+nStates = 6;
+sTarget = 1000;
 
 %Initial Time. t0<tf
 problem.time.t0_min=0;
@@ -34,38 +36,38 @@ problem.parameters.pu = [];
 guess.parameters = [];
 
 % Initial conditions for system.
-problem.states.x0= zeros(1,13);
+problem.states.x0= zeros(1,nStates);
 
-problem.states.x0l= zeros(1,13); 
-problem.states.x0u= zeros(1,13); 
+problem.states.x0l= zeros(1,nStates); 
+problem.states.x0u= zeros(1,nStates); 
 
 % State bounds. xl=< x <=xu
-problem.states.xl=[-inf(1,11), -2.5 -inf]; 
-problem.states.xu=[inf(1,11), 2.5 inf]; 
+problem.states.xl=[0 -inf(1,nStates-3) -2.5 -inf]; 
+problem.states.xu=[inf(1,nStates-2) 2.5 inf]; 
 
 % State rate bounds. xrl=< x <=xru
-problem.states.xrl = -inf(1,13); 
-problem.states.xru = inf(1,13); 
+problem.states.xrl = -inf(1,nStates); 
+problem.states.xru = inf(1,nStates); 
 
 % State error bounds
-problem.states.xErrorTol_local = 0.01*ones(1,13);
-problem.states.xErrorTol_integral = 0.01*ones(1,13);
+problem.states.xErrorTol_local = 0.01*ones(1,nStates);
+problem.states.xErrorTol_integral = 0.01*ones(1,nStates);
 
 % State constraint error bounds
-problem.states.xConstraintTol = 0.01*ones(1,13);
-problem.states.xrConstraintTol = 0.01*ones(1,13);
+problem.states.xConstraintTol = 0.01*ones(1,nStates);
+problem.states.xrConstraintTol = 0.01*ones(1,nStates);
 
 % Terminal state bounds. xfl=< xf <=xfu
-problem.states.xfl=[l_rear ymin 0 theta0-deg2rad(5) -deg2rad(1)]; 
-problem.states.xfu=[SL ymax 0 theta0+deg2rad(5) deg2rad(1)];
+problem.states.xfl=[0 -inf(1,nStates-4) sTarget -2.5 -inf]; 
+problem.states.xfu=[inf(1,nStates-3) sTarget 2.5 inf];
 
 % Guess the state trajectories with [x0 xf]
-guess.time=[0 guess.tf/3 guess.tf*2/3 guess.tf];
-guess.states(:,1)=[posx0 SL+l_rear l_rear SL-l_axes-l_front];
-guess.states(:,2)=[posy0 posy0 -SW/2 -SW/2];
-guess.states(:,3)=[v0 0 0 0];
-guess.states(:,4)=[theta0 theta0 theta0 0];
-guess.states(:,5)=[phi0 0 0 0];
+% guess.time=[0 guess.tf/3 guess.tf*2/3 guess.tf];
+% guess.states(:,1)=[posx0 SL+l_rear l_rear SL-l_axes-l_front];
+% guess.states(:,2)=[posy0 posy0 -SW/2 -SW/2];
+% guess.states(:,3)=[v0 0 0 0];
+% guess.states(:,4)=[theta0 theta0 theta0 0];
+% guess.states(:,5)=[phi0 0 0 0];
 
 % Number of control actions N 
 % Set problem.inputs.N=0 if N is equal to the number of integration steps.  
@@ -74,24 +76,23 @@ guess.states(:,5)=[phi0 0 0 0];
 problem.inputs.N=0;       
       
 % Input bounds
-problem.inputs.ul=[amin -curvature_dot_max*l_axes*cos(phimax)^2];
-problem.inputs.uu=[amax curvature_dot_max*l_axes*cos(phimax)^2];
+problem.inputs.ul=[-0.53 1 0 0 0];
+problem.inputs.uu=[0.53 5 15000 1 1];
 
-problem.inputs.u0l=[amin -curvature_dot_max*l_axes*cos(phimax)^2];
-problem.inputs.u0u=[amax curvature_dot_max*l_axes*cos(phimax)^2];
+problem.inputs.u0l=[0 1 0 0 0 0];
+problem.inputs.u0u=[0 5 0 0 0 1];
 
 % Input rate bounds
-problem.inputs.url=[-u1_max -inf];
-problem.inputs.uru=[u1_max inf];
+problem.inputs.url=-inf(1,nStates);
+problem.inputs.uru=inf(1,nStates);
 
 % Input constraint error bounds
-problem.inputs.uConstraintTol=[0.1 deg2rad(0.5)];
-problem.inputs.urConstraintTol=[0.1 deg2rad(0.5)];
+problem.inputs.uConstraintTol=0.01*ones(1,nStates);
+problem.inputs.urConstraintTol=0.01*ones(1,nStates);
 
 % Guess the input sequences with [u0 uf]
-guess.inputs(:,1)=[amax amin amax 0];
-guess.inputs(:,2)=[0 0 0 0];
-
+% guess.inputs(:,1)=[amax amin amax 0];
+% guess.inputs(:,2)=[0 0 0 0];
 
 % Choose the set-points if required
 problem.setpoints.states=[];
@@ -105,17 +106,17 @@ problem.constraints.gl=[];
 problem.constraints.gu=[];
 problem.constraints.gTol_neq=[];
 
-
 % Bounds for boundary constraints bl =< b(x0,xf,u0,uf,p,t0,tf) =< bu
-problem.constraints.bl=[-inf, -inf, -inf, -inf];
-problem.constraints.bu=[0 0 0 0];
-problem.constraints.bTol=[1e-03 1e-03 1e-03 1e-03];
-
+problem.constraints.bl=[];
+problem.constraints.bu=[];
+problem.constraints.bTol=[];
 
 % store the necessary problem parameters used in the functions
 problem.data.auxdata=auxdata;
 % Get function handles and return to Main.m
+problem.data.InternalDynamics=InternalDynamics;
 problem.data.functionfg=@fg;
+problem.data.plantmodel = func2str(InternalDynamics);
 problem.functions={@L,@E,@f,@g,@avrc,@b};
 problem.sim.inputX=[];
 problem.sim.inputU=1:length(problem.inputs.ul);
@@ -208,33 +209,5 @@ function bc=b_unscaled(x0,xf,u0,uf,p,t0,tf,vdat,varargin)
 %    bc - column vector containing the evaluation of the boundary function 
 %
 %------------- BEGIN CODE --------------
-varargin=varargin{1};
-
-auxdata = vdat.auxdata;
-
-posyf = xf(2);
-thetaf = xf(4);
-
-A_y=posyf+(auxdata.l_axes+auxdata.l_front).*sin(thetaf)+auxdata.b_width.*cos(thetaf);
-B_y=posyf+(auxdata.l_axes+auxdata.l_front).*sin(thetaf)-auxdata.b_width.*cos(thetaf);
-C_y=posyf-auxdata.l_rear.*sin(thetaf)-auxdata.b_width.*cos(thetaf);
-D_y=posyf-auxdata.l_rear.*sin(thetaf)+auxdata.b_width.*cos(thetaf);
-
-bc=[A_y; B_y; C_y; D_y];
-%------------- END OF CODE --------------
-% When adpative time interval add constraint on time
-%------------- BEGIN CODE --------------
-if length(varargin)==2
-    options=varargin{1};
-    t_segment=varargin{2};
-    if ((strcmp(options.discretization,'hpLGR')) || (strcmp(options.discretization,'globalLGR')))  && options.adaptseg==1 
-        if size(t_segment,1)>size(t_segment,2)
-            bc=[bc;diff(t_segment)];
-        else
-            bc=[bc,diff(t_segment)];
-        end
-    end
-end
-
-%------------- END OF CODE --------------
+bc = [];
 
