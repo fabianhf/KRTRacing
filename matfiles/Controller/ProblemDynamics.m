@@ -6,12 +6,12 @@ function dx = ProblemDynamics(x,u,p,t,vdat)
 auxdata = vdat.auxdata;
 
 % Kruemmung interpolieren
-kr = interp1(auxdata.kr,t);
+kr = interp1(auxdata.s,auxdata.kr,t);
 
 % Define ODE right-hand side
 % Track Model returns s_dot,n_dot,xi_dot; n_dot and xi_dot are normalized
 % to distance
 [dtrack] = trackModel(x,u,kr);
-dx = [repmat(1./dtrack(:,1),1,size(x,2)).*extendedSingleTrack(x,u,p) dtrack];
+dx = [repmat(1./dtrack(:,1),1,size(x,2)).*extendedSingleTrack(x,u) dtrack];
 end
 
