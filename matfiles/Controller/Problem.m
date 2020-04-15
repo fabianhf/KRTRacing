@@ -42,8 +42,8 @@ problem.states.x0l= zeros(1,nStates);
 problem.states.x0u= zeros(1,nStates); 
 
 % State bounds. xl=< x <=xu
-problem.states.xl=[0 -inf(1,nStates-3) -2.5 -inf]; 
-problem.states.xu=[inf(1,nStates-2) 2.5 inf]; 
+problem.states.xl=[0 -inf(1,nStates-2) -2.5 -inf]; 
+problem.states.xu=[inf(1,nStates-1) 2.5 inf]; 
 
 % State rate bounds. xrl=< x <=xru
 problem.states.xrl = -inf(1,nStates); 
@@ -58,8 +58,8 @@ problem.states.xConstraintTol = 0.01*ones(1,nStates);
 problem.states.xrConstraintTol = 0.01*ones(1,nStates);
 
 % Terminal state bounds. xfl=< xf <=xfu
-problem.states.xfl=[0 -inf(1,nStates-4) sTarget -2.5 -inf]; 
-problem.states.xfu=[inf(1,nStates-3) sTarget 2.5 inf];
+problem.states.xfl=[0 -inf(1,nStates-4) -2.5 -inf]; 
+problem.states.xfu=[inf(1,nStates-3) 2.5 inf];
 
 % Guess the state trajectories with [x0 xf]
 % guess.time=[0 guess.tf/3 guess.tf*2/3 guess.tf];
