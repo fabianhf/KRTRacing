@@ -1,6 +1,6 @@
-function [X_dot] = singletrackVectorValues(t, X, U)
+function [X_dot] = singletrackVectorValues(X, U)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% function [X_dot] = singletrack(t,X)
+%% function [X_dot] = singletrackVectorValues(X, U)
 %
 % vector field for the single-track model
 %
@@ -47,8 +47,8 @@ B_f = 10.96; % stiffnes factor (Pacejka) (front wheel)
 C_f = 1.3; % shape factor (Pacejka) (front wheel)
 D_f = 4560.4; % peak value (Pacejka) (front wheel)
 E_f = -0.5; % curvature factor (Pacejka) (front wheel)
-B_r = 12.67; %stiffnes factor (Pacejka) (rear wheel)
-C_r = 1.3; %shape factor (Pacejka) (rear wheel)
+B_r = 12.67; % stiffnes factor (Pacejka) (rear wheel)
+C_r = 1.3; % shape factor (Pacejka) (rear wheel)
 D_r = 3947.81; %peak value (Pacejka) (rear wheel)
 E_r = -0.5; % curvature factor (Pacejka) (rear wheel)
 f_r_0 = 0.009; % coefficient (friction)
@@ -90,16 +90,9 @@ phi = U(:, 5); % gas pedal position
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% state vector
-%x=X(1); % x position (obsolete)
-%y=X(2); % y position (obsolete)
-v = X(:, 3); % velocity
-beta = X(:, 4); % side slip angle
-psi = X(:, 5); % yaw angle
-omega = X(:, 6); % yaw rate
-%x_dot = X(7); % longitudinal velocity (obsolete)
-%y_dot = X(8); % lateral velocity (obsolete)
-psi_dot = X(:, 9); % yaw rate (redundant)
-varphi_dot = X(:, 10); % wheel rotary frequency
+v = X(:, 1); % velocity
+beta = X(:, 2); % side slip angle
+psi_dot = X(:, 3); % yaw rate
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DYNAMICS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -164,27 +157,16 @@ F_y_f = D_f * sin(C_f * atan(B_f * a_f - E_f * (B_f * a_f ...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% vector field (right-hand side of differential equation)
-x_dot = v .* cos(psi - beta); % longitudinal velocity
-y_dot = v .* sin(psi - beta); % lateral velocity
 v_dot = (F_x_r .* cos(beta) + F_x_f .* cos(delta + beta) - F_y_r .* sin(beta) ...
       - F_y_f .* sin(delta + beta))/m; % acceleration
 beta_dot = omega - (F_x_r .* sin(beta) + F_x_f .* sin(delta + beta) + F_y_r .* cos(beta) ...
          + F_y_f .* cos(delta + beta)) ./ (m * v); % side slip rate
-psi_dot = omega; % yaw rate
-omega_dot = (F_y_f .* l_f .* cos(delta) - F_y_r .* l_r ...
-          + F_x_f .* l_f .* sin(delta)) / I_z; % yaw angular acceleration
-x_dot_dot = (F_x_r .* cos(psi) + F_x_f .* cos(delta + psi) - F_y_f .* sin(delta + psi) ...
-          - F_y_r .* sin(psi)) / m; % longitudinal acceleration
-y_dot_dot = (F_x_r .* sin(psi) + F_x_f .* sin(delta + psi) + F_y_f .* cos(delta + psi) ...
-          + F_y_r .* cos(psi)) / m; % lateral acceleration
+beta_dot(isnan(beta_dot)) = 0; % side slip angle well defined? > recover side slip angle
 psi_dot_dot = (F_y_f .* l_f .* cos(delta) - F_y_r .* l_r ...
             + F_x_f .* l_f .* sin(delta)) / I_z; % yaw angular acceleration
-varphi_dot_dot = (F_x_r * R) / I_R; % wheel rotary acceleration
-beta_dot(isnan(beta_dot)) = 0; % side slip angle well defined? > recover side slip angle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% write outputs
-X_dot = [x_dot, y_dot, v_dot, beta_dot, psi_dot, omega_dot, x_dot_dot, ...
-         y_dot_dot, psi_dot_dot, varphi_dot_dot]; % left-hand side
+X_dot = [v_dot, beta_dot, psi_dot_dot]; % left-hand side
 end
 
