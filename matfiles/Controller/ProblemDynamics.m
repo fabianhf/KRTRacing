@@ -17,8 +17,8 @@ phi_dot = x(:, 4);
 n = x(:, 5);
 xi = x(:, 6);
 
-v_s = v .* cos(beta);
-u_s = v .* sin(beta);
+v_s = v .* sin(beta);
+u_s = v .* cos(beta);
 s_dot = (u_s .* cos(xi) - v_s .* sin(xi)) ./ (1 - n .* C);
 n_dot = u_s .* sin(xi) + v_s .* cos(xi);
 xi_dot = phi_dot - C .* s_dot;
