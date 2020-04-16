@@ -63,6 +63,8 @@ problem.states.xfu=[inf(1,nStates-2) 2.5 inf];
 
 % Guess the state trajectories with [x0 xf]
 % guess.time=[0 guess.tf/3 guess.tf*2/3 guess.tf];
+guess.states = [];
+guess.inputs = [];
 % guess.states(:,1)=[posx0 SL+l_rear l_rear SL-l_axes-l_front];
 % guess.states(:,2)=[posy0 posy0 -SW/2 -SW/2];
 % guess.states(:,3)=[v0 0 0 0];

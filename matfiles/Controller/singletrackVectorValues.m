@@ -130,7 +130,7 @@ S = 0; % neglect wheel slip
 n = v .* transpose(i_g(G)) * i_0 * (1./(1 - S))/R; % motor rotary frequency
 % n(isnan(n)) = 0; % rotary frequency well defined? > recover rotary frequency
 
-n(n > (4800*pi)/30) = (4800*pi)/30; % maximal rotary frequency exceeded? > recover maximal rotary frequency
+% n(n > (4800*pi)/30) = (4800*pi)/30; % maximal rotary frequency exceeded? > recover maximal rotary frequency
 
 T_M = 200 * phi .* (15 - 14 * phi) ...
     - 200 * phi .* (15 - 14 * phi) .* (((n * (30 / pi)).^(5 * phi)) ./ (4800.^(5 * phi))); % motor torque

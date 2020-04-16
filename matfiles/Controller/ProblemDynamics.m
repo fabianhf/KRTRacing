@@ -23,6 +23,6 @@ s_dot = (u_s .* cos(xi) - v_s .* sin(xi)) ./ (1 - n .* C);
 n_dot = u_s .* sin(xi) + v_s .* cos(xi);
 xi_dot = phi_dot - C .* s_dot;
 
-dx = [ones(length(x(:,1)),1), singletrackVectorValues(x(:, 2:4), u), n_dot, xi_dot] ./ s_dot;
+dx = [ones(length(x(:,1)),1), singletrackVectorValues(x(:, 2:4), u), n_dot, xi_dot] ./ repmat(s_dot, [1, size(x, 2)]);
 end
 
