@@ -58,7 +58,7 @@ f_r_4 = 0.0003; % coefficient (friction)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% control inputs
 delta = U(:, 1); % steering angle 
-G = U(:, 2); % gear 1 ... 5
+G = 3*ones(size(U(:,1))); % gear 1 ... 5
 F_b = U(:, 3); %braking force
 zeta = U(:, 4); % braking force distribution
 phi = U(:, 5); % gas pedal position
