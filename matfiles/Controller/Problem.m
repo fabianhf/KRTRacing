@@ -9,7 +9,7 @@ problem.analyticDeriv.hessianLagrangian=[];
 problem.analyticDeriv.jacConst=[];
 
 % Settings file
-problem.settings=@settings;
+problem.settings=@ProblemSettings;
 
 % Store data
 load('racetrack.mat');
