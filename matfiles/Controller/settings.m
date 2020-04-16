@@ -124,7 +124,7 @@ end
 % Algorithmic differentiation with Adigator      ('adigator')
     % Make sure you provide the path to the Adigator directory of startupadigator.m
 options.derivatives='adigator';
-options.adigatorPath='/Adigator';
+options.adigatorPath='Adigator';
 
 % Perturbation sizes for numerical differentiation
 %---------------------------------------

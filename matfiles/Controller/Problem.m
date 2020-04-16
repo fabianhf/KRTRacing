@@ -26,9 +26,9 @@ problem.time.t0_max=0;
 guess.t0=0;
 
 % Final distance estimate
-problem.time.tf_min=950;     
-problem.time.tf_max=1050; 
-guess.tf=1050;
+problem.time.tf_min = sTarget;     
+problem.time.tf_max = sTarget; 
+guess.tf = sTarget;
 
 % Parameters bounds. pl=< p <=pu
 problem.parameters.pl = [];
@@ -42,8 +42,8 @@ problem.states.x0l= zeros(1,nStates);
 problem.states.x0u= zeros(1,nStates); 
 
 % State bounds. xl=< x <=xu
-problem.states.xl=[0 -inf(1,nStates-2) -2.5 -inf]; 
-problem.states.xu=[inf(1,nStates-1) 2.5 inf]; 
+problem.states.xl=[0 -inf(1,nStates-3) -2.5 -inf]; 
+problem.states.xu=[inf(1,nStates-2) 2.5 inf]; 
 
 % State rate bounds. xrl=< x <=xru
 problem.states.xrl = -inf(1,nStates); 
@@ -58,8 +58,8 @@ problem.states.xConstraintTol = 0.01*ones(1,nStates);
 problem.states.xrConstraintTol = 0.01*ones(1,nStates);
 
 % Terminal state bounds. xfl=< xf <=xfu
-problem.states.xfl=[0 -inf(1,nStates-4) -2.5 -inf]; 
-problem.states.xfu=[inf(1,nStates-3) 2.5 inf];
+problem.states.xfl=[0 -inf(1,nStates-3) -2.5 -inf]; 
+problem.states.xfu=[inf(1,nStates-2) 2.5 inf];
 
 % Guess the state trajectories with [x0 xf]
 % guess.time=[0 guess.tf/3 guess.tf*2/3 guess.tf];
@@ -76,11 +76,11 @@ problem.states.xfu=[inf(1,nStates-3) 2.5 inf];
 problem.inputs.N=0;       
       
 % Input bounds
-problem.inputs.ul=[-0.53 1 0 0 0];
-problem.inputs.uu=[0.53 5 15000 1 1];
+problem.inputs.ul=[-0.53 3 0 0 0];
+problem.inputs.uu=[0.53 3 15000 1 1];
 
-problem.inputs.u0l=[0 1 0 0 0 0];
-problem.inputs.u0u=[0 5 0 0 0 1];
+problem.inputs.u0l=[0 1 0 0 0];
+problem.inputs.u0u=[0 5 0 0 1];
 
 % Input rate bounds
 problem.inputs.url=-inf(1,nStates);

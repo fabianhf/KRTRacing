@@ -18,11 +18,6 @@ y = csaps(s,centerLine(:,2),0.9,snew);
 kr = LineCurvature2D([x(:) y(:)]);
 kr = csaps(snew,kr,0.1,snew);
 
-figure;
-hold on;
-    
-plot(snew,kr)
-
 
 end
 
