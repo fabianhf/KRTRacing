@@ -111,8 +111,12 @@ a_r = atan((l_r * psi_dot + v .* sin(beta)) ./ (v .* cos(beta))); % rear slip an
 %if af=ar %neutral steering?
 %steering='neutral';
 %end
-%a_f(isnan(a_f)) = 0; % front slip angle well-defined? > recover front slip angle
-%a_r(isnan(a_r)) = 0; % rear slip angle well-defined? > recover rear slip angle
+if ~isa(a_f, 'cada')
+    a_f(isnan(a_f)) = 0; % front slip angle well-defined? > recover front slip angle
+end
+if ~isa(a_r, 'cada')
+    a_r(isnan(a_r)) = 0; % rear slip angle well-defined? > recover rear slip angle
+end
 
 %wheel slip
 % if v<=R*varphi_dot % traction slip? (else: braking slip)
@@ -128,7 +132,9 @@ S = 0; % neglect wheel slip
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% traction, friction, braking
 n = v .* transpose(i_g(G)) * i_0 * (1./(1 - S))/R; % motor rotary frequency
-% n(isnan(n)) = 0; % rotary frequency well defined? > recover rotary frequency
+if ~isa(n, 'cada')
+    n(isnan(n)) = 0; % rotary frequency well defined? > recover rotary frequency
+end
 
 % n(n > (4800*pi)/30) = (4800*pi)/30; % maximal rotary frequency exceeded? > recover maximal rotary frequency
 
@@ -161,7 +167,9 @@ v_dot = (F_x_r .* cos(beta) + F_x_f .* cos(delta + beta) - F_y_r .* sin(beta) ..
       - F_y_f .* sin(delta + beta))/m; % acceleration
 beta_dot = psi_dot - (F_x_r .* sin(beta) + F_x_f .* sin(delta + beta) + F_y_r .* cos(beta) ...
          + F_y_f .* cos(delta + beta)) ./ (m * v); % side slip rate
-% beta_dot(isnan(beta_dot)) = 0; % side slip angle well defined? > recover side slip angle
+if ~isa(beta_dot, 'cada')
+     beta_dot(isnan(beta_dot)) = 0; % side slip angle well defined? > recover side slip angle
+end
 psi_dot_dot = (F_y_f .* l_f .* cos(delta) - F_y_r .* l_r ...
             + F_x_f .* l_f .* sin(delta)) / I_z; % yaw angular acceleration
 
