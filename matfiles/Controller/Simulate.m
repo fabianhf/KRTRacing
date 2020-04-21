@@ -18,7 +18,15 @@ controls = [...
     falcon.Control('delta', -0.53,   0.53, 1);...
     falcon.Control('fB',0, 15000, 1/1000);...
     falcon.Control('zeta',0, 1, 1);...
-    falcon.Control('phi',0, 1, 1);...
+    falcon.Control('phi', 0, 1, 1);...
+    falcon.Control('C',-0.2,0.2,1,'fixed',true);
+];
+
+controls = [...
+    falcon.Control('delta', 0, 0, 1);...
+    falcon.Control('fB',0, 15000, 1/1000);...
+    falcon.Control('zeta',0, 1, 1);...
+    falcon.Control('phi', 1, 1, 1);...
     falcon.Control('C',-0.2,0.2,1,'fixed',true);
 ];
 
@@ -42,9 +50,9 @@ mdl.Build();
 problem = falcon.Problem('KRTRacing');
 
 % Specify Discretization
-n = 500;
+n = 300;
 tau = linspace(0,1,n);
-sEnd = 100;
+sEnd = 50;
 
 % Add a new Phase
 phase = problem.addNewPhase(@vehicle_nlp, states, tau, 0, sEnd);
@@ -66,12 +74,12 @@ problem.setDiscretizationMethod(discmethod);
 
 problem.Bake();
 solver = falcon.solver.ipopt(problem);
-solver.Options.MajorIterLimit = 300;
+solver.Options.MajorIterLimit = 1000;
 solver.Options.MajorFeasTol   = 1e-4;
 solver.Options.MajorOptTol    = 1e-4;
 
 solver.Options.PrintLevel = 5;
-r = solver.Solve();
+r = solver.Solve('IterationFunction', @showIteration);
 
 r = problem;
 
