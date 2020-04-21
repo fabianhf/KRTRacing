@@ -8,14 +8,14 @@ racetrack = load('racetrack.mat');
 states = [...
     falcon.State('t',   0,   500, 0.01);...
     falcon.State('v', 0.01, 200, 1/10);...
-    falcon.State('psi_dot',   -4*pi,   4*pi, 0.1);...
-    falcon.State('beta', -pi,   pi, 0.1);...
+    falcon.State('psi_dot',   -pi,   pi, 0.1);...
+    falcon.State('beta', -pi/2,   pi/2, 0.1);...
     falcon.State('n',   -2.5,     2.5,  1);...
-    falcon.State('xi',   -2*pi,     2*pi,  1);...
+    falcon.State('xi',   -pi/2,     pi/2,  1);...
 ];
 
 controls = [...
-    falcon.Control('delta', -0.53,   0.53, 10);...
+    falcon.Control('delta', -0.53,   0.53, 1);...
     falcon.Control('fB',0, 15000, 1/1000);...
     falcon.Control('zeta',0, 1, 1);...
     falcon.Control('phi',0, 1, 1);...
@@ -42,20 +42,20 @@ mdl.Build();
 problem = falcon.Problem('KRTRacing');
 
 % Specify Discretization
-n = 1000;
+n = 500;
 tau = linspace(0,1,n);
+sEnd = 100;
 
 % Add a new Phase
-phase = problem.addNewPhase(@vehicle_nlp, states, tau, 0, s(end));
+phase = problem.addNewPhase(@vehicle_nlp, states, tau, 0, sEnd);
 
 % Track input normieren 
-sTau = linspace(0,1,length(kr));
-sKr = interp1(sTau,kr,tau);
+sKr = interp1(s./sEnd,kr,tau);
 controlgrid = phase.addNewControlGrid(controls,tau);
 controlgrid.setSpecificValues(controls(5),tau,sKr);
 
 % Set Boundary Condition
-phase.setInitialBoundaries(states(:),[0 0.01 zeros(1,4)]);
+phase.setInitialBoundaries(states(:),[0 0.01 zeros(1,4)]');
 
 % Add Cost Function
 problem.addNewStateCost(states(1));
@@ -66,7 +66,7 @@ problem.setDiscretizationMethod(discmethod);
 
 problem.Bake();
 solver = falcon.solver.ipopt(problem);
-solver.Options.MajorIterLimit = 500;
+solver.Options.MajorIterLimit = 300;
 solver.Options.MajorFeasTol   = 1e-4;
 solver.Options.MajorOptTol    = 1e-4;
 
