@@ -15,8 +15,8 @@ states = [...
 ];
 
 controls = [...
-    falcon.Control('delta', -0.53,   0.53, 1);...
-    falcon.Control('fB',0, 15000, 1/1000);...
+    falcon.Control('delta', -0.1, 0.1, 1);...
+    falcon.Control('fB',0, 15000, 1/100000);...
     falcon.Control('zeta',0, 1, 1);...
     falcon.Control('phi', 0, 1, 1);...
     falcon.Control('C',-0.2,0.2,1,'fixed',true);
@@ -42,7 +42,7 @@ mdl.Build();
 problem = falcon.Problem('KRTRacing');
 
 % Specify Discretization
-n = 300;
+n = 1000;
 tau = linspace(0,1,n);
 sEnd = 50;
 
@@ -50,7 +50,7 @@ sEnd = 50;
 phase = problem.addNewPhase(@vehicle_nlp, states, tau, 0, sEnd);
 
 % Track input normieren 
-sKr = interp1(s./sEnd,kr,tau);
+sKr = 0 * interp1(s./sEnd,kr,tau);
 controlgrid = phase.addNewControlGrid(controls,tau);
 controlgrid.setSpecificValues(controls(5),tau,sKr);
 
@@ -68,12 +68,12 @@ problem.Bake();
 solver = falcon.solver.ipopt(problem);
 solver.Options.MajorIterLimit = 1000;
 solver.Options.MajorFeasTol   = 1e-4;
-solver.Options.MajorOptTol    = 1e-4;
+solver.Options.MajorOptTol    = 1e-5;
 
 solver.Options.PrintLevel = 5;
 r = solver.Solve('IterationFunction', @showIteration);
 
 r = problem;
-
+showValues(problem, true)
 end
 

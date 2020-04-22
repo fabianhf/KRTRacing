@@ -144,6 +144,10 @@ F_x_r = (M_wheel ./ R) - F_b_r ...
       - F_f_r; % longitudinal force rear wheel
 F_x_f = -F_b_f ...
       - F_f_f; % longitudinal force front wheel
+
+F_x_r = (M_wheel ./ R) - F_b_r;
+F_x_f = -F_b_f;
+  
 F_y_r = D_r * sin(C_r * atan(B_r * a_r - E_r * (B_r * a_r ...
       - atan(B_r * a_r)))); % rear lateral force
 F_y_f = D_f * sin(C_f * atan(B_f * a_f - E_f * (B_f * a_f ...
@@ -161,9 +165,11 @@ beta_dot = psi_dot - (F_x_r .* sin(beta) + F_x_f .* sin(delta + beta) + F_y_r .*
 psi_dot_dot = (F_y_f .* l_f .* cos(delta) - F_y_r .* l_r ...
             + F_x_f .* l_f .* sin(delta)) / I_z; % yaw angular acceleration
         
-% v_dot = 0;
-% beta_dot = F_y_r+F_y_f;
-% psi_dot_dot = 0;
+        
+% v_dot = phi - fB/1000;
+v_dot = F_x_r + F_x_f;
+beta_dot = 0;
+psi_dot_dot = 0;
 
 end
 
