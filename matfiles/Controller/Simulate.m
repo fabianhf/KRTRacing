@@ -65,10 +65,9 @@ phase = problem.addNewPhase(@vehicle_nlp, states, tau, 0, sEnd);
 % Track input normieren 
 sKr = interp1(s./sEnd,kr,tau);
 controlgrid = phase.addNewControlGrid(controls,tau);
-controlgrid.setSpecificValues(controls(5),tau,sKr);
 
-% Set initial conditions for fb
-controlgrid.setSpecificValues(controls(2),tau,zeros(1,n));
+% Set initial conditions for fb and C
+controlgrid.setSpecificValues(controls([2, 5]), tau, [sKr; sKr]); % Works but seams logically wrong
 
 % Set Boundary Condition
 phase.setInitialBoundaries(states(:),[0 10 zeros(1,5)]');
