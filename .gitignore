@@ -1,3 +1,7 @@
 ~$*.ppt*
 *.asv
+vehicle_nlp.*
 /matfiles/Controller/exampleProblems
+/matfiles/Controller/fm_models
+/matfiles/fm_models
+/fm_models

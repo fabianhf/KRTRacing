@@ -131,7 +131,7 @@ n = v .* i_g(G) * i_0 * (1./(1 - S))/R; % motor rotary frequency
 % 
 T_M = 200 * phi .* (15 - 14 * phi) ...
     - 200 * phi .* (15 - 14 * phi) .* (((n * (30 / pi)).^(5 * phi)) ./ (4800.^(5 * phi))); % motor torque
-M_wheel = transpose(i_g(G)) .* i_0 .* T_M; % wheel torque
+M_wheel = i_g(G) .* i_0 .* T_M; % wheel torque
 F_w_r = (m * l_f * g) ./ (l_f + l_r); % weight rear
 F_w_f = (m * l_r * g) ./ (l_f + l_r); % weight front
 f_r = f_r_0 + f_r_1 * (abs(v) * 3.6) / 100 ...

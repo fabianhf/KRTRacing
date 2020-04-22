@@ -48,7 +48,7 @@ function showValues(problem, showTime, iterationMode)
             if showTime
                 plot(used_axes(ind, i_cat), time, values(ind, :));
             else
-                plot(used_axes(ind, i_cat), values(ind, :));
+                plot(used_axes(ind, i_cat), problem.RealTime, values(ind, :));
             end
         end
     end
