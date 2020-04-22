@@ -1,4 +1,4 @@
-function [v_dot, beta_dot, psi_dot_dot] = vehicleModel(v,beta,psi_dot,delta,fB,zeta,phi)
+function [v_dot, beta_dot, psi_dot_dot,n_wheel,M_wheel,T_M] = vehicleModel(v,beta,psi_dot,delta,fB,zeta,phi)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% function [X_dot] = singletrackVectorValues(X, U)
 %
@@ -161,7 +161,8 @@ beta_dot = psi_dot - (F_x_r .* sin(beta) + F_x_f .* sin(delta + beta) + F_y_r .*
 psi_dot_dot = (F_y_f .* l_f .* cos(delta) - F_y_r .* l_r ...
             + F_x_f .* l_f .* sin(delta)) / I_z; % yaw angular acceleration
         
-        
+n_wheel = n;
+
 % v_dot = (F_x_r + F_x_f)/m;
 % beta_dot = 0;
 % psi_dot_dot = 0;

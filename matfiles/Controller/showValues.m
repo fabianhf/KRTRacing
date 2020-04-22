@@ -8,7 +8,7 @@ function showValues(problem, showTime, iterationMode)
         end
     end
     
-    categories = {'State', 'Control'};
+    categories = {'State', 'Control', 'Output'};
     if ~iterationMode
         n_cats = length(categories);
 
