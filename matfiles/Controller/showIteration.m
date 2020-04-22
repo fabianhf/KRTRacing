@@ -1,5 +1,7 @@
 function b = showIteration(nIter, f, auxdata)
-    %showValues(auxdata.problem, true, nIter~=1);
-    %drawnow();
+    if mod(nIter, 10) == 0
+        showValues(auxdata.problem, true, nIter~=1);
+        drawnow();
+    end
     b = true;
 end
