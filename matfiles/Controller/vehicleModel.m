@@ -163,9 +163,5 @@ psi_dot_dot = (F_y_f .* l_f .* cos(delta) - F_y_r .* l_r ...
         
 n_wheel = n;
 
-% v_dot = (F_x_r + F_x_f)/m;
-% beta_dot = 0;
-% psi_dot_dot = 0;
-
 end
 
