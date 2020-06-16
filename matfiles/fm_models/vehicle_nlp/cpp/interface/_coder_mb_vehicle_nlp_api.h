@@ -24,10 +24,10 @@ extern emlrtCTX emlrtRootTLSGlobal;
 extern emlrtContext emlrtContextGlobal;
 
 /* Function Declarations */
-extern void mb_vehicle_nlp(real_T states[6], real_T controls[5], real_T
-  statesdot[6], real_T j_statesdot[66]);
+extern void mb_vehicle_nlp(real_T states[7], real_T controls[5], real_T
+  statesdot[7], real_T outputs[3], real_T j_statesdot[84], real_T j_outputs[36]);
 extern void mb_vehicle_nlp_api(const mxArray * const prhs[2], int32_T nlhs,
-  const mxArray *plhs[2]);
+  const mxArray *plhs[4]);
 extern void mb_vehicle_nlp_atexit(void);
 extern void mb_vehicle_nlp_initialize(void);
 extern void mb_vehicle_nlp_terminate(void);

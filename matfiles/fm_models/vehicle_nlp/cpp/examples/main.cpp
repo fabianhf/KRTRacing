@@ -40,7 +40,7 @@
 
 /* Function Declarations */
 static void argInit_5x1_real_T(double result[5]);
-static void argInit_6x1_real_T(double result[6]);
+static void argInit_7x1_real_T(double result[7]);
 static double argInit_real_T();
 static void main_mb_vehicle_nlp();
 
@@ -57,12 +57,12 @@ static void argInit_5x1_real_T(double result[5])
   }
 }
 
-static void argInit_6x1_real_T(double result[6])
+static void argInit_7x1_real_T(double result[7])
 {
   int idx0;
 
   /* Loop over the array to initialize each element. */
-  for (idx0 = 0; idx0 < 6; idx0++) {
+  for (idx0 = 0; idx0 < 7; idx0++) {
     /* Set the value of the array element.
        Change this value to the value that the application requires. */
     result[idx0] = argInit_real_T();
@@ -76,18 +76,20 @@ static double argInit_real_T()
 
 static void main_mb_vehicle_nlp()
 {
-  double dv[6];
+  double dv[7];
   double dv1[5];
-  double statesdot[6];
-  double j_statesdot[66];
+  double statesdot[7];
+  double outputs[3];
+  double j_statesdot[84];
+  double j_outputs[36];
 
   /* Initialize function 'mb_vehicle_nlp' input arguments. */
   /* Initialize function input argument 'states'. */
   /* Initialize function input argument 'controls'. */
   /* Call the entry-point 'mb_vehicle_nlp'. */
-  argInit_6x1_real_T(dv);
+  argInit_7x1_real_T(dv);
   argInit_5x1_real_T(dv1);
-  mb_vehicle_nlp(dv, dv1, statesdot, j_statesdot);
+  mb_vehicle_nlp(dv, dv1, statesdot, outputs, j_statesdot, j_outputs);
 }
 
 int main(int, const char * const [])

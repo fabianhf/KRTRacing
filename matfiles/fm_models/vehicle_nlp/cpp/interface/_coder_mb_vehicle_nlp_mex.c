@@ -15,13 +15,13 @@
 
 /* Function Declarations */
 MEXFUNCTION_LINKAGE void mb_vehicle_nlp_mexFunction(int32_T nlhs, mxArray *plhs
-  [2], int32_T nrhs, const mxArray *prhs[2]);
+  [4], int32_T nrhs, const mxArray *prhs[2]);
 
 /* Function Definitions */
-void mb_vehicle_nlp_mexFunction(int32_T nlhs, mxArray *plhs[2], int32_T nrhs,
+void mb_vehicle_nlp_mexFunction(int32_T nlhs, mxArray *plhs[4], int32_T nrhs,
   const mxArray *prhs[2])
 {
-  const mxArray *outputs[2];
+  const mxArray *outputs[4];
   int32_T b_nlhs;
   emlrtStack st = { NULL,              /* site */
     NULL,                              /* tls */
@@ -36,7 +36,7 @@ void mb_vehicle_nlp_mexFunction(int32_T nlhs, mxArray *plhs[2], int32_T nrhs,
                         14, "mb_vehicle_nlp");
   }
 
-  if (nlhs > 2) {
+  if (nlhs > 4) {
     emlrtErrMsgIdAndTxt(&st, "EMLRT:runTime:TooManyOutputArguments", 3, 4, 14,
                         "mb_vehicle_nlp");
   }

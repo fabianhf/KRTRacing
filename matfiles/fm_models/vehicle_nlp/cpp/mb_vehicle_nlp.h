@@ -19,8 +19,9 @@
 #include "mb_vehicle_nlp_types.h"
 
 /* Function Declarations */
-extern void mb_vehicle_nlp(const double states[6], const double controls[5],
-  double statesdot[6], double j_statesdot[66]);
+extern void mb_vehicle_nlp(const double states[7], const double controls[5],
+  double statesdot[7], double outputs[3], double j_statesdot[84], double
+  j_outputs[36]);
 extern void mb_vehicle_nlp_initialize();
 extern void mb_vehicle_nlp_terminate();
 
