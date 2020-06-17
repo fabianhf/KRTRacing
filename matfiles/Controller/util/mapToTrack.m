@@ -12,11 +12,13 @@ function res = mapToTrack(problem,trackStruct)
     
     res.s = interp1(problem.RealTime,problem.RealTime,trackStruct.s);
     
-    dx = cos(trackStruct.psi(:)).*res.n;
-    dy = sin(trackStruct.psi(:)).*res.n;
+    dx = cos(trackStruct.psi(:)).*res.n(:);
+    dy = sin(trackStruct.psi(:)).*res.n(:);
     
-    res.x = trackStruct.x(:)+dx;
-    res.y = trackStruct.y(:)+dy;
+    res.x = (trackStruct.x(:)+dx)';
+    res.y = (trackStruct.y(:)+dy)';
+    
+    
 
 
 end

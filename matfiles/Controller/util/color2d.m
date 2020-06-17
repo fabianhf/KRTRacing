@@ -1,7 +1,7 @@
 function color2d(x,y,data)
-    x = x';
-    y = y';
-    data = data';
+    x = x(:)';
+    y = y(:)';
+    data = data(:)';
     
     z = zeros(size(data));
     col = data;

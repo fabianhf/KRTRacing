@@ -7,10 +7,11 @@ s = cumsum(vecnorm(centerLine-circshift(centerLine,1),2,2));
 s = s(:);
 n = norm(pointDifference(1,:)*0.5); % Assume constant track width
 
-[s,idx] = unique(s);
+[s,idx] = unique(s,'stable');
 centerLine = centerLine(idx,:);
 
 snew = linspace(s(1),s(end),length(s));
+
 
 x = csaps(s,centerLine(:,1),0.9,snew);
 y = csaps(s,centerLine(:,2),0.9,snew);
@@ -19,14 +20,14 @@ kr = LineCurvature2D([x(:) y(:)]);
 kr = csaps(snew,kr,0.1,snew);
 
 % Calculate track Angle to map to track coords.
-ds = [diff(s); mean(diff(s))];
+ds = [sqrt((circshift(x,-1)-x).^2+(circshift(y,-1)-y).^2)];
 dPsi = kr(:).*ds(:);
 psi = cumsum(dPsi);
 
 track.x = x;
 track.y = y;
 track.kr = kr;
-track.s = s;
+track.s = snew;
 track.psi = psi(:);
 
 
