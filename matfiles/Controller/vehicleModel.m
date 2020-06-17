@@ -1,4 +1,4 @@
-function [v_dot, beta_dot, psi_dot_dot,n_wheel] = vehicleModel(v,beta,psi_dot,delta,fB,zeta,phi,M_wheel)
+function [v_dot, beta_dot, psi_dot_dot,n_wheel,a_r,a_f] = vehicleModel(v,beta,psi_dot,delta,fB,zeta,phi,M_wheel)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% function [X_dot] = singletrackVectorValues(X, U)
 %
