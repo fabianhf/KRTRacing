@@ -1,4 +1,4 @@
-// Call Function generated automatically on 16-Jun-2020 19:12:14
+// Call Function generated automatically on 17-Jun-2020 02:05:40
 // Created on Steffen-PC
 #include "mex.h"
 #include "math.h"
@@ -36,7 +36,7 @@ void mexFunction( int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[] ) {
 		// System Information
 		mexPrintf("<strong>System Information</strong>\n");
 		mexPrintf("Mex file created by Derivative Model Builder\n");
-		mexPrintf("- Date:                16-Jun-2020 19:12:14\n");
+		mexPrintf("- Date:                17-Jun-2020 02:05:40\n");
 		mexPrintf("- Computer:            Steffen-PC\n");
 		mexPrintf("- MATLAB-Version:      9.7.0.1319299 (R2019b) Update 5\n");
 		mexPrintf("- Hessian-Calculation: false\n");
@@ -146,11 +146,11 @@ void mexFunction( int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[] ) {
 		jac_hess[12] = 1.000000;
 		jac_hess[13] = 1.000000;
 		jac_hess[14] = 0.000000;
-		jac_hess[15] = 1.000000;
-		jac_hess[16] = 1.000000;
-		jac_hess[17] = 1.000000;
+		jac_hess[15] = 0.000000;
+		jac_hess[16] = 0.000000;
+		jac_hess[17] = 0.000000;
 		jac_hess[18] = 0.000000;
-		jac_hess[19] = 1.000000;
+		jac_hess[19] = 0.000000;
 		jac_hess[20] = 0.000000;
 		jac_hess[21] = 1.000000;
 		jac_hess[22] = 1.000000;
@@ -181,30 +181,30 @@ void mexFunction( int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[] ) {
 		jac_hess[47] = 0.000000;
 		jac_hess[48] = 0.000000;
 		jac_hess[49] = 0.000000;
-		jac_hess[50] = 1.000000;
-		jac_hess[51] = 1.000000;
-		jac_hess[52] = 1.000000;
+		jac_hess[50] = 0.000000;
+		jac_hess[51] = 0.000000;
+		jac_hess[52] = 0.000000;
 		jac_hess[53] = 0.000000;
-		jac_hess[54] = 0.000000;
-		jac_hess[55] = 0.000000;
+		jac_hess[54] = 1.000000;
+		jac_hess[55] = 1.000000;
 		jac_hess[56] = 0.000000;
-		jac_hess[57] = 1.000000;
-		jac_hess[58] = 1.000000;
-		jac_hess[59] = 1.000000;
+		jac_hess[57] = 0.000000;
+		jac_hess[58] = 0.000000;
+		jac_hess[59] = 0.000000;
 		jac_hess[60] = 0.000000;
 		jac_hess[61] = 0.000000;
-		jac_hess[62] = 0.000000;
+		jac_hess[62] = 1.000000;
 		jac_hess[63] = 0.000000;
-		jac_hess[64] = 1.000000;
-		jac_hess[65] = 1.000000;
-		jac_hess[66] = 1.000000;
+		jac_hess[64] = 0.000000;
+		jac_hess[65] = 0.000000;
+		jac_hess[66] = 0.000000;
 		jac_hess[67] = 0.000000;
 		jac_hess[68] = 0.000000;
 		jac_hess[69] = 0.000000;
 		jac_hess[70] = 0.000000;
 		jac_hess[71] = 1.000000;
 		jac_hess[72] = 0.000000;
-		jac_hess[73] = 1.000000;
+		jac_hess[73] = 0.000000;
 		jac_hess[74] = 0.000000;
 		jac_hess[75] = 0.000000;
 		jac_hess[76] = 0.000000;
@@ -281,7 +281,7 @@ void mexFunction( int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[] ) {
 		mxSetField(struct_outputs, 1, o_names[3], mx);
 		mxSetField(plhs[0], 0, names[1], struct_outputs);
 		struct_info = mxCreateStructMatrix(1,1,4,info_names);
-		mxSetField(struct_info, 0, info_names[0], mxCreateString("16-Jun-2020 19:12:14"));
+		mxSetField(struct_info, 0, info_names[0], mxCreateString("17-Jun-2020 02:05:40"));
 		mxSetField(struct_info, 0, info_names[1], mxCreateString("Steffen-PC"));
 		mxSetField(struct_info, 0, info_names[2], mxCreateString("9.7.0.1319299 (R2019b) Update 5"));
 		mxSetField(struct_info, 0, info_names[3], mxCreateLogicalScalar(false));
