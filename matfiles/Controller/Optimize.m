@@ -1,4 +1,4 @@
-function r = Simulate(solvedProblem)
+function r = Optimize(solvedProblem)
 %SIMULATE Summary of this function goes here
 %   Detailed explanation goes here
 
