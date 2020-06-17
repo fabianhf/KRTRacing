@@ -62,8 +62,81 @@ G=1; %gear 1 ... 5
 Fb=0; % braking force
 zeta=0.5; %braking force distribution
 phi=0.2; % gas pedal position
+
+persistent i states
+
+%% Init
+% Persistent variables
+if(~exist('i','var') || isempty(i))
+    i = 1;
+    states = zeros(3,1);
+end
+
+% Vehicle Parameter
+m = 1239; % vehicle mass
+R = 0.302; % wheel radius
+I_R = 1.5; % wheel moment of inertia
+i_g = [3.91 2.002 1.33 1 0.805]; % transmissions of the 1st ... 5th gear
+i_0 = 3.91; % motor transmission
+
+% Racing Line Precalculation
+if(i == 1)
+    % Line computation
+    [sOpt,nOpt,vOpt,deltaOpt,zetaOpt,fBOpt,MOpt,CTrack] = LineComputation();
+end
+
+
+
+%% Internal track position and precalculation
+C = interp1(sOpt,CTrack,states(1));
+vTarget = interp1(sOpt,vOpt,states(1));
+nTarget = interp1(sOpt,nOpt,states(1));
+deltaFF = interp1(sOpt,deltaOpt,states(1));
+fBFF = interp1(sOpt,fBOpt,states(1));
+MFF = interp1(sOpt,MOpt,states(1));
+zetaFF = interp1(sOpt,zetaOpt,states(1));
+
+%% Longitudinal Control
+% Parameter
+ds = 2; % Preview distance
+s_dot = v .* cos(-beta + states(3)) ./ (1 - states(2) .* C);
+a_x_target = 1./s_dot/ds*(vTarget-v);
+
+% Calculate Wheeltorque Target for Acceleration
+[vBreak,M,g] = powerCurve();
+
+[~,idxV] = min(abs(vBreak-v));
+G = g(idxV);
+MTargetAcc = max(min(a_x_target.*(m+I_R/R^2),M(idxV)),0);
+
+% Calculate torque for all possible phi and choose phi to match MTarget
+S = 0;
+phiBreak = 0:0.01:1;
+n = v .* i_g(G) * i_0 * (1./(1 - S))/R; % motor rotary frequency
+T_M = 200 .* phiBreak .* (15 - 14 .* phiBreak) .* (1 - (n * 30 / (pi * 4800 * 2)).^(5 .* phiBreak)); % Same as the above, just simpler
+M_wheel = i_g(G) .* i_0 .* T_M; % wheel torque
+
+[~,idxPhiBreak] = min(abs(M_wheel-MTargetAcc));
+phi = phiBreak(idxPhiBreak);
+
+% Calculate Brakeforce Target for Deceleration
+FTargetDec = max(abs(min(a_x_target.*(m+I_R/R^2),0)),15000);
+Fb = FTargetDec;
+zeta = zetaFF;
+
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OUTPUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 U=[delta G Fb zeta phi]; % input vector
+
+%% Internal integration
+h = 0.001;
+states = states+h*dTrackModel(states,v,beta,psi_dot,C);
 end
 
+function dx = dTrackModel(x,v,beta,psi_dot,C)
+    s_dot = v .* cos(-beta + x(3)) ./ (1 - x(2) .* C);
+    n_dot = v .* sin(-beta + x(3));
+    xi_dot = psi_dot - C .* s_dot;
+    
+    dx = [s_dot; n_dot; xi_dot];
+end
