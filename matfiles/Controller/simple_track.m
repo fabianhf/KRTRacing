@@ -28,7 +28,7 @@ s_dot = v .* cos(xi) ./ (1 - n .* C);
 n_dot = -v .* sin(xi);
 
 psi_dot_2 = v .* delta; % Override psi_dot
-xi_dot = psi_dot_2 - C .* s_dot;
+xi_dot = -(psi_dot_2 - C .* s_dot);
 
 end
 
