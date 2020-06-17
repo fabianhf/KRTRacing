@@ -67,7 +67,7 @@ problem = falcon.Problem('KRTRacing');
 
 % Specify Discretization
 sStart = 0;
-sEnd = 450;
+sEnd = s(end);
 delta_s = 0.5;
 n = round((sEnd - sStart)/delta_s) + 1;
 tau = linspace(0,1,n);
