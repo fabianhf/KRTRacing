@@ -1,4 +1,4 @@
-function [s,kr,n] = prepareTrack(t_r,t_l)
+function [s,kr,n,track] = prepareTrack(t_r,t_l)
 %EXTRACTCENTERLINE Summary of this function goes here
 
 pointDifference = t_r-t_l;
@@ -17,6 +17,17 @@ y = csaps(s,centerLine(:,2),0.9,snew);
 
 kr = LineCurvature2D([x(:) y(:)]);
 kr = csaps(snew,kr,0.1,snew);
+
+% Calculate track Angle to map to track coords.
+ds = [diff(s); mean(diff(s))];
+dPsi = kr(:).*ds(:);
+psi = cumsum(dPsi);
+
+track.x = x;
+track.y = y;
+track.kr = kr;
+track.s = s;
+track.psi = psi(:);
 
 
 end

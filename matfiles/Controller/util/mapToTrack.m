@@ -1,4 +1,4 @@
-function res = mapToTrack(problem,track)
+function res = mapToTrack(problem,trackStruct)
 %MAPTOTRACK Summary of this function goes here
 %   Detailed explanation goes here
      
@@ -6,17 +6,17 @@ function res = mapToTrack(problem,track)
     
     for i=1:length(categories)
         for j=1:size(problem.([categories{i} 'Values']),1)
-            res.(problem.([categories{i} 'Names']){j}) = interp1(problem.RealTime,problem.([categories{i} 'Values'])(j,:),track.s);
+            res.(problem.([categories{i} 'Names']){j}) = interp1(problem.RealTime,problem.([categories{i} 'Values'])(j,:),trackStruct.s);
         end
     end
     
-    res.s = interp1(problem.RealTime,problem.RealTime,track.s);
+    res.s = interp1(problem.RealTime,problem.RealTime,trackStruct.s);
     
-    dx = cos(track.psi(:)).*res.n;
-    dy = sin(track.psi(:)).*res.n;
+    dx = cos(trackStruct.psi(:)).*res.n;
+    dy = sin(trackStruct.psi(:)).*res.n;
     
-    res.x = track.x(:)+dx;
-    res.y = track.y(:)+dy;
+    res.x = trackStruct.x(:)+dx;
+    res.y = trackStruct.y(:)+dy;
 
 
 end
