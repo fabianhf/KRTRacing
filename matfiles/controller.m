@@ -69,7 +69,7 @@ persistent i states
 % Persistent variables
 if(~exist('i','var') || isempty(i))
     i = 1;
-    states = zeros(3,1);
+    states = zeros(4,1);
 end
 
 % Vehicle Parameter
@@ -124,19 +124,26 @@ FTargetDec = max(abs(min(a_x_target.*(m+I_R/R^2),0)),15000);
 Fb = FTargetDec;
 zeta = zetaFF;
 
+%% Lateral Control
+kP = 1;
+kI = 0.1;
+% Simple PI
+delta = deltaFF + (nTarget-states(2))*kP + kI*states(4); 
+
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OUTPUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 U=[delta G Fb zeta phi]; % input vector
 
 %% Internal integration
 h = 0.001;
-states = states+h*dTrackModel(states,v,beta,psi_dot,C);
+states = states+h*dModel(states,v,beta,psi_dot,C);
 end
 
-function dx = dTrackModel(x,v,beta,psi_dot,C)
+function dx = dModel(x,v,beta,psi_dot,C,n,nTarget)
     s_dot = v .* cos(-beta + x(3)) ./ (1 - x(2) .* C);
     n_dot = v .* sin(-beta + x(3));
     xi_dot = psi_dot - C .* s_dot;
+    dn_dot = nTarget-n;
     
-    dx = [s_dot; n_dot; xi_dot];
+    dx = [s_dot; n_dot; xi_dot; dn_dot];
 end
