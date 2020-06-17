@@ -30,6 +30,7 @@ track.kr = kr;
 track.s = snew;
 track.psi = psi(:);
 
+s = snew;
 
 end
 

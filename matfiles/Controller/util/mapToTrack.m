@@ -11,6 +11,7 @@ function res = mapToTrack(problem,trackStruct)
     end
     
     res.s = interp1(problem.RealTime,problem.RealTime,trackStruct.s);
+    res.n = -res.n;
     
     dx = cos(trackStruct.psi(:)).*res.n(:);
     dy = sin(trackStruct.psi(:)).*res.n(:);

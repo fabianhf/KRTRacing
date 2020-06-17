@@ -13,7 +13,8 @@ else
     color2d(res.x,res.y,variable)
 end
 
-
+psi = track.psi' - res.xi;
+quiver(res.x, res.y, -sin(psi), cos(psi), 0);
 
 end
 
