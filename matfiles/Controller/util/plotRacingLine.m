@@ -1,4 +1,4 @@
-function plotRacingLine(res,track,variable)
+function plotRacingLine(res,track,variable,orientation)
 %PLOTRACINGLINE Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -13,8 +13,10 @@ else
     color2d(res.x,res.y,variable)
 end
 
-psi = track.psi' - res.xi;
-quiver(res.x, res.y, -sin(psi), cos(psi), 0);
+if(exist('orientation','var') && orientation)
+    psi = track.psi' - res.beta;
+    quiver(res.x, res.y, -sin(psi), cos(psi), 0.3);
+end
 
 end
 
