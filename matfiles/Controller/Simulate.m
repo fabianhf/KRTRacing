@@ -52,7 +52,7 @@ mdl.addSubsystem(@track,...                             % mdl.addSubsystem(@trac
     {'s_dot','n_dot','xi_dot'});
 
 mdl.addSubsystem(@objective,...
-    {'delta','fB','phi','zeta','beta'},...
+    {'delta','fB','beta'},...
     {'objective_dot'});
 
 mdl.addSubsystem(@transformation,...
@@ -67,7 +67,7 @@ problem = falcon.Problem('KRTRacing');
 
 % Specify Discretization
 sStart = 0;
-sEnd = s(end);
+sEnd = 450;
 delta_s = 0.5;
 n = round((sEnd - sStart)/delta_s) + 1;
 tau = linspace(0,1,n);
