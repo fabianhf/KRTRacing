@@ -32,8 +32,11 @@ s.DataTipTemplate.DataTipRows(end+1) = dataTipTextRow('\beta', rad2deg(res.beta)
 s.DataTipTemplate.DataTipRows(end+1) = dataTipTextRow('\delta', rad2deg(res.delta));
 s.DataTipTemplate.DataTipRows(end+1) = dataTipTextRow('\xi', rad2deg(res.xi));
 s.DataTipTemplate.DataTipRows(end+1) = dataTipTextRow('f_B', res.fB);
-s.DataTipTemplate.DataTipRows(end+1) = dataTipTextRow('a_f', rad2deg(res.a_f));
-s.DataTipTemplate.DataTipRows(end+1) = dataTipTextRow('a_r', rad2deg(res.a_r));
+try
+    s.DataTipTemplate.DataTipRows(end+1) = dataTipTextRow('a_f', rad2deg(res.a_f));
+    s.DataTipTemplate.DataTipRows(end+1) = dataTipTextRow('a_r', rad2deg(res.a_r));
+catch
+end
 
 end
 

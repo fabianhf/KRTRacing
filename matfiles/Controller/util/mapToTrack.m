@@ -13,14 +13,13 @@ function res = mapToTrack(problem,trackStruct)
     res.s = interp1(problem.RealTime,problem.RealTime,trackStruct.s);
     res.n = -res.n;
     
-    dx = cos(trackStruct.psi(:)).*res.n(:);
-    dy = sin(trackStruct.psi(:)).*res.n(:);
-    
-    res.x = (trackStruct.x(:)+dx)';
-    res.y = (trackStruct.y(:)+dy)';
-    
-    
+    if(~isfield(res, 'x') && ~isfield(res, 'y'))
+        dx = cos(trackStruct.psi(:)).*res.n(:);
+        dy = sin(trackStruct.psi(:)).*res.n(:);
 
+        res.x = (trackStruct.x(:)+dx)';
+        res.y = (trackStruct.y(:)+dy)';
+    end
 
 end
 
