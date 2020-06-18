@@ -1,12 +1,16 @@
-function showValues(problem, showTime, iterationMode)
+function showValues(problem, showTime, iterationMode, filter)
     persistent used_axes n_cats n_variables
         
-    if nargin < 3
-        iterationMode = false;
-        if nargin < 2
-            showTime = false;
-        end
+    if nargin < 4
+        filter = {};
     end
+    if nargin < 3 || isempty(iterationMode)
+        iterationMode = false;
+    end
+    if nargin < 2 || isempty(showTime)
+        showTime = false;
+    end
+
     
     categories = {'State', 'Control', 'Output'};
     if ~iterationMode
@@ -15,7 +19,11 @@ function showValues(problem, showTime, iterationMode)
         for i_cat = 1:n_cats
             category = categories{i_cat};
             names = problem.([category, 'Names']);
-            n_variables(i_cat) = length(names);
+            values = problem.([category, 'Values']);
+            [filteredNames, idx] = setdiff(names, filter, 'stable');
+            problem.([category, 'Names']) = names(idx);
+            problem.([category, 'Values']) = values(idx, :);
+            n_variables(i_cat) = length(filteredNames);
         end
         n_plots_y = max(n_variables);
         

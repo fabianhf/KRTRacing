@@ -58,10 +58,21 @@ for i = 1:N-1
   LOG(:,i) = [tspan(i); log]; 
 end
 res.Y = Y.';
-res.StateValues = LOG;
-res.StateNames = {'t','v','psi_dot', 'beta', 'n', 'xi', 'delta', 'fB', 'zeta', 'phi', 'deltaFF', 'deltaFB'};
-res.ControlNames = {};
-res.ControlValues = [];
+res.ControllerStateNames = {'t','v','psi_dot', 'beta', 'n', 'xi', 'delta', 'fB', 'zeta', 'phi', 'deltaFF', 'deltaFB'};
+res.ControllerStateValues = LOG;
+res.SimulationStateNames = {'x','y','v','beta','psi','omega','x_dot','y_dot','psi_dot','varphi_dot'};
+res.SimulationStateValues = Y;
+combinedStateNames = [res.ControllerStateNames, res.SimulationStateNames];
+[~, idxUnique] = unique(combinedStateNames, 'stable'); % Filter out the states, which are loged by the controller and the simulation
+combinedStateValues = [LOG; Y(:, 1:end-1)]; % Combine the data from the simulation and the controller. (The controller doesn't hold the final values)
+res.ControlNames = {'delta','fB','zeta','phi'};
+[~, idxControls, ~] = intersect(res.ControllerStateNames, res.ControlNames, 'stable'); % Filter out the control variables from the Log
+idxStates = setdiff(idxUnique, idxControls, 'stable'); % Filter out the state variables
+
+res.StateNames = combinedStateNames(idxStates);
+res.StateValues = combinedStateValues(idxStates, :); % Save everything except the control variables
+res.ControlNames = combinedStateNames(idxControls);
+res.ControlValues = combinedStateValues(idxControls, :); % Save only control variables
 res.OutputValues = [];
 res.OutputNames = {};
 res.RealTime = LOG(1,:);
