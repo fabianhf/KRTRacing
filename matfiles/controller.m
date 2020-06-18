@@ -135,10 +135,13 @@ kI = 0;
 deltaFB = (nTarget-states(2))*kP + kI*states(4);
 delta = deltaFF + deltaFB;
 
+
+%% LQR Controller
+% delta = deltaFF;
+% delta = lqr_controller(states, v, psi_dot, beta, delta, Fb, zeta, phi, C, vTarget, psi_dotTarget, betaTarget, nTarget, xiTarget, deltaFF);
+
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OUTPUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-delta = deltaFF;
-delta = lqr_controller(states, v, psi_dot, beta, delta, Fb, zeta, phi, C, vTarget, psi_dotTarget, betaTarget, nTarget, xiTarget, deltaFF);
 U=[delta G Fb zeta phi]; % input vector
 
 %% Logging
