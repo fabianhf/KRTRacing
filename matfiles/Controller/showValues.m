@@ -25,18 +25,34 @@ function showValues(problem, showTime, iterationMode, printOnTop, filterVariable
     if ~iterationMode
         n_cats = length(categories);
         
-        problemStruct = struct('RealTime', problem.RealTime);
+        if isa(problem, 'Problem') || true
+            structProperties = ['RealTime', strcat(categories,'Names'), strcat(categories,'Values')];
+            problemStruct = struct();
+            for structProperty = structProperties
+                problemStruct.(structProperty{:}) = problem.(structProperty{:});
+            end
+            problem = problemStruct;
+            
+             % Pfusch! The following relays on delta being the first
+             % control value
+             % This brings the delta value from the states to the controls
+            delta_idx = find(strcmp(problem.StateNames, 'delta'));
+            if ~isempty(delta_idx)
+                problem.ControlNames = [problem.StateNames(delta_idx); problem.ControlNames];
+                problem.StateNames(delta_idx) = [];
+                problem.ControlValues = [problem.StateValues(delta_idx, :); problem.ControlValues];
+                problem.StateValues(delta_idx, :) = [];
+            end
+        end
         for i_cat = 1:n_cats
             category = categories{i_cat};
             names = problem.([category, 'Names']);
-            values = problem.([category, 'Values']);
-            [filteredNames, idx] = setdiff(names, filterVariables, 'stable');
-            problemStruct.([category, 'Names']) = names(idx);
-            problemStruct.([category, 'Values']) = values(idx, :);
+            [filteredNames, idx] = setdiff(names, filterVariables,'stable');
+            problem.([category, 'Names']) = names(idx);
+            problem.([category, 'Values']) = problem.([category, 'Values'])(idx, :);
             n_variables(i_cat) = length(filteredNames);
         end
         n_plots_y = max(n_variables);
-        problem = problemStruct;
         
         if ~printOnTop
             for i_cat = 1:n_cats

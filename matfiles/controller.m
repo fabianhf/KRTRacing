@@ -91,6 +91,9 @@ i_0 = 3.91; % motor transmission
 
 %% Internal track position and precalculation
 ds = 0.1; % Preview distance
+if states(1)+ds > precomputedLine.sOpt(end)
+    disp(['Hoch die Hände: ', 0.001*i, ' s']);
+end
 C = interp1(precomputedLine.sOpt,precomputedLine.CTrack,states(1));
 vTarget = 0.8*interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1)+ds);
 nTarget = interp1(precomputedLine.sOpt,precomputedLine.nOpt,states(1));
@@ -157,7 +160,7 @@ delta = deltaFF - deltaFB;
 U=[delta G Fb zeta phi]; % input vector
 
 %% Logging
-log = [v; psi_dot; beta; states(2); states(3); delta; Fb; zeta; phi; deltaFF; deltaFB];
+log = [v; psi_dot; beta; states(2); states(3); delta; Fb; zeta; phi; deltaFF; deltaFB; states(1); C];
 
 %% Internal integration
 h = 0.001;
