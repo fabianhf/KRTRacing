@@ -3,4 +3,4 @@ racetrack = load('racetrack.mat');
 res = mapToTrack(p,track);
 plotRacingLine(res,track,res.delta);
 figure();
-showValues(p, [], [], {'x', 'y', 'x_dot', 'y_dot', 'psi', 't'});
+showValues(p, [], [], {'x', 'y', 'x_dot', 'y_dot', 'psi', 't'}, {'Output'})
