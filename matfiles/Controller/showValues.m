@@ -1,11 +1,14 @@
-function showValues(problem, showTime, iterationMode, filterVariables, filterCategories)
+function showValues(problem, showTime, iterationMode, printOnTop, filterVariables, filterCategories)
     persistent used_axes n_cats n_variables
         
-    if nargin < 5
+    if nargin < 6
         filterCategories = {};
     end
-    if nargin < 4
+    if nargin < 5
         filterVariables = {};
+    end
+    if nargin < 4
+        printOnTop = false;
     end
     if nargin < 3 || isempty(iterationMode)
         iterationMode = false;
@@ -18,6 +21,7 @@ function showValues(problem, showTime, iterationMode, filterVariables, filterCat
     categories = {'State', 'Control', 'Output'};
     categories = setdiff(categories, filterCategories, 'stable');
     
+    time = problem.StateValues(1, :);
     if ~iterationMode
         n_cats = length(categories);
         
@@ -34,32 +38,35 @@ function showValues(problem, showTime, iterationMode, filterVariables, filterCat
         n_plots_y = max(n_variables);
         problem = problemStruct;
         
-        for i_cat = 1:n_cats
-            category = categories{i_cat};
-            names = problem.([category, 'Names']);
-            n_variables(i_cat) = length(names);
-    
-            for ind = 1:n_variables(i_cat)
-                used_axes(ind, i_cat) = subplot(n_plots_y, n_cats, (ind - 1) * n_cats + i_cat);
-                if ind == 1
-                    title(category);
+        if ~printOnTop
+            for i_cat = 1:n_cats
+                category = categories{i_cat};
+                names = problem.([category, 'Names']);
+                n_variables(i_cat) = length(names);
+
+                for ind = 1:n_variables(i_cat)
+                    used_axes(ind, i_cat) = subplot(n_plots_y, n_cats, (ind - 1) * n_cats + i_cat);
+                    if ind == 1
+                        title(category);
+                    end
+                    hold on
+                    ylabel(names(ind));
                 end
-                hold on
-                ylabel(names(ind));
+
             end
-            
+            warning('off', 'MATLAB:linkaxes:RequireDataAxes')
+            linkaxes(used_axes(:), 'x');
+            xlim('auto')
         end
-        warning('off', 'MATLAB:linkaxes:RequireDataAxes')
-        linkaxes(used_axes(:), 'x');
-        xlim('auto')
     end
     
-    time = problem.StateValues(1, :);
     for i_cat = 1:n_cats
         category = categories{i_cat};
         values = problem.([category, 'Values']);
         for ind = 1:n_variables(i_cat)
-            cla(used_axes(ind, i_cat))
+            if ~printOnTop
+                cla(used_axes(ind, i_cat))
+            end
             if showTime
                 plot(used_axes(ind, i_cat), time, values(ind, :));
             else
