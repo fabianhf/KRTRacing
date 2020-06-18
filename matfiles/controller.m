@@ -118,6 +118,10 @@ n = v .* i_g(G) * i_0 * (1./(1 - S))/R; % motor rotary frequency
 T_M = 200 .* phiBreak .* (15 - 14 .* phiBreak) .* (1 - (n * 30 / (pi * 4800 * 2)).^(5 .* phiBreak)); % Same as the above, just simpler
 M_wheel = i_g(G) .* i_0 .* T_M; % wheel torque
 
+[~,idxM_wheelMax] = max(M_wheel);
+M_wheel = M_wheel(1:idxM_wheelMax);
+phiBreak = phiBreak(1:idxM_wheelMax);
+
 [~,idxPhiBreak] = min(abs(M_wheel(:)-MTargetAcc));
 phi = phiBreak(idxPhiBreak);
 

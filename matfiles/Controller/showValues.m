@@ -21,7 +21,7 @@ function showValues(problem, showTime, iterationMode, filterVariables, filterCat
     if ~iterationMode
         n_cats = length(categories);
         
-        problemStruct = struct();
+        problemStruct = struct('RealTime',problem.RealTime);
         for i_cat = 1:n_cats
             category = categories{i_cat};
             names = problem.([category, 'Names']);
