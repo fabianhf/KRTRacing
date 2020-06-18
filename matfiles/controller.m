@@ -92,7 +92,7 @@ i_0 = 3.91; % motor transmission
 %% Internal track position and precalculation
 ds = 0.1; % Preview distance
 C = interp1(precomputedLine.sOpt,precomputedLine.CTrack,states(1));
-vTarget = interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1)+ds);
+vTarget = 0.8*interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1)+ds);
 nTarget = interp1(precomputedLine.sOpt,precomputedLine.nOpt,states(1));
 xiTarget = interp1(precomputedLine.sOpt,precomputedLine.xiOpt,states(1));
 deltaFF = interp1(precomputedLine.sOpt,precomputedLine.deltaOpt,states(1));
@@ -190,12 +190,12 @@ function k = lqr_controller(states, v, psi_dot, beta, delta, Fb, zeta, phi, C, v
 %     state_dot = state_dot_s * s_dot;
     
     controlSelector = 1;    % Give the LQR only delta to play with
-    stateSelector = 5:6;    % Only v, psi_dot, beta, n, xi are usefull states
+    stateSelector = 2:6;    % Only v, psi_dot, beta, n, xi are usefull states
     
     A = track_state_jac(stateSelector, stateSelector);
     B = track_state_jac(stateSelector, 7 + controlSelector);
     
-    Q = diag([1, 1]);  % Don't care about v, since we can't really change anything about it with delta
+    Q = diag([0, 0, 0, 1, 1]);  % Don't care about v, since we can't really change anything about it with delta
     R = diag([1]);
     
     k = lqr(A, B, Q, R);
