@@ -57,19 +57,28 @@ t_l_y=t_l(:,2); % y coordinate of left racetrack boundary
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE FEEDBACK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-delta=0; % steering angle
-G=1; %gear 1 ... 5
-Fb=0; % braking force
-zeta=0.5; %braking force distribution
-phi=0.2; % gas pedal position
-
-persistent i states sOpt nOpt vOpt deltaOpt zetaOpt fBOpt MOpt CTrack
+persistent i states precomputedLine vBreak M g
 
 %% Init
 % Persistent variables
 if(~exist('i','var') || isempty(i))
     i = 1;
     states = zeros(4,1);
+    precomputedLine = struct('p',[]);
+    
+    % Line computation
+    racetrack = struct('t_r', t_r, 't_l', t_l);
+    v_0 = 5;
+    x_0 = [0 v_0 zeros(1, 6)]';
+    %precomputedLine = LineComputation(precomputedLine.p, racetrack, x_0);
+    load('precomputedLine.mat')
+    
+    [vBreak,M,g] = powerCurve();
+    try
+        plot_racetrack
+    catch
+    end
+    hold on;
 end
 
 % Vehicle Parameter
@@ -79,39 +88,26 @@ I_R = 1.5; % wheel moment of inertia
 i_g = [3.91 2.002 1.33 1 0.805]; % transmissions of the 1st ... 5th gear
 i_0 = 3.91; % motor transmission
 
-% Racing Line Precalculation
-if(i == 1)
-    % Line computation
-    racetrack = struct('t_r', t_r, 't_l', t_l);
-    v_0 = 5;
-    x_0 = [0 v_0 zeros(1, 5)]';
-    [sOpt,nOpt,vOpt,deltaOpt,zetaOpt,fBOpt,MOpt,CTrack] = LineComputation(racetrack, x_0);
-    i = 0;
-end
-
-
 
 %% Internal track position and precalculation
-C = interp1(sOpt,CTrack,states(1));
-vTarget = interp1(sOpt,vOpt,states(1));
-nTarget = interp1(sOpt,nOpt,states(1));
-deltaFF = interp1(sOpt,deltaOpt,states(1));
-fBFF = interp1(sOpt,fBOpt,states(1));
-MFF = interp1(sOpt,MOpt,states(1));
-zetaFF = interp1(sOpt,zetaOpt,states(1));
+C = interp1(precomputedLine.sOpt,precomputedLine.CTrack,states(1));
+vTarget = interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1));
+nTarget = interp1(precomputedLine.sOpt,precomputedLine.nOpt,states(1));
+deltaFF = interp1(precomputedLine.sOpt,precomputedLine.deltaOpt,states(1));
+fBFF = interp1(precomputedLine.sOpt,precomputedLine.fBOpt,states(1));
+MFF = interp1(precomputedLine.sOpt,precomputedLine.MOpt,states(1));
+zetaFF = interp1(precomputedLine.sOpt,precomputedLine.zetaOpt,states(1));
 
 %% Longitudinal Control
 % Parameter
 ds = 2; % Preview distance
-s_dot = v .* cos(-beta + states(3)) ./ (1 - states(2) .* C);
+s_dot = max(v,eps) .* cos(-beta + states(3)) ./ (1 - states(2) .* C);
 a_x_target = 1./s_dot/ds*(vTarget-v);
 
 % Calculate Wheeltorque Target for Acceleration
-[vBreak,M,g] = powerCurve();
-
 [~,idxV] = min(abs(vBreak-v));
 G = g(idxV);
-MTargetAcc = max(min(a_x_target.*(m+I_R/R^2),M(idxV)),0);
+MTargetAcc = max(a_x_target.*(m+I_R/R^2)*R,0);
 
 % Calculate torque for all possible phi and choose phi to match MTarget
 S = 0;
@@ -124,7 +120,7 @@ M_wheel = i_g(G) .* i_0 .* T_M; % wheel torque
 phi = phiBreak(idxPhiBreak);
 
 % Calculate Brakeforce Target for Deceleration
-FTargetDec = max(abs(min(a_x_target.*(m+I_R/R^2),0)),15000);
+FTargetDec = min(-min(a_x_target.*(m+I_R/R^2),0),15000);
 Fb = FTargetDec;
 zeta = zetaFF;
 
@@ -133,21 +129,29 @@ kP = 1;
 kI = 0.1;
 % Simple PI
 delta = deltaFF + (nTarget-states(2))*kP + kI*states(4); 
+delta = 0;
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OUTPUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 U=[delta G Fb zeta phi]; % input vector
 
-%% Internal integration
-h = 0.001;
-states = states+h*dModel(states,v,beta,psi_dot,C,n,nTarget);
+if(~mod(i,100))
+    drawnow;
+    plot(x,y,'r*')
 end
 
-function dx = dModel(x,v,beta,psi_dot,C,n,nTarget)
+
+%% Internal integration
+h = 0.001;
+states = states+h*dModel(states,v,beta,psi_dot,C,nTarget);
+i = i+1;
+end
+
+function dx = dModel(x,v,beta,psi_dot,C,nTarget)
     s_dot = v .* cos(-beta + x(3)) ./ (1 - x(2) .* C);
     n_dot = v .* sin(-beta + x(3));
     xi_dot = psi_dot - C .* s_dot;
-    dn_dot = nTarget-n;
+    dn_dot = nTarget-x(2);
     
     dx = [s_dot; n_dot; xi_dot; dn_dot];
 end

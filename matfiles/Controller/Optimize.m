@@ -1,4 +1,4 @@
-function r = Optimize(solvedProblem, racetrack, x_0)
+function r = Optimize(solvedProblem, racetrack, x_0, options)
 %OPTIMIZE Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -9,6 +9,10 @@ end
 if(~exist('x_0', 'var') || isempty(x_0))
     v_0 = 5;                     % Default initial Speed
     x_0 = [0 v_0 zeros(1, 6)]';
+end
+
+if(~exist('options','var') || isempty(options))
+    options = struct();
 end
 
 
@@ -26,7 +30,7 @@ states = [...
 ];
 
 controls = [...
-    falcon.Control('delta_dot', -0.05,   0.05,  1e1);...
+    falcon.Control('delta_dot', -0.1,   0.1,  1e1);...
     falcon.Control('fB',    0,      15000,  1e-4);...
     falcon.Control('zeta',  0.5,    0.5,    1);...      % Currently fixed
     falcon.Control('phi',   0,      1,      1);...
@@ -41,6 +45,17 @@ outputs = [...
 ];
 
 mdl = falcon.SimulationModelBuilder('vehicle_nlp', states, controls,'Optimize',false);
+
+options.k1 = 1e-8;
+options.k2 = 1e1;
+
+fnames = fieldnames(options);
+
+for i=1:length(fnames)
+    if isnumeric(options.(fnames{i})) && length(options.(fnames{i})) == 1
+        mdl.addConstant(fnames{i},options.(fnames{i}));
+    end
+end
 
 mdl.addDerivativeSubsystem(@drivetrain,...
     {'v'},...
@@ -61,7 +76,7 @@ mdl.addSubsystem(@track,...
     {'s_dot','n_dot','xi_dot'});
 
 mdl.addSubsystem(@objective,...
-    {'delta','fB','beta'},...
+    {'delta','fB','beta','delta_dot','k1','k2'},...
     {'objective_dot'});
 
 mdl.addSubsystem(@transformation,...
