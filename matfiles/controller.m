@@ -47,38 +47,36 @@ psi_dot=X(9); % yaw rate (redundant)
 varphi_dot=X(10); % wheel rotary frequency (strictly positive)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% racetrack
-load('racetrack.mat','t_r'); % load right  boundary from *.mat file
-load('racetrack.mat','t_l'); % load left boundary from *.mat file
-t_r_x=t_r(:,1); % x coordinate of right racetrack boundary
-t_r_y=t_r(:,2); % y coordinate of right racetrack boundary
-t_l_x=t_l(:,1); % x coordinate of left racetrack boundary
-t_l_y=t_l(:,2); % y coordinate of left racetrack boundary
+
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE FEEDBACK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 persistent i states precomputedLine vBreak M g
 
 %% Init
+v_0 = 5;
 % Persistent variables
 if(~exist('i','var') || isempty(i))
+    
+    %% racetrack
+    load('racetrack.mat','t_r'); % load right  boundary from *.mat file
+    load('racetrack.mat','t_l'); % load left boundary from *.mat file
+    t_r_x=t_r(:,1); % x coordinate of right racetrack boundary
+    t_r_y=t_r(:,2); % y coordinate of right racetrack boundary
+    t_l_x=t_l(:,1); % x coordinate of left racetrack boundary
+    t_l_y=t_l(:,2); % y coordinate of left racetrack boundary
+    
     i = 1;
     states = zeros(4,1);
     precomputedLine = struct('p',[]);
     
     % Line computation
     racetrack = struct('t_r', t_r, 't_l', t_l);
-    v_0 = 5;
+    
     x_0 = [0 v_0 zeros(1, 6)]';
     %precomputedLine = LineComputation(precomputedLine.p, racetrack, x_0);
     load('precomputedLine.mat')
-    
     [vBreak,M,g] = powerCurve();
-    try
-        plot_racetrack
-    catch
-    end
-    hold on;
 end
 
 % Vehicle Parameter
@@ -100,14 +98,17 @@ zetaFF = interp1(precomputedLine.sOpt,precomputedLine.zetaOpt,states(1));
 
 %% Longitudinal Control
 % Parameter
-ds = 2; % Preview distance
-s_dot = max(v,eps) .* cos(-beta + states(3)) ./ (1 - states(2) .* C);
-a_x_target = 1./s_dot/ds*(vTarget-v);
+ds = 0.1; % Preview distance
+s_dot = v .* cos(-beta + states(3)) ./ (1 - states(2) .* C);
+if(v < v_0)
+    s_dot = 1;
+end
+a_x_target = 1.*s_dot*(vTarget-v)./ds;
 
 % Calculate Wheeltorque Target for Acceleration
-[~,idxV] = min(abs(vBreak-v));
+[~,idxV] = min(abs(vBreak(:)-v));
 G = g(idxV);
-MTargetAcc = max(a_x_target.*(m+I_R/R^2)*R,0);
+MTargetAcc = min(max(a_x_target.*(m+I_R/R^2)*R,0),15000);
 
 % Calculate torque for all possible phi and choose phi to match MTarget
 S = 0;
@@ -116,7 +117,7 @@ n = v .* i_g(G) * i_0 * (1./(1 - S))/R; % motor rotary frequency
 T_M = 200 .* phiBreak .* (15 - 14 .* phiBreak) .* (1 - (n * 30 / (pi * 4800 * 2)).^(5 .* phiBreak)); % Same as the above, just simpler
 M_wheel = i_g(G) .* i_0 .* T_M; % wheel torque
 
-[~,idxPhiBreak] = min(abs(M_wheel-MTargetAcc));
+[~,idxPhiBreak] = min(abs(M_wheel(:)-MTargetAcc));
 phi = phiBreak(idxPhiBreak);
 
 % Calculate Brakeforce Target for Deceleration
@@ -125,21 +126,14 @@ Fb = FTargetDec;
 zeta = zetaFF;
 
 %% Lateral Control
-kP = 1;
-kI = 0.1;
+kP = 0.05;
+kI = 0;
 % Simple PI
 delta = deltaFF + (nTarget-states(2))*kP + kI*states(4); 
-delta = 0;
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OUTPUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 U=[delta G Fb zeta phi]; % input vector
-
-if(~mod(i,100))
-    drawnow;
-    plot(x,y,'r*')
-end
-
 
 %% Internal integration
 h = 0.001;

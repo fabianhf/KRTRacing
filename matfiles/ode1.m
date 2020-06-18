@@ -1,4 +1,4 @@
-function Y = ode1(odefun,tspan,y0,varargin)
+function res = ode1(odefun,tspan,y0,varargin)
 %ODE1  Solve differential equations with a non-adaptive method of order 1.
 %   Y = ODE1(ODEFUN,TSPAN,Y0) with TSPAN = [T1, T2, T3, ... TN] integrates 
 %   the system of differential equations y' = f(t,y) by stepping from T0 to 
@@ -34,7 +34,7 @@ if any(sign(h(1))*h <= 0)
 end  
 
 try
-  f0 = feval(odefun,tspan(1),y0,varargin{:});
+  [f0,u0] = feval(odefun,tspan(1),y0,varargin{:});
 catch
   msg = ['Unable to evaluate the ODEFUN at t0,y0. ',lasterr];
   error(msg);  
@@ -50,7 +50,11 @@ N = length(tspan);
 Y = zeros(neq,N);
 
 Y(:,1) = y0;
+U(:,1) = u0(:);
 for i = 1:N-1 
-  Y(:,i+1) = Y(:,i) + h(i)*feval(odefun,tspan(i),Y(:,i),varargin{:});
+  [dx,u] = feval(odefun,tspan(i),Y(:,i),varargin{:});
+  Y(:,i+1) = Y(:,i) + h(i)*dx;
+  U(:,i) = u; 
 end
-Y = Y.';
+res.Y = Y.';
+res.U = U.';
