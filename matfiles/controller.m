@@ -155,7 +155,7 @@ h = 0.001;
 states = states+h*dModel(states,v,beta,psi_dot,C,nTarget);
 i = i+1;
 
-disp(i * h);
+% disp(i * h);
 end
 
 function dx = dModel(x,v,beta,psi_dot,C,nTarget)
