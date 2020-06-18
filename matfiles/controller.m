@@ -88,10 +88,9 @@ i_0 = 3.91; % motor transmission
 
 
 %% Internal track position and precalculation
+ds = 0.1; % Preview distance
 C = interp1(precomputedLine.sOpt,precomputedLine.CTrack,states(1));
-vTarget = interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1));
-psi_dotTarget = interp1(precomputedLine.sOpt,precomputedLine.psi_dotOpt,states(1));
-betaTarget = interp1(precomputedLine.sOpt,precomputedLine.betaOpt,states(1));
+vTarget = interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1)+ds);
 nTarget = interp1(precomputedLine.sOpt,precomputedLine.nOpt,states(1));
 xiTarget = interp1(precomputedLine.sOpt,precomputedLine.xiOpt,states(1));
 deltaFF = interp1(precomputedLine.sOpt,precomputedLine.deltaOpt,states(1));
@@ -101,7 +100,7 @@ zetaFF = interp1(precomputedLine.sOpt,precomputedLine.zetaOpt,states(1));
 
 %% Longitudinal Control
 % Parameter
-ds = 0.1; % Preview distance
+
 s_dot = v .* cos(-beta + states(3)) ./ (1 - states(2) .* C);
 if(v < v_0)
     s_dot = 1;
@@ -120,6 +119,10 @@ n = v .* i_g(G) * i_0 * (1./(1 - S))/R; % motor rotary frequency
 T_M = 200 .* phiBreak .* (15 - 14 .* phiBreak) .* (1 - (n * 30 / (pi * 4800 * 2)).^(5 .* phiBreak)); % Same as the above, just simpler
 M_wheel = i_g(G) .* i_0 .* T_M; % wheel torque
 
+[~,idxM_wheelMax] = max(M_wheel);
+M_wheel = M_wheel(1:idxM_wheelMax);
+phiBreak = phiBreak(1:idxM_wheelMax);
+
 [~,idxPhiBreak] = min(abs(M_wheel(:)-MTargetAcc));
 phi = phiBreak(idxPhiBreak);
 
@@ -129,7 +132,7 @@ Fb = FTargetDec;
 zeta = zetaFF;
 
 %% Lateral Control
-kP = 0.05;
+kP = 0;
 kI = 0;
 % Simple PI
 deltaFB = (nTarget-states(2))*kP + kI*states(4);
