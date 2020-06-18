@@ -34,7 +34,8 @@ if any(sign(h(1))*h <= 0)
 end  
 
 try
-  [f0,u0] = feval(odefun,tspan(1),y0,varargin{:});
+  [f0,log0] = feval(odefun,tspan(1),y0,varargin{:});
+  log0 = [0; log0];
 catch
   msg = ['Unable to evaluate the ODEFUN at t0,y0. ',lasterr];
   error(msg);  
@@ -50,11 +51,17 @@ N = length(tspan);
 Y = zeros(neq,N);
 
 Y(:,1) = y0;
-U(:,1) = u0(:);
+LOG(:,1) = log0;
 for i = 1:N-1 
-  [dx,u] = feval(odefun,tspan(i),Y(:,i),varargin{:});
+  [dx,log] = feval(odefun,tspan(i),Y(:,i),varargin{:});
   Y(:,i+1) = Y(:,i) + h(i)*dx;
-  U(:,i) = u; 
+  LOG(:,i) = [tspan(i); log]; 
 end
 res.Y = Y.';
-res.U = U.';
+res.StateValues = LOG;
+res.StateNames = {'t','v','psi_dot', 'beta', 'n', 'xi', 'delta', 'fB', 'zeta', 'phi', 'deltaFF', 'deltaFB'};
+res.ControlNames = {};
+res.ControlValues = [];
+res.OutputValues = [];
+res.OutputNames = {};
+res.RealTime = LOG(1,:);

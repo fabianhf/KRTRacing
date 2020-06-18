@@ -1,4 +1,4 @@
-function [X_dot,U] = singletrack(t,X,varargin)
+function [X_dot,log] = singletrack(t,X,varargin)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% function [X_dot] = singletrack(t,X)
 %
@@ -57,7 +57,7 @@ f_r_4=0.0003; % coefficient (friction)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% control inputs
-[U]=controller(X); %control input vector
+[U,log]=controller(X); %control input vector
 
 delta=U(1); % steering angle 
 G=U(2); % gear 1 ... 5

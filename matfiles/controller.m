@@ -1,4 +1,4 @@
-function [U] = controller(X)
+function [U,log] = controller(X)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% function [U] = controller(X)
 %
@@ -129,11 +129,15 @@ zeta = zetaFF;
 kP = 0.05;
 kI = 0;
 % Simple PI
-delta = deltaFF + (nTarget-states(2))*kP + kI*states(4); 
+deltaFB = (nTarget-states(2))*kP + kI*states(4);
+delta = deltaFF + deltaFB;
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OUTPUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 U=[delta G Fb zeta phi]; % input vector
+
+%% Logging
+log = [v; psi_dot; beta; states(2); states(3); delta; Fb; zeta; phi; deltaFF; deltaFB];
 
 %% Internal integration
 h = 0.001;
