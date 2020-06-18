@@ -63,7 +63,7 @@ Fb=0; % braking force
 zeta=0.5; %braking force distribution
 phi=0.2; % gas pedal position
 
-persistent i states
+persistent i states sOpt nOpt vOpt deltaOpt zetaOpt fBOpt MOpt CTrack
 
 %% Init
 % Persistent variables
@@ -82,7 +82,11 @@ i_0 = 3.91; % motor transmission
 % Racing Line Precalculation
 if(i == 1)
     % Line computation
-    [sOpt,nOpt,vOpt,deltaOpt,zetaOpt,fBOpt,MOpt,CTrack] = LineComputation();
+    racetrack = struct('t_r', t_r, 't_l', t_l);
+    v_0 = 5;
+    x_0 = [0 v_0 zeros(1, 5)]';
+    [sOpt,nOpt,vOpt,deltaOpt,zetaOpt,fBOpt,MOpt,CTrack] = LineComputation(racetrack, x_0);
+    i = 0;
 end
 
 
@@ -136,7 +140,7 @@ U=[delta G Fb zeta phi]; % input vector
 
 %% Internal integration
 h = 0.001;
-states = states+h*dModel(states,v,beta,psi_dot,C);
+states = states+h*dModel(states,v,beta,psi_dot,C,n,nTarget);
 end
 
 function dx = dModel(x,v,beta,psi_dot,C,n,nTarget)

@@ -12,8 +12,8 @@ phi = 1;
 G = 1:5;
 v = 0:0.1:50;
 
-figure;
-hold on;
+% figure;
+% hold on;
 S = 0;
 
 M = zeros(1,length(v));
@@ -29,12 +29,12 @@ for i=length(G):-1:1
     M(idx) = M_wheel(idx);
     g(idx) = G(i);
     
-    plot(v,M_wheel)
+    % plot(v,M_wheel)
 end
 
-plot(v,M)
+% plot(v,M)
 
-ylim([0 10000])
+% ylim([0 10000])
 
 
 end
