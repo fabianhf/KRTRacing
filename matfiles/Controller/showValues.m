@@ -17,19 +17,22 @@ function showValues(problem, showTime, iterationMode, filterVariables, filterCat
     
     categories = {'State', 'Control', 'Output'};
     categories = setdiff(categories, filterCategories, 'stable');
+    
     if ~iterationMode
         n_cats = length(categories);
-
+        
+        problemStruct = struct();
         for i_cat = 1:n_cats
             category = categories{i_cat};
             names = problem.([category, 'Names']);
             values = problem.([category, 'Values']);
             [filteredNames, idx] = setdiff(names, filterVariables, 'stable');
-            problem.([category, 'Names']) = names(idx);
-            problem.([category, 'Values']) = values(idx, :);
+            problemStruct.([category, 'Names']) = names(idx);
+            problemStruct.([category, 'Values']) = values(idx, :);
             n_variables(i_cat) = length(filteredNames);
         end
         n_plots_y = max(n_variables);
+        problem = problemStruct;
         
         for i_cat = 1:n_cats
             category = categories{i_cat};
