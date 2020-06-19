@@ -1,14 +1,28 @@
 function [s,kr,n,track] = prepareTrack(t_r,t_l)
 %EXTRACTCENTERLINE Summary of this function goes here
 
+
+
 pointDifference = t_r-t_l;
 centerLine = t_l+pointDifference*0.5;
 s = cumsum(vecnorm([zeros(1, 2); diff(centerLine)],2,2));
 s = s(:);
+
+% Append first 5m to the end to be sure we complete more than a full lap
+ds = 5;
+[~,idx]= min(abs(s-ds));
+t_r = [t_r; t_r(2:idx,:)];
+t_l = [t_l; t_l(2:idx,:)];
+pointDifference = t_r-t_l;
+centerLine = t_l+pointDifference*0.5;
+s = cumsum(vecnorm([zeros(1, 2); diff(centerLine)],2,2));
+s = s(:);
+
 n = norm(pointDifference(1,:)*0.5); % Assume constant track width
 
 [s,idx] = unique(s,'stable');
 centerLine = centerLine(idx,:);
+
 
 snew = linspace(s(1),s(end),length(s));
 
@@ -30,7 +44,7 @@ track.kr = kr;
 track.s = snew;
 track.psi = psi(:);
 
-s = snew;
+s = track.s;
 
 end
 

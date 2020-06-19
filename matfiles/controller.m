@@ -61,15 +61,10 @@ if(~exist('i','var') || isempty(i))
     %% racetrack
     load('racetrack.mat','t_r'); % load right  boundary from *.mat file
     load('racetrack.mat','t_l'); % load left boundary from *.mat file
-    t_r_x=t_r(:,1); % x coordinate of right racetrack boundary
-    t_r_y=t_r(:,2); % y coordinate of right racetrack boundary
-    t_l_x=t_l(:,1); % x coordinate of left racetrack boundary
-    t_l_y=t_l(:,2); % y coordinate of left racetrack boundary
     
     i = 1;
     states = zeros(4,1);
     precomputedLine = struct('p',[]);
-    delta_prev = 0;
     
     % Line computation
     racetrack = struct('t_r', t_r, 't_l', t_l);
@@ -77,15 +72,12 @@ if(~exist('i','var') || isempty(i))
     x_0 = [0 v_0 zeros(1, 6)]';
     %precomputedLine = LineComputation(precomputedLine.p, racetrack, x_0);
     load('precomputedLine.mat')
+    % Fudge v to get some safety margin
+    precomputedLine = safetyMargin(precomputedLine);
+    
     [vBreak,M,g] = powerCurve();
     
     % Gain scheduling for k
-%     vkbreak = [15 30 40];
-%     betakbreak = pi*[-10/180 0 10/180];
-%     nkbreak = [-2.3 0 2.3];
-%     xikbreak = pi*[-30/180 0 30/180];
-%     deltakbreak = [-0.3 0 0.3];
-%     ckbreak = [-0.15 0 0.15];
     vkbreak = [5 15 35];
     betakbreak = pi*[-5/180 :0.5/180*pi : 5/180];
     nkbreak = [0];
@@ -131,7 +123,7 @@ if states(1)+ds > precomputedLine.sOpt(end)
     disp(['Hoch die Hände: ', num2str(0.001*i), ' s']);
 end
 C = interp1(precomputedLine.sOpt,precomputedLine.CTrack,states(1));
-vTarget = 0.96*interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1)+ds);
+vTarget = interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1)+ds);
 nTarget = interp1(precomputedLine.sOpt,precomputedLine.nOpt,states(1));
 xiTarget = interp1(precomputedLine.sOpt,precomputedLine.xiOpt,states(1));
 deltaFF = interp1(precomputedLine.sOpt,precomputedLine.deltaOpt,states(1));
@@ -281,7 +273,7 @@ function k = lqr_controller(v, psi_dot, beta, n, xi, delta, Fb, zeta, phi, C)
 %     A(:, 5) = A(:, 5) - A(:, 3);
 %     B(5, :) = B(5, :) - B(3, :);
     
-    Q = diag([0, 0.1, 0.1, 30, 5]);  % Don't care about v, since we can't really change anything about it with delta
+    Q = diag([0, 0.2, 0, 50, 10]);  % Don't care about v, since we can't really change anything about it with delta
     R = diag([1]);
     
     k = lqr(A, B, Q, R);
