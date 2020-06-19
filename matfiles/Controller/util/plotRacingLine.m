@@ -1,4 +1,4 @@
-function plotRacingLine(multiple_res,track,variable,orientationInput)
+function plotRacingLine(multiple_res,track,variable,plotOrientation)
 %PLOTRACINGLINE Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -9,10 +9,14 @@ end
 
 for res = multiple_res
     res = res{1};
-    if(exist('orientation','var') && orientationInput)
+    if(exist('plotOrientation','var') && plotOrientation)
         l = 0.5;
-        theta = track.psi + pi/2;
-        psi = theta + res.xi';
+        if length(track.psi) == length(res.xi) % Values from optimazation
+            theta = track.psi + pi/2;
+            psi = theta + res.xi';
+        else
+            psi = res.psi';
+        end
         car = l/2 * repelem([cos(psi), sin(psi)], 3, 1);
         car(2:3:end, :) = -car(2:3:end, :);
         orientation = repelem([res.x', res.y'], 3, 1) + car;

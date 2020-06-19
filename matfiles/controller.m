@@ -51,7 +51,7 @@ varphi_dot=X(10); % wheel rotary frequency (strictly positive)
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE FEEDBACK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-persistent i states precomputedLine vBreak M g k
+persistent i states precomputedLine vBreak M g k previous_k
 
 %% Init
 v_0 = 5;
@@ -77,8 +77,13 @@ if(~exist('i','var') || isempty(i))
     %precomputedLine = LineComputation(precomputedLine.p, racetrack, x_0);
     load('precomputedLine.mat')
     [vBreak,M,g] = powerCurve();
-    k = lqrtest([], [], [], [], [], 0, 0.5, 0.6, 0, 5, 0, 0, 0, 0, 0);
-%     k = lqrtest([], [], [], [], [], Fb, zeta, phi, C, vTarget, psi_dotTarget, betaTarget, nTarget, xiTarget, deltaFF)
+    
+    k = lqr_controller(5, 0, 0, 0, 0, 0, 0, 0.5, 0.6, 0);
+    previous_k = k;
+%     k = lqr_controller(v, psi_dot, beta, n, xi, delta, Fb, zeta, phi, C);
+
+%     k = lqr_controller([], [], [], [], [], 0, 0.5, 0.6, 0, 5, 0, 0, 0, 0, 0);
+%     k = lqr_controller([], [], [], [], [], Fb, zeta, phi, C, vTarget, psi_dotTarget, betaTarget, nTarget, xiTarget, deltaFF)
 end
 
 % Vehicle Parameter
@@ -148,8 +153,29 @@ kI = 0;
 
 %% LQR Controller
 
-% LQR Using n xi dynamics only
-deltaFB = k*[v; (psi_dot-psi_dotTarget); (beta-betaTarget); (states(2)-nTarget); (states(3)-xiTarget)];
+nonZeroSign = @(x)((x>=0)-0.5)*2;
+n_penalty_factor = exp(1*sign(2.5-abs(states(2)))/(nonZeroSign(nTarget)*2.5-states(2)) * (states(2) - nTarget));
+
+% This updates k every time dependent on v and C
+v_min = 2;
+try
+    k = lqr_controller(max(v, v_min), 0, 0, 0, 0, 0, 0, 0.5, 0.6, C);
+    previous_k = k;
+catch
+    k = previous_k;
+end
+
+deltaFB = k*[v; (psi_dot-psi_dotTarget); (beta-betaTarget); n_penalty_factor*(states(2)-nTarget); (states(3)-xiTarget)]; % Use beta and xi as states
+
+% Assume linearization around 0 and use beta and xi as states
+% deltaFB = k*[v; (psi_dot-psi_dotTarget); (beta-betaTarget); (states(2)-nTarget); (states(3)-xiTarget)]; % Use beta and xi as states
+
+% % Use xi - beta instead of xi as state
+% deltaFB = k*[v; (psi_dot-psi_dotTarget); (beta-betaTarget); (states(2)-nTarget); (states(3)-xiTarget) - (beta-betaTarget)];
+
+if isnan(deltaFB)
+    error('Delta FB is NaN');
+end
 delta = deltaFF - deltaFB;
 
 % delta = deltaFF;
@@ -179,10 +205,10 @@ function dx = dModel(x,v,beta,psi_dot,C,nTarget)
     dx = [s_dot; n_dot; xi_dot; dn_dot];
 end
 
-function k = lqr_controller(states, v, psi_dot, beta, delta, Fb, zeta, phi, C, vTarget, psi_dotTarget, betaTarget, nTarget, xiTarget, deltaFF)
+function k = lqr_controller(v, psi_dot, beta, n, xi, delta, Fb, zeta, phi, C)
 %     state = [0; v; psi_dot; beta; states(2); states(3); 0; delta];
     
-    linearization_state = [0; vTarget; psi_dotTarget; betaTarget; nTarget; xiTarget; 0; deltaFF];
+    linearization_state = [0; v; psi_dot; beta; n; xi; 0; delta];
     linearization_control = [0; Fb; zeta; phi; C];
     
     [state_dot_s, ~, track_state_jac, ~] = mb_vehicle_nlp(linearization_state, linearization_control);
@@ -198,7 +224,12 @@ function k = lqr_controller(states, v, psi_dot, beta, delta, Fb, zeta, phi, C, v
     A = track_state_jac(stateSelector, stateSelector);
     B = track_state_jac(stateSelector, 7 + controlSelector);
     
-    Q = diag([0, 0, 0, 1, 1]);  % Don't care about v, since we can't really change anything about it with delta
+    % Use new state: xi - beta
+%     A(5, :) = A(5, :) - A(3, :);
+%     A(:, 5) = A(:, 5) - A(:, 3);
+%     B(5, :) = B(5, :) - B(3, :);
+    
+    Q = diag([0, 1, 1, 1, 10]);  % Don't care about v, since we can't really change anything about it with delta
     R = diag([1]);
     
     k = lqr(A, B, Q, R);

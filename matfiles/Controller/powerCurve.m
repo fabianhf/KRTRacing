@@ -32,6 +32,10 @@ for i=length(G):-1:1
     % plot(v,M_wheel)
 end
 
+noGear = g == 0;
+v(noGear) = [];
+M(noGear) = [];
+g(noGear) = [];
 % plot(v,M)
 
 % ylim([0 10000])
