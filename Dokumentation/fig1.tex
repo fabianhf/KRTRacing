@@ -1,0 +1,107 @@
+% Autor: Peter Scholz
+% Email: contact@peter-scholz.net
+% Date:  10-Oct-2011 14:49:19
+%
+% This file was created by fig2texPS. Note, that the packages
+% pstricks, pst-node, pst-plot, pst-circ and moredefs are required.
+% A minimal example code could be:
+%
+% \documentclass{article}
+% \usepackage{pstricks, pst-node, pst-plot, pst-circ}
+% \usepackage{moredefs}
+% \begin{document}
+% \input{fig1.tex}
+% \end{document}
+%
+% Global Parameters that can be changed:
+\providelength{\AxesLineWidth}       \setlength{\AxesLineWidth}{0.5pt}%
+\providelength{\GridLineWidth}       \setlength{\GridLineWidth}{0.4pt}%
+\providelength{\GridLineDotSep}      \setlength{\GridLineDotSep}{0.4pt}%
+\providelength{\MinorGridLineWidth}  \setlength{\MinorGridLineWidth}{0.4pt}%
+\providelength{\MinorGridLineDotSep} \setlength{\MinorGridLineDotSep}{0.8pt}%
+\providelength{\plotwidth}           \setlength{\plotwidth}{7cm}% width of the axes only
+\providelength{\LineWidth}           \setlength{\LineWidth}{0.7pt}%
+\providelength{\MarkerSize}          \setlength{\MarkerSize}{4pt}%
+\newrgbcolor{GridColor}{0.8 0.8 0.8}%
+%
+% Begin Figure:-------------------------------------------
+\psset{xunit=1.000000\plotwidth,yunit=0.600000\plotwidth}%
+\begin{pspicture}(-0.140553,-0.157692)(1.011521,1.042308)%
+
+% Draw bounding box for test aspects: ----
+% \psframe(-0.140553,-0.157692)(1.011521,1.042308)
+% Total width:  8.064516 cm
+% Total height: 5.040000 cm
+
+% Draw Grid: ----
+% x-Grid:
+\psline[linestyle=dashed,dash=2pt 3pt,dotsep=\GridLineDotSep,linewidth=\GridLineWidth,linecolor=GridColor](0.000000,0.000000)(0.000000,1.000000)
+\psline[linestyle=dashed,dash=2pt 3pt,dotsep=\GridLineDotSep,linewidth=\GridLineWidth,linecolor=GridColor](0.250000,0.000000)(0.250000,1.000000)
+\psline[linestyle=dashed,dash=2pt 3pt,dotsep=\GridLineDotSep,linewidth=\GridLineWidth,linecolor=GridColor](0.500000,0.000000)(0.500000,1.000000)
+\psline[linestyle=dashed,dash=2pt 3pt,dotsep=\GridLineDotSep,linewidth=\GridLineWidth,linecolor=GridColor](0.750000,0.000000)(0.750000,1.000000)
+\psline[linestyle=dashed,dash=2pt 3pt,dotsep=\GridLineDotSep,linewidth=\GridLineWidth,linecolor=GridColor](1.000000,0.000000)(1.000000,1.000000)
+% y-Grid:
+\psline[linestyle=dashed,dash=2pt 3pt,dotsep=\GridLineDotSep,linewidth=\GridLineWidth,linecolor=GridColor](0.000000,0.000000)(1.000000,0.000000)
+\psline[linestyle=dashed,dash=2pt 3pt,dotsep=\GridLineDotSep,linewidth=\GridLineWidth,linecolor=GridColor](0.000000,0.250000)(1.000000,0.250000)
+\psline[linestyle=dashed,dash=2pt 3pt,dotsep=\GridLineDotSep,linewidth=\GridLineWidth,linecolor=GridColor](0.000000,0.500000)(1.000000,0.500000)
+\psline[linestyle=dashed,dash=2pt 3pt,dotsep=\GridLineDotSep,linewidth=\GridLineWidth,linecolor=GridColor](0.000000,0.750000)(1.000000,0.750000)
+\psline[linestyle=dashed,dash=2pt 3pt,dotsep=\GridLineDotSep,linewidth=\GridLineWidth,linecolor=GridColor](0.000000,1.000000)(1.000000,1.000000)
+
+% Draw Ticks: ----
+% x-Ticks:
+\psline[linewidth=\AxesLineWidth,linecolor=GridColor](0.000000,0.000000)(0.000000,0.020000)
+\psline[linewidth=\AxesLineWidth,linecolor=GridColor](0.250000,0.000000)(0.250000,0.020000)
+\psline[linewidth=\AxesLineWidth,linecolor=GridColor](0.500000,0.000000)(0.500000,0.020000)
+\psline[linewidth=\AxesLineWidth,linecolor=GridColor](0.750000,0.000000)(0.750000,0.020000)
+\psline[linewidth=\AxesLineWidth,linecolor=GridColor](1.000000,0.000000)(1.000000,0.020000)
+% y-Ticks:
+\psline[linewidth=\AxesLineWidth,linecolor=GridColor](0.000000,0.000000)(0.012000,0.000000)
+\psline[linewidth=\AxesLineWidth,linecolor=GridColor](0.000000,0.250000)(0.012000,0.250000)
+\psline[linewidth=\AxesLineWidth,linecolor=GridColor](0.000000,0.500000)(0.012000,0.500000)
+\psline[linewidth=\AxesLineWidth,linecolor=GridColor](0.000000,0.750000)(0.012000,0.750000)
+\psline[linewidth=\AxesLineWidth,linecolor=GridColor](0.000000,1.000000)(0.012000,1.000000)
+
+{ \footnotesize % FontSizeTickLabels
+% Draw x-Labels: ----
+\rput[t](0.000000,-0.020000){$0$}
+\rput[t](0.250000,-0.020000){$0.25$}
+\rput[t](0.500000,-0.020000){$0.5$}
+\rput[t](0.750000,-0.020000){$0.75$}
+\rput[t](1.000000,-0.020000){$1$}
+% Draw y-Labels: ----
+\rput[r](-0.012000,0.000000){$0$}
+\rput[r](-0.012000,0.250000){$6.9\bar{4}$}
+\rput[r](-0.012000,0.500000){$13.\bar{8}$}
+\rput[r](-0.012000,0.750000){$20.8\bar{3}$}
+\rput[r](-0.012000,1.000000){$27.\bar{7}$}
+} % End FontSizeTickLabels
+
+% Draw Axes: ----
+\psframe[linewidth=\AxesLineWidth,dimen=middle](0.000000,0.000000)(1.000000,1.000000)
+
+{ \small % FontSizeXYlabel
+% x-Label: ----
+\rput[b](0.500000,-0.157692){
+\begin{tabular}{c}
+Curve Parameter $\gamma$\\
+\end{tabular}
+}
+
+% y-Label: ----
+\rput[t]{90}(-0.170553,0.500000){
+\begin{tabular}{c}
+Vehicle Velocity $v$\\
+\end{tabular}
+}
+} % End FontSizeXYlabel
+
+% New Line DATA: ----
+\newrgbcolor{color180.0016}{0  0  0}
+\psline[plotstyle=line,linejoin=1,linestyle=solid,linewidth=\LineWidth,linecolor=color180.0016]
+(0.000000,0.000000)(0.130000,0.129634)(0.210000,0.208460)(0.270000,0.266731)(0.330000,0.324043)
+(0.380000,0.370920)(0.430000,0.416871)(0.480000,0.461779)(0.520000,0.496880)(0.560000,0.531186)
+(0.600000,0.564642)(0.640000,0.597195)(0.680000,0.628793)(0.710000,0.651834)(0.740000,0.674288)
+(0.770000,0.696135)(0.800000,0.717356)(0.830000,0.737931)(0.860000,0.757843)(0.890000,0.777072)
+(0.920000,0.795602)(0.950000,0.813416)(0.980000,0.830497)(1.000000,0.841471)
+
+\end{pspicture}%
