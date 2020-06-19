@@ -153,17 +153,19 @@ kI = 0;
 
 %% LQR Controller
 
-nonZeroSign = @(x)((x>=0)-0.5)*2;
-n_penalty_factor = exp(1*sign(2.5-abs(states(2)))/(nonZeroSign(nTarget)*2.5-states(2)) * (states(2) - nTarget));
+nonZeroSign = @(x)((x>=0)-0.5)*2; % Sign function with +1 for 0
+inside = sign(2.5-abs(states(2)); % +1 if on the track, -1 if off track, 0 on the edge
+delta_n = states(2) - nTarget;
+n_penalty_factor = exp(inside/(nonZeroSign(nTarget)*2.5-states(2)) * delta_n);
 
 % This updates k every time dependent on v and C
-v_min = 2;
-try
-    k = lqr_controller(max(v, v_min), 0, 0, 0, 0, 0, 0, 0.5, 0.6, C);
-    previous_k = k;
-catch
-    k = previous_k;
-end
+% v_min = 2;
+% try
+%     k = lqr_controller(max(v, v_min), 0, 0, 0, 0, 0, 0, 0.5, 0.6, C);
+%     previous_k = k;
+% catch
+%     k = previous_k;
+% end
 
 deltaFB = k*[v; (psi_dot-psi_dotTarget); (beta-betaTarget); n_penalty_factor*(states(2)-nTarget); (states(3)-xiTarget)]; % Use beta and xi as states
 
