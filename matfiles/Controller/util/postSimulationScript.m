@@ -2,6 +2,10 @@ racetrack = load('racetrack.mat');
 [s,kr,~,track] = prepareTrack(racetrack.t_r,racetrack.t_l);
 res_sim = mapSimToTrack(p,track);
 
+
+disp(['Max. track limit violation: ' num2str(max(abs(res_sim.n(abs(res_sim.n) > 2.5))-2.5)) ])
+disp(['Laptime: ' num2str(res_sim.t(end))])
+
 compare = true;
 if compare
     load('precomputedLine.mat')

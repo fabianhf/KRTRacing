@@ -33,13 +33,16 @@ if any(sign(h(1))*h <= 0)
   error('Entries of TSPAN are not in order.') 
 end  
 
-try
-  [f0,log0] = feval(odefun,tspan(1),y0,varargin{:});
-  log0 = [0; log0];
-catch
-  msg = ['Unable to evaluate the ODEFUN at t0,y0. ',lasterr];
-  error(msg);  
-end  
+% try
+%   [f0,log0] = feval(odefun,tspan(1),y0,varargin{:});
+%   log0 = [0; log0];
+% catch
+%   msg = ['Unable to evaluate the ODEFUN at t0,y0. ',lasterr];
+%   error(msg);  
+% end
+
+[f0,log0] = feval(odefun,tspan(1),y0,varargin{:});
+log0 = [0; log0];
 
 y0 = y0(:);   % Make a column vector.
 if ~isequal(size(y0),size(f0))
