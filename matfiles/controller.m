@@ -92,7 +92,7 @@ i_0 = 3.91; % motor transmission
 %% Internal track position and precalculation
 ds = 0.1; % Preview distance
 if states(1)+ds > precomputedLine.sOpt(end)
-    disp(['Hoch die Hände: ', 0.001*i, ' s']);
+    disp(['Hoch die Hände: ', num2str(0.001*i), ' s']);
 end
 C = interp1(precomputedLine.sOpt,precomputedLine.CTrack,states(1));
 vTarget = 0.8*interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1)+ds);
