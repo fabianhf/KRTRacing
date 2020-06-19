@@ -79,6 +79,24 @@ if(~exist('i','var') || isempty(i))
     [vBreak,M,g] = powerCurve();
     
     k = lqr_controller(5, 0, 0, 0, 0, 0, 0, 0.5, 0.6, 0);
+    (v, psi_dot, beta, n, xi, delta, Fb, zeta, phi, C)
+    
+    % Gain scheduling for k
+    vkbreak = [15 30 50];
+    betakbreak = pi*[-10/180 0 10/180];
+    nkbreak = [-2.3 0 2.3];
+    xikbreak = pi*[-30/180 0 30/180];
+    deltakbreak = [-0.3 0 0.3];
+    
+    [vkmatrix,betakmatrix,nkmatrix,xikmatrix,deltakmatrix] = ndgrid(vkbreak,betakbreak,nkbreak,xikbreak,deltakbreak);
+    
+    
+    vkmatrix = vkmatrix(:);
+    betakmatrix = betakmatrix(:);
+    nkmatrix = 
+    
+    
+    
     previous_k = k;
 %     k = lqr_controller(v, psi_dot, beta, n, xi, delta, Fb, zeta, phi, C);
 
@@ -100,7 +118,7 @@ if states(1)+ds > precomputedLine.sOpt(end)
     disp(['Hoch die Hände: ', num2str(0.001*i), ' s']);
 end
 C = interp1(precomputedLine.sOpt,precomputedLine.CTrack,states(1));
-vTarget = 0.98*interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1)+ds);
+vTarget = 0.9*interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1)+ds);
 nTarget = interp1(precomputedLine.sOpt,precomputedLine.nOpt,states(1));
 xiTarget = interp1(precomputedLine.sOpt,precomputedLine.xiOpt,states(1));
 deltaFF = interp1(precomputedLine.sOpt,precomputedLine.deltaOpt,states(1));
@@ -156,7 +174,8 @@ kI = 0;
 nonZeroSign = @(x)((x>=0)-0.5)*2; % Sign function with +1 for 0
 inside = sign(2.5-abs(states(2))); % +1 if on the track, -1 if off track, 0 on the edge
 delta_n = states(2) - nTarget;
-n_penalty_factor = exp(inside/(nonZeroSign(nTarget)*2.5-states(2)) * delta_n);
+% n_penalty_factor = exp(inside/(nonZeroSign(nTarget)*2.5-states(2)) * delta_n);
+n_penalty_factor = 1;
 
 % This updates k every time dependent on v and C
 % v_min = 2;
@@ -176,9 +195,10 @@ deltaFB = k*[v; (psi_dot-psi_dotTarget); (beta-betaTarget); n_penalty_factor*(st
 % deltaFB = k*[v; (psi_dot-psi_dotTarget); (beta-betaTarget); (states(2)-nTarget); (states(3)-xiTarget) - (beta-betaTarget)];
 
 if isnan(deltaFB)
-    error('Delta FB is NaN');
+    warning('Delta FB is NaN');
+    deltaFF = precomputedLine.deltaOpt(end);
 end
-delta = deltaFF - deltaFB;
+delta = max(min(deltaFF - deltaFB,0.51),-0.51);
 
 % delta = deltaFF;
 % delta = lqr_controller(states, v, psi_dot, beta, delta, Fb, zeta, phi, C, vTarget, psi_dotTarget, betaTarget, nTarget, xiTarget, deltaFF);
@@ -231,7 +251,7 @@ function k = lqr_controller(v, psi_dot, beta, n, xi, delta, Fb, zeta, phi, C)
 %     A(:, 5) = A(:, 5) - A(:, 3);
 %     B(5, :) = B(5, :) - B(3, :);
     
-    Q = diag([0, 1, 1, 1, 10]);  % Don't care about v, since we can't really change anything about it with delta
+    Q = diag([0, 0.1, 0.1, 30, 10]);  % Don't care about v, since we can't really change anything about it with delta
     R = diag([1]);
     
     k = lqr(A, B, Q, R);
