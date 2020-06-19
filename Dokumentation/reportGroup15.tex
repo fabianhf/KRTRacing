@@ -74,7 +74,7 @@ Die Aufgabe des Projektwettbewerbs Konzepte der Regelungstechnik ist es einen Re
 Hierbei werden Gaspedalstellung, Lenkwinkel, Bremskraft und Bremskraftverteilung abhängig von den Fahrzeugzuständen geregelt. Die Zustände des dahinterliegenden Fahrzeugmodels, sowie der Verlauf der Streckenränder stehen dem Regler vollständig zur Verfügung.
 
 \section{Konzept}
-Unser Ansatz besteht darin, vor dem Start der Runde eine zeitoptimale Trajektorie zu berechnen und diese als Referenz für einen Regler zu nutzen. Daraus resultieren zwei Teilaufgaben, das Optimierungsproblem zu lösen und einen stabilen Regler zu entwerfen.
+Unser Ansatz besteht darin, vor dem Start der Runde eine zeitoptimale Trajektorie zu berechnen und diese als Referenz für einen Regler zu nutzen. Daraus resultieren zwei Teilaufgaben, das Optimierungsproblem zu lösen und einen Zustandsregler zu entwerfen.
 \subsection{Optimierungsproblem}
 Das ursprüngliche Optimierungsproblem hat mehrere Eigenschaften, die es erschweren, es mit einem klassischen Optimierungsalgorithmus zu lösen. Dazu gehört, dass durch das Streckenprofil die Grenzen für die Koordinate $X$ von $Y$ abhängig ist und andersherum. Außerdem befinden sich im Fahrzeugmodell Diskontinuitäten durch die diskrete Gangwahl  und weitere nicht vollständig differenzierbare Funktionen.\\
 Daher wurde ein Streckenkoordinatensystem eingeführt, dass auf dem Verlauf der Streckenmitte basiert. Die Fahrzeugposition ist somit gegeben als orthogonaler Abstand zur Streckenmitte $n$, Winkel zwischen Streckentangente und Fahrzeuglängsachse $\xi$ und Distanz zum Start entlang der Streckenmitte $s$.\\ Zudem wurde der Streckenfortschritt $s$ statt der Zeit $t$ als unabhängige Variable genutzt. Für diesen Zweck musste die Fahrzeugdynamik als Änderung des Zustands über die Strecke formuliert werden.\\
@@ -82,20 +82,13 @@ Da ein Gradientenbasierter Lösungsalgorithmus für das Optimierungsproblem eing
 Um zu verhindern, dass der Lenkwinkel $\delta$ hin- und herspringt, wurde $\dot{\delta}$ als beschränkter Eingang und $\delta$ als Zustand definiert.\\
 Gegenstand der Minimierung ist in erster Linie die verstrichene Zeit im Ziel, sowie zu kleineren Teilen $\dot{\beta}^2$, $\dot{\delta}^2$, $\ddot{\psi}^2$, $\xi$ und $f_B$. Damit soll verhindert werden, dass das Fahrzeug alle Kurven im Drift nimmt, da dies ein schwer zu regelnder Fahrzeugzustand.
 \subsection{Zustandsregler}
-Our design procedure was based on the idea that accelerating a vehicle results in shorter lap times than braking a vehicle. For presentational conciseness, we have listed some important parameters in Table 1.
-
-\begin{table}[h]
-\caption{Important Parameters.}
-\label{table:working plan}
-\centering
-\begin{tabular}{|c|c|}
-\hline
-\bfseries Parameter & \bfseries Value \\ \hline \hline
-lap time $t_{\text{f}}$ & $\infty$ \\ \hline
-control gain $k$ & $0$ \\ \hline
-steering angle $\delta$ & $-\left(\operatorname{e}^{\operatorname{i}\pi}+1\right)$ \\ \hline
- \end{tabular}
-\end{table}
+Um der zuvor berechneten Trajektorie zu folgen werden zwei Regler
+implementiert. Eine Längs- und eine Querregelung. Um den Zustand entsprechend der Trajektorie zu regeln, muss anhand des Streckenfortschritts interpoliert werden. Hierzu muss der Regler intern die Streckenfortschrittsgeschwindigkeit berechnen und integrieren.
+\begin{enumerate}
+	\item Längsregelung
+	\item Querregelung
+	Um die Querregelung umzusetzen wird ausschließlich der Lenkwinkel $\delta$ als Steuergröße genutzt. Dabei wird ein Feed-Forward-LQR Regler eingesetzt. Der in der Trajektorie gegebene Lenkwinkel wird per Feed-Forward in die Regelung gegeben. Zu jedem Zeitpunkt berechnet der Regler die Jacobi-Matrix abhängig von der aktuellen Geschwindigkeit und Kurvenkrümmung. Diese wird genutzt um das Gain des LQR Reglers zu berechnen. Die Zustände für die LQR Regler liegen dabei im Streckenkoordinatensystem vor.
+\end{enumerate}
 
 \section{Ergebnis}
 We have achieved a lap time of $t_{\text{f}}=\infty$. We have depicted a plot of vehicle velocity $v$ versus an independent curve parameter $\gamma$, with which we have parameterized the racetrack, in Fig. 1. 
