@@ -100,7 +100,7 @@ if states(1)+ds > precomputedLine.sOpt(end)
     disp(['Hoch die Hände: ', num2str(0.001*i), ' s']);
 end
 C = interp1(precomputedLine.sOpt,precomputedLine.CTrack,states(1));
-vTarget = 0.8*interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1)+ds);
+vTarget = 0.98*interp1(precomputedLine.sOpt,precomputedLine.vOpt,states(1)+ds);
 nTarget = interp1(precomputedLine.sOpt,precomputedLine.nOpt,states(1));
 xiTarget = interp1(precomputedLine.sOpt,precomputedLine.xiOpt,states(1));
 deltaFF = interp1(precomputedLine.sOpt,precomputedLine.deltaOpt,states(1));
