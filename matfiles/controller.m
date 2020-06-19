@@ -154,7 +154,7 @@ kI = 0;
 %% LQR Controller
 
 nonZeroSign = @(x)((x>=0)-0.5)*2; % Sign function with +1 for 0
-inside = sign(2.5-abs(states(2)); % +1 if on the track, -1 if off track, 0 on the edge
+inside = sign(2.5-abs(states(2))); % +1 if on the track, -1 if off track, 0 on the edge
 delta_n = states(2) - nTarget;
 n_penalty_factor = exp(inside/(nonZeroSign(nTarget)*2.5-states(2)) * delta_n);
 
