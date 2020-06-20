@@ -61,7 +61,7 @@ for i = 1:N-1
   LOG(:,i) = [tspan(i); log]; 
 end
 res.Y = Y.';
-res.ControllerStateNames = {'t','v','psi_dot', 'beta', 'n', 'xi', 'delta', 'fB', 'zeta', 'phi', 'deltaFF', 'deltaFB', 's', 'C'};
+res.ControllerStateNames = {'t','v','psi_dot', 'beta', 'n', 'xi', 'delta', 'fB', 'zeta', 'phi', 'deltaFF', 'deltaFB', 's', 'C','hasFinished'};
 res.ControllerStateValues = LOG;
 res.SimulationStateNames = {'x','y','v','beta','psi','omega','x_dot','y_dot','psi_dot','varphi_dot'};
 res.SimulationStateValues = Y;

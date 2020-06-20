@@ -1,10 +1,14 @@
 racetrack = load('racetrack.mat');
-[s,kr,~,track] = prepareTrack(racetrack.t_r,racetrack.t_l);
+track = prepareTrack(racetrack.t_r,racetrack.t_l);
 res_sim = mapSimToTrack(p,track);
 
 
 disp(['Max. track limit violation: ' num2str(max(abs(res_sim.n(abs(res_sim.n) > 2.5))-2.5)) ])
-disp(['Laptime: ' num2str(res_sim.t(end))])
+try
+    t = res_sim.t(res_sim.hasFinished > 0);
+    disp(['Laptime: ' num2str(t(1))])
+catch
+end
 
 compare = true;
 if compare

@@ -16,14 +16,14 @@ if(~exist('options','var') || isempty(options))
 end
 
 
-[s,kr] = prepareTrack(racetrack.t_r,racetrack.t_l);
+track = prepareTrack(racetrack.t_r,racetrack.t_l);
 
 states = [...
     falcon.State('t',       0,          200,        2e-2);...
     falcon.State('v',       5,          200,        2e-2);...
     falcon.State('psi_dot', -inf,       inf,        1);...
     falcon.State('beta',    -7/180*pi,	7/180*pi,  2);...
-    falcon.State('n',       -2.5,       2.5,        0.5);...
+    falcon.State('n',       -inf,       inf,        0.5);...
     falcon.State('xi',      -30/180*pi,      30/180*pi,       2);...
     falcon.State('objective',0,         inf,        2e-2);...
     falcon.State('delta',   -0.51,      0.51,       2);
@@ -32,9 +32,11 @@ states = [...
 controls = [...
     falcon.Control('delta_dot', -0.08,   0.08,  1e1);...
     falcon.Control('fB',    0,      15000,  1e-4);...
-    falcon.Control('zeta',  0.5,      0.5,    1);...      % Currently fixed
+    falcon.Control('zeta',  0,      1,    1);...
     falcon.Control('phi',   0,      1,      1);...
     falcon.Control('C',     -0.2,   0.2,    5,    'fixed', true);
+    falcon.Control('nCurbLeft',  0, 0.5,    1,    'fixed', true);
+    falcon.Control('nCurbRight',   0, 0.5,    1,    'fixed', true);  
 ];
 
 outputs = [...
@@ -99,8 +101,8 @@ problem = falcon.Problem('KRTRacing');
 
 % Specify Discretization
 sStart = 0;
-sEnd = s(end);
-delta_s = 0.2;
+sEnd = track.s(end);
+delta_s = 0.1;
 n = round((sEnd - sStart)/delta_s) + 1;
 tau = linspace(0,1,n);
 
@@ -108,7 +110,9 @@ tau = linspace(0,1,n);
 phase = problem.addNewPhase(@vehicle_nlp, states, tau, 0, sEnd-sStart);
 
 % Track input normieren 
-sKr = interp1((s-sStart)./(sEnd-sStart),kr,tau);
+sKr = interp1((track.s-sStart)./(sEnd-sStart),track.kr,tau);
+sCurbLeft = interp1((track.s-sStart)./(sEnd-sStart),track.curbLeft,tau);
+sCurbRight = interp1((track.s-sStart)./(sEnd-sStart),track.curbRight,tau);
 controlgrid = phase.addNewControlGrid(controls,tau);
 
 % Set Control and State Values from given solved Problem to initialize the
@@ -117,9 +121,15 @@ if(exist('solvedProblem', 'var') && ~isempty(solvedProblem))
     controlgrid.setValues(solvedProblem.RealTime, solvedProblem.ControlValues, 'RealTime', true);
     phase.StateGrid.setValues(solvedProblem.RealTime, solvedProblem.StateValues, 'RealTime', true);
 else
-    % Set Values for C
-    controlgrid.setSpecificValues(controls(5), tau, sKr);
+    % Set Values for C and Curbs
+    controlgrid.setSpecificValues(controls(5:7), tau, [sKr;sCurbLeft;sCurbRight]);
 end
+
+% Add path constraints
+pathconstraints = [...
+    falcon.Constraint('trackLimit', -2.45, 2.45)
+];
+phase.addNewPathConstraint(@tracklimits, pathconstraints,tau);
 
 % Set Boundary Condition
 phase.setInitialBoundaries(states(:), x_0);

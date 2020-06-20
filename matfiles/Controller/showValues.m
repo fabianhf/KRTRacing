@@ -86,7 +86,10 @@ function showValues(problem, showTime, iterationMode, printOnTop, filterVariable
             if showTime
                 plot(used_axes(ind, i_cat), time, values(ind, :));
             else
-                plot(used_axes(ind, i_cat), problem.RealTime, values(ind, :));
+                try
+                    plot(used_axes(ind, i_cat), problem.RealTime, values(ind, :));
+                catch
+                end
             end
         end
     end

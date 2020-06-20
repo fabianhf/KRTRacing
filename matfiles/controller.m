@@ -218,7 +218,6 @@ deltaFB = kCurrent*[0; (psi_dot-psi_dotTarget); (beta-betaTarget); n_penalty_fac
 % deltaFB = k*[v; (psi_dot-psi_dotTarget); (beta-betaTarget); (states(2)-nTarget); (states(3)-xiTarget)]; % Use beta and xi as states
 
 if isnan(deltaFB)
-    warning('Delta FB is NaN');
     deltaFF = precomputedLine.deltaOpt(end);
 end
 
@@ -229,8 +228,10 @@ delta_prev = delta;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OUTPUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 U=[delta G Fb zeta phi]; % input vector
 
+hasFinished = x > -5 && x < 0 && y > 0 && y < 5 && states(1) > 1000;
+
 %% Logging
-log = [v; psi_dot; beta; states(2); states(3); delta; Fb; zeta; phi; deltaFF; deltaFB; states(1); C];
+log = [v; psi_dot; beta; states(2); states(3); delta; Fb; zeta; phi; deltaFF; deltaFB; states(1); C; hasFinished];
 
 %% Internal integration
 h = 0.001;
@@ -238,6 +239,12 @@ states = states+h*dModel(states,v,beta,psi_dot,C,nTarget);
 i = i+1;
 
 % disp(i * h);
+
+
+if(hasFinished)
+    disp('And across the line!')
+end
+
 end
 
 function dx = dModel(x,v,beta,psi_dot,C,nTarget)
@@ -273,7 +280,7 @@ function k = lqr_controller(v, psi_dot, beta, n, xi, delta, Fb, zeta, phi, C)
 %     A(:, 5) = A(:, 5) - A(:, 3);
 %     B(5, :) = B(5, :) - B(3, :);
     
-    Q = diag([0, 0.2, 0, 50, 10]);  % Don't care about v, since we can't really change anything about it with delta
+    Q = diag([0, 0.2, 0.2, 50, 10]);  % Don't care about v, since we can't really change anything about it with delta
     R = diag([1]);
     
     k = lqr(A, B, Q, R);

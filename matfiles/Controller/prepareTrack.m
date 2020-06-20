@@ -1,4 +1,4 @@
-function [s,kr,n,track] = prepareTrack(t_r,t_l)
+function track = prepareTrack(t_r,t_l)
 %EXTRACTCENTERLINE Summary of this function goes here
 
 
@@ -18,8 +18,6 @@ centerLine = t_l+pointDifference*0.5;
 s = cumsum(vecnorm([zeros(1, 2); diff(centerLine)],2,2));
 s = s(:);
 
-n = norm(pointDifference(1,:)*0.5); % Assume constant track width
-
 [s,idx] = unique(s,'stable');
 centerLine = centerLine(idx,:);
 
@@ -38,13 +36,37 @@ ds = [sqrt((circshift(x,-1)-x).^2+(circshift(y,-1)-y).^2)];
 dPsi = kr(:).*ds(:);
 psi = cumsum(dPsi);
 
+% Add curbs
+curbStartLeft = [652];
+curbEndLeft = [850];
+curbWidthLeft = [0.4];
+curbLeft = zeros(size(x));
+
+for i=1:length(curbStartLeft)
+    [~,idxStart] = min(abs(snew-curbStartLeft(i)));
+    [~,idxEnd] = min(abs(snew-curbEndLeft(i)));
+    curbLeft(idxStart:idxEnd) = curbWidthLeft(i);
+end
+
+
+curbStartRight = [905];
+curbEndRight = [938];
+curbWidthRight = [0.4];
+curbRight = zeros(size(x));
+
+for i=1:length(curbStartRight)
+    [~,idxStart] = min(abs(snew-curbStartRight(i)));
+    [~,idxEnd] = min(abs(snew-curbEndRight(i)));
+    curbRight(idxStart:idxEnd) = curbWidthRight(i);
+end
+
 track.x = x;
+track.curbLeft = curbLeft;
+track.curbRight = curbRight;
 track.y = y;
 track.kr = kr;
 track.s = snew;
 track.psi = psi(:);
-
-s = track.s;
 
 end
 
