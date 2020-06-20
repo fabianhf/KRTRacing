@@ -51,7 +51,7 @@ varphi_dot=X(10); % wheel rotary frequency (strictly positive)
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% STATE FEEDBACK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-persistent i states precomputedLine vBreak M g k delta_prev vkbreak betakbreak nkbreak xikbreak deltakbreak ckbreak
+persistent i states precomputedLine vBreak g k
 
 %% Init
 v_0 = 5;
@@ -75,17 +75,17 @@ if(~exist('i','var') || isempty(i))
     % Fudge v to get some safety margin
     precomputedLine = safetyMargin(precomputedLine);
     
-    [vBreak,M,g] = powerCurve();
+    [vBreak,~,g] = powerCurve();
     
     % Gain scheduling for k
-    vkbreak = [5 15 35];
-    betakbreak = pi*[-5/180 :0.5/180*pi : 5/180];
-    nkbreak = [0];
-    xikbreak = pi*[-30/180 0 30/180];
-    deltakbreak = [0];
-    ckbreak = [0];
+    k.vkbreak = [5 15 35];
+    k.betakbreak = pi*[-5/180 :0.5/180*pi : 5/180];
+    k.nkbreak = [0];
+    k.xikbreak = pi*[-30/180 0 30/180];
+    k.deltakbreak = [0];
+    k.ckbreak = [0];
     
-    [vkmatrix,betakmatrix,nkmatrix,xikmatrix,deltakmatrix,ckmatrix] = ndgrid(vkbreak,betakbreak,nkbreak,xikbreak,deltakbreak,ckbreak);
+    [vkmatrix,betakmatrix,nkmatrix,xikmatrix,deltakmatrix,ckmatrix] = ndgrid(k.vkbreak,k.betakbreak,k.nkbreak,k.xikbreak,k.deltakbreak,k.ckbreak);
     
     
     vkmatrix = vkmatrix(:);
@@ -101,7 +101,7 @@ if(~exist('i','var') || isempty(i))
         
     end
     
-    sh = [length(vkbreak) length(betakbreak) length(nkbreak) length(xikbreak) length(deltakbreak) length(ckbreak)];
+    sh = [length(k.vkbreak) length(k.betakbreak) length(k.nkbreak) length(k.xikbreak) length(k.deltakbreak) length(k.ckbreak)];
     k.kV = squeeze(reshape(kList(:,1),sh));
     k.kBeta = squeeze(reshape(kList(:,3),sh));
     k.kPsi_dot = squeeze(reshape(kList(:,2),sh));
@@ -166,63 +166,26 @@ zeta = zetaFF;
 
 
 %% Lateral LQR Controller
-
-% nonZeroSign = @(x)((x>=0)-0.5)*2; % Sign function with +1 for 0
-% inside = sign(2.5-abs(states(2))); % +1 if on the track, -1 if off track, 0 on the edge
-% delta_n = states(2) - nTarget;
-% n_penalty_factor = exp(inside/(nonZeroSign(nTarget)*2.5-states(2)) * delta_n);
-n_penalty_factor = 1;
-
-% This updates k every time dependent on v and C
-% v_min = 2;
-% try
-%     k = lqr_controller(max(v, v_min), 0, 0, 0, 0, 0, 0, 0.5, 0.6, C);
-%     previous_k = k;
-% catch
-%     k = previous_k;
-% end
-vInterp = max(min(v,max(vkbreak)),min(vkbreak));
-betaInterp = max(min(beta,max(betakbreak)),min(betakbreak));
-% nInterp = max(min(states(2),max(nkbreak)),min(nkbreak));
-xiInterp = max(min(states(3),max(xikbreak)),min(xikbreak));
-% deltaInterp = max(min(delta_prev,max(deltakbreak)),min(deltakbreak));
-% cInterp = max(min(C,max(ckbreak)),min(ckbreak));
-
-% betaInterp = 0;
-% nInterp = 0;
-% xiInterp = 0;
-% deltaInterp = 0;
-% cInterp = 0;
-
-% kCurrent = [
-%     interpn(vkbreak,betakbreak,nkbreak,xikbreak,deltakbreak,ckbreak,k.kV,vInterp,betaInterp,nInterp,xiInterp,deltaInterp,cInterp)...
-%     interpn(vkbreak,betakbreak,nkbreak,xikbreak,deltakbreak,ckbreak,k.kPsi_dot,vInterp,betaInterp,nInterp,xiInterp,deltaInterp,cInterp)...
-%     interpn(vkbreak,betakbreak,nkbreak,xikbreak,deltakbreak,ckbreak,k.kBeta,vInterp,betaInterp,nInterp,xiInterp,deltaInterp,cInterp)...
-%     interpn(vkbreak,betakbreak,nkbreak,xikbreak,deltakbreak,ckbreak,k.kN,vInterp,betaInterp,nInterp,xiInterp,deltaInterp,cInterp)...
-%     interpn(vkbreak,betakbreak,nkbreak,xikbreak,deltakbreak,ckbreak,k.kXi,vInterp,betaInterp,nInterp,xiInterp,deltaInterp,cInterp)...
-% ];
+vInterp = max(min(v,max(k.vkbreak)),min(k.vkbreak));
+betaInterp = max(min(beta,max(k.betakbreak)),min(k.betakbreak));
+xiInterp = max(min(states(3),max(k.xikbreak)),min(k.xikbreak));
 
 kCurrent = [
-    interpn(vkbreak,betakbreak,xikbreak,k.kV,vInterp,betaInterp,xiInterp)...
-    interpn(vkbreak,betakbreak,xikbreak,k.kPsi_dot,vInterp,betaInterp,xiInterp)...
-    interpn(vkbreak,betakbreak,xikbreak,k.kBeta,vInterp,betaInterp,xiInterp)...
-    interpn(vkbreak,betakbreak,xikbreak,k.kN,vInterp,betaInterp,xiInterp)...
-    interpn(vkbreak,betakbreak,xikbreak,k.kXi,vInterp,betaInterp,xiInterp)...
+    interpn(k.vkbreak,k.betakbreak,k.xikbreak,k.kV,vInterp,betaInterp,xiInterp)...
+    interpn(k.vkbreak,k.betakbreak,k.xikbreak,k.kPsi_dot,vInterp,betaInterp,xiInterp)...
+    interpn(k.vkbreak,k.betakbreak,k.xikbreak,k.kBeta,vInterp,betaInterp,xiInterp)...
+    interpn(k.vkbreak,k.betakbreak,k.xikbreak,k.kN,vInterp,betaInterp,xiInterp)...
+    interpn(k.vkbreak,k.betakbreak,k.xikbreak,k.kXi,vInterp,betaInterp,xiInterp)...
 ];
 
-% kCurrent = [0    0.0696   -0.3931    1.7321    2.1052];
 
-deltaFB = kCurrent*[0; (psi_dot-psi_dotTarget); (beta-betaTarget); n_penalty_factor*(states(2)-nTarget); (states(3)-xiTarget)]; % Use beta and xi as states
-
-% Assume linearization around 0 and use beta and xi as states
-% deltaFB = k*[v; (psi_dot-psi_dotTarget); (beta-betaTarget); (states(2)-nTarget); (states(3)-xiTarget)]; % Use beta and xi as states
+deltaFB = kCurrent*[0; (psi_dot-psi_dotTarget); (beta-betaTarget); (states(2)-nTarget); (states(3)-xiTarget)]; % Use beta and xi as states
 
 if isnan(deltaFB)
     deltaFF = precomputedLine.deltaOpt(end);
 end
 
 delta = max(min(deltaFF - deltaFB,0.51),-0.51);
-delta_prev = delta;
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OUTPUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -237,9 +200,6 @@ log = [v; psi_dot; beta; states(2); states(3); delta; Fb; zeta; phi; deltaFF; de
 h = 0.001;
 states = states+h*dModel(states,v,beta,psi_dot,C,nTarget);
 i = i+1;
-
-% disp(i * h);
-
 
 if(hasFinished)
     disp('And across the line!')
