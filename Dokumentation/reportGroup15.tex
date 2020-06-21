@@ -11,12 +11,13 @@
 
 % for German
 \usepackage{ngerman}           % neue Deutsche Rechtschreibung, Silbentrennung
-%\usepackage[latin1]{inputenc}  % Eingabe von Umlaute im Editor
-\usepackage[T1]{fontenc}       % Trennung mit Umlauten
+\usepackage[utf8]{inputenc}  % Eingabe von Umlaute im Editor
+%\usepackage[T1]{fontenc}       % Trennung mit Umlauten
 
 % to include tex code of figure created with fig2texPS - and not precompiled pdf-file, see also file ``plotFigureTest.m''
 \usepackage{pstricks, pst-node, pst-plot, pst-circ}
 \usepackage{moredefs}
+\usepackage{pgfplots}
 
 % to include the legend into the caption. The commands are
 %\mlLineLegend{red}
@@ -61,7 +62,7 @@
 
 % include all authors, underline corresponding author
 \author{\underline{Steffen Zeile},} 
-\author{Fabian Haas-Fickinger (Gruope 15)} 
+\author{Fabian Haas-Fickinger (Gruppe 15)} 
 % \author{}
 
 \begin{abstract}                          % Abstract of not more than 250 words.
@@ -74,33 +75,82 @@ Die Aufgabe des Projektwettbewerbs Konzepte der Regelungstechnik ist es einen Re
 Hierbei werden Gaspedalstellung, Lenkwinkel, Bremskraft und Bremskraftverteilung abhängig von den Fahrzeugzuständen geregelt. Die Zustände des dahinterliegenden Fahrzeugmodels, sowie der Verlauf der Streckenränder stehen dem Regler vollständig zur Verfügung.
 
 \section{Konzept}
-Unser Ansatz besteht darin, vor dem Start der Runde eine zeitoptimale Trajektorie zu berechnen und diese als Referenz für einen Regler zu nutzen. Daraus resultieren zwei Teilaufgaben, das Optimierungsproblem zu lösen und einen Zustandsregler zu entwerfen.
+Unser Ansatz besteht darin, vor dem Start der Runde eine zeitoptimale Trajektorie mit Hilfe eines nichtlinearen Programms zu berechnen und diese als Referenz für einen Regler zu nutzen. Daraus resultieren zwei Teilaufgaben, das Optimierungsproblem zu lösen und einen Zustandsregler zu entwerfen.
 \subsection{Optimierungsproblem}
-Das ursprüngliche Optimierungsproblem hat mehrere Eigenschaften, die es erschweren, es mit einem klassischen Optimierungsalgorithmus zu lösen. Dazu gehört, dass durch das Streckenprofil die Grenzen für die Koordinate $X$ von $Y$ abhängig ist und andersherum. Außerdem befinden sich im Fahrzeugmodell Diskontinuitäten durch die diskrete Gangwahl  und weitere nicht vollständig differenzierbare Funktionen.\\
-Daher wurde ein Streckenkoordinatensystem eingeführt, dass auf dem Verlauf der Streckenmitte basiert. Die Fahrzeugposition ist somit gegeben als orthogonaler Abstand zur Streckenmitte $n$, Winkel zwischen Streckentangente und Fahrzeuglängsachse $\xi$ und Distanz zum Start entlang der Streckenmitte $s$.\\ Zudem wurde der Streckenfortschritt $s$ statt der Zeit $t$ als unabhängige Variable genutzt. Für diesen Zweck musste die Fahrzeugdynamik als Änderung des Zustands über die Strecke formuliert werden.\\
-Da ein Gradientenbasierter Lösungsalgorithmus für das Optimierungsproblem eingesetzt wird, wurden die Fahrzeugdynamik derart angepasst, dass es vollständig differenzierbar ist. Außerdem wurde eine geschwindigkeitsabhängige Lastkurve bei optimaler Gangwahl implementiert, um den Gang als Optimierungsvariable zu eliminieren.\\
-Um zu verhindern, dass der Lenkwinkel $\delta$ hin- und herspringt, wurde $\dot{\delta}$ als beschränkter Eingang und $\delta$ als Zustand definiert.\\
-Gegenstand der Minimierung ist in erster Linie die verstrichene Zeit im Ziel, sowie zu kleineren Teilen $\dot{\beta}^2$, $\dot{\delta}^2$, $\ddot{\psi}^2$, $\xi$ und $f_B$. Damit soll verhindert werden, dass das Fahrzeug alle Kurven im Drift nimmt, da dies ein schwer zu regelnder Fahrzeugzustand.
+Zur Lösung des Optimierungsproblems werden Zustände und Steuerungsgrößen mit Hilfe eines Euler Schemas bzw. Kollokation diskretisiert. Das resultierende nichtlineare Programm wird mit einem gradientenbasierten Solver gelöst. Um das gegebene Fahrzeugmodell für die gradientenbasierte Optimierung nutzbar zu machen, sind einige Anpassungen notwendig. Dabei handelt es sich hauptsächlich um die Einführung eines streckenbezogenen Koordinatensystems sowie der Eliminierung nicht differenzierbarer Funktionen.\\
+Das Streckenkoordinatensystem eingeführt basiert auf dem Verlauf der Streckenmittellinie. Die Fahrzeugposition ist somit gegeben als orthogonaler Abstand zur Streckenmitte $n$, Winkel zwischen Streckentangente und Fahrzeuglängsachse $\xi$ und Distanz zum Start entlang der Streckenmitte $s$.\\ Zudem wurde der Streckenfortschritt $s$ statt der Zeit $t$ als unabhängige Variable des Optimierungsproblems genutzt um die Dimension zu reduzieren. Für diesen Zweck musste die Fahrzeugdynamik als Änderung des Zustands über die Strecke formuliert werden.\\
+Die diskrete Gangwahl wurde durch ein Drehmoment-/Geschwindigkeitskennfeld ersetzt. Zielgröße des Optimierungsproblems ist die Minimierung der Fahrzeit.  \\
+Da sich verschiedene, teilweise grundlegend unterschiedliche lokale Minima ergeben, wurden zusätzlich Regularisierungsterme in Form von $\delta^2$, $\ddot{\psi}$ sowie $\dot{\beta}$ zur Zielgröße hinzugefügt. Dies führt neben einer Reduzierung von Lenkwinkelschwingungen zu einer glatten Dynamik, die das Auftreten instabiler Fahrzustände auf ein Maß begrenzt, das im anschließenden Reglerentwurf tolerabel ist. \\
 \subsection{Zustandsregler}
-Um der zuvor berechneten Trajektorie zu folgen werden zwei Regler
-implementiert. Eine Längs- und eine Querregelung. Um den Zustand entsprechend der Trajektorie zu regeln, muss anhand des Streckenfortschritts interpoliert werden. Hierzu muss der Regler intern die Streckenfortschrittsgeschwindigkeit berechnen und integrieren.
+Die Aufgabe des Zustandsreglers ist die Folgeregelung des Fahrzeuges entlang der vorberechneten, optimalen Trajektorie. Ziel ist es, einen Regler zu entwickeln, der auch für instabile Fahrzustände eine Bahnfolge innerhalb der Streckenbegrenzung garantieren kann. Der Reglerentwurf findet dabei für Längs und Querdynamik getrennt statt. Das verwendete Reifenmodell lässt diese Entkopplung zu. Die Zuordnung der Solltrajektorie zur aktuellen Fahrzeugposition erfolgt ebenfalls über die zurückgelegte Strecke $s$ entlang der Fahrbahnmittellinie. $s$ sowie $n$ und $xi$, die für die Querregelung benötigt werden, berechnet der Regler mit Hilfe des Systems aus \ref{eq:system}. $C$ bezeichnet die Krümmung an der jeweiligen Position.
+\begin{align}
+	\dot{s} &= \frac{v cos(\beta) cos(\xi) - v sin(\beta) sin(\xi)}{1- n C} \\
+	\dot{n} &= v cos(\beta) sin(\xi) + v sin(\beta) cos(\xi) \\
+	\dot{\xi} &= \dot{\psi} - C \dot{s}
+	\label{eq:system}
+\end{align}
 \begin{enumerate}
 	\item Längsregelung
+	Der Entwurf der Längsregelung basiert auf der Idee der Vorausschau. Mit Hilfe der Vorausschaudistanz $ds$ wird eine Sollbeschleunigung berechnet, die notwendig ist, damit das Fahrzeug im Abstand $ds$ von der aktuellen Position die Sollgeschwindigkeit erreicht. Da die Sollbeschleunigung $a_{x,Soll}$ mit einem Differenzenquotienten basierend auf einer Vorausschaudistanz ermittelt wird, ist eine Transformation in die Zeitdomäne mit Hilfe von $\dot{s}$ notwendig. $a_{x,Soll}$ ergibt sich zu \ref{eq:axsoll}.
+	\begin{equation}
+		a_{x,Soll} = \dot{s} \frac{v_{Soll}-v}{ds}
+		\label{eq:axsoll}
+	\end{equation}
+	Eine zusätzliche Vorsteuerung ist nicht notwendig. Die Sollbeschleunigung wird dann mit Hilfe der Modellgleichungen des Antriebsstranges auf ein Solldrehmoment am Rad umgerechnet. Aus dem Drehmoment-/Geschwindigkeitskennfeld, das bereits für die Optimierung erzeugt wurde, folgt die Gangwahl. Das aus der Optimierung resultierende Sollgeschwindigkeitsprofil entlang der Fahrbahnmittellinie zeigt \ref{fig1}.
+	\begin{figure}[h]
+		\begin{center}
+			\scalebox{0.5}{\input{vTarget.tex}} % inclusion of tex-code
+			% \includegraphics[width=\columnwidth]{fig1} % inclusion of pdf
+			\caption{Sollgeschwindigkeit $v_{Soll}$ über zurückgelegte Distanz entlang der Fahrbahnmittellinie $s$.}
+			\label{fig1}
+		\end{center}
+	\end{figure}
 	\item Querregelung
-	Um die Querregelung umzusetzen wird ausschließlich der Lenkwinkel $\delta$ als Steuergröße genutzt. Dabei wird ein Feed-Forward-LQR Regler eingesetzt. Der in der Trajektorie gegebene Lenkwinkel wird per Feed-Forward in die Regelung gegeben. Zu jedem Zeitpunkt berechnet der Regler die Jacobi-Matrix abhängig von der aktuellen Geschwindigkeit und Kurvenkrümmung. Diese wird genutzt um das Gain des LQR Reglers zu berechnen. Die Zustände für die LQR Regler liegen dabei im Streckenkoordinatensystem vor.
+	Strukturell lässt sich die verwendete Querregelung in eine Vorsteuerung sowie einen Regler aufteilen. Die einzige Ausgangsgröße ist der Lenkwinkel $\delta$. Die Vorsteuerung basiert auf dem Lenkwinkel der Optimierungstrajektorie. Die Zuordnung erfolgt erneut über die zurückgelegte Distanz entlang der Fahrbahnmitte. Der Regler wird als klassischer LQR ausgelegt. Die korrespondierenden Zustände $x_{LQR}$ zeigt \ref{eq:stateslqr}.
+	\begin{equation}
+		x_{LQR} = \begin{bmatrix}
+		v \\
+		\dot{\psi} \\
+		\beta \\
+		n \\
+		\xi 
+		\end{bmatrix}
+		\label{eq:stateslqr}
+	\end{equation}		
+	Die Linearisierung erfolgt dabei jeweils bei Geradeausfahrt auf der Fahrbahnmitte bei verschiedenen Geschwindigkeiten $v_i$. Die notwendige Jacobimatrix der Fahrzeug- und Streckenmodelldynamik liegt als Nebenprodukt des Optimierungsproblems bereits vor. Die Stellgrößengewichtung $R$ wird zu $1$ gewählt, die Zustandsgewichte $Q$ zeigt \ref{eq:q}.
+	\begin{equation}
+		Q = diag(\begin{bmatrix}
+		0 & 0.2 & 0.2 & 50 & 10
+		\end{bmatrix})
+		\label{eq:q}
+	\end{equation}	 
+	Die sich ergebenden $k$ werden in Abhängigkeit der aktuellen Fahrzeuggeschwindigkeit $v$ linear interpoliert. \ref{eq:k} zeigt $k$ exemplarisch für $v = 15 \frac{\text{m}}{\text{s}}$.
+	\begin{equation}
+		k_{15} = \begin{bmatrix}
+		0 & 0.164 & -7.197 & 7.0711 & 10.991	
+		\end{bmatrix}
+		\label{eq:k}
+	\end{equation}	 
 \end{enumerate}
 
 \section{Ergebnis}
-We have achieved a lap time of $t_{\text{f}}=\infty$. We have depicted a plot of vehicle velocity $v$ versus an independent curve parameter $\gamma$, with which we have parameterized the racetrack, in Fig. 1. 
+Mit Hilfe der dargestellten Methode konnte eine Rundenzeit von $t_{\text{f}}=53.263 \text{s}$ unter Einhaltung der Streckenbegrenzung erreicht werden. Die benötigte Berechnungszeit beträgt $t_{\text{sim}}=316.297755 \text{s}$. \ref{fig2} zeigt die gefahrene Linie, \ref{fig3} die Fahrzeuggeschwindigkeit. 
+\begin{figure}[h]
+	\begin{center}
+		\scalebox{0.8}{\input{vTrackMap.tex}} % inclusion of tex-code
+		% \includegraphics[width=\columnwidth]{fig1} % inclusion of pdf
+		\caption{Fahrlinie.}
+		\label{fig2}
+	\end{center}
+\end{figure}
 
-\begin{figure}[h] % use \begin{figure*} for two-column figure
-\begin{center}
-% for details see file ``plotFigureTest.m''
-%\input{fig1.tex} % inclusion of tex-code
-% \includegraphics[width=\columnwidth]{fig1} % inclusion of pdf
-\caption{Plot of Vehicle Velocity $v$ versus Curve Parameter $\gamma$ ({\bf\color{black}---}).}
-\label{fig1}
-\end{center}
+\begin{figure}[h]
+	\begin{center}
+		\scalebox{0.5}{\input{vActual.tex}} % inclusion of tex-code
+		% \includegraphics[width=\columnwidth]{fig1} % inclusion of pdf
+		\caption{Fahrzeuggeschwindigkeit $v$ über $s$.}
+		\label{fig3}
+	\end{center}
 \end{figure}
 
 
@@ -112,14 +162,14 @@ We have achieved a lap time of $t_{\text{f}}=\infty$. We have depicted a plot of
                                  % correct style is generated by
                                  % Elsevier at the time of printing.
 
-\begin{thebibliography}{3}
-
-\bibitem[(Knuth2005)]{Knuth2005}
-Knuth,~D.~E. (2005).
-\newblock The Art of Computer Programming.
-\newblock Pearson Education.
-
-\end{thebibliography}
+%\begin{thebibliography}{3}
+%
+%\bibitem[(Knuth2005)]{Knuth2005}
+%Knuth,~D.~E. (2005).
+%\newblock The Art of Computer Programming.
+%\newblock Pearson Education.
+%
+%\end{thebibliography}
 
 %\appendix
 \end{document}

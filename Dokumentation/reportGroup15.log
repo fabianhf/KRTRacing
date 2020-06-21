@@ -1,56 +1,54 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7440 64-bit) (preloaded format=pdflatex 2020.6.19)  19 JUN 2020 17:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2018.3.2)  21 JUN 2020 02:01
 entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
 **./reportGroup15.tex
-(reportGroup15.tex
-LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-06-03> (ifacconf.cls
+(./reportGroup15.tex
+LaTeX2e <2017-04-15>
+Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
+(./ifacconf.cls
 Document Class: ifacconf 2007/05/31, 3.2ModD: IFAC conferences
 
-\@frontmatterwidth=\dimen134
-\@bls=\dimen135
-\eqntopsep=\skip47
-\eqnarraycolsep=\dimen136
-\labelwidthi=\dimen137
-\labelwidthii=\dimen138
-\labelwidthiii=\dimen139
-\labelwidthiv=\dimen140
-\@maxlistdepth=\count167
-\eqnbaselineskip=\skip48
-\eqnlineskip=\skip49
-\mathindent=\dimen141
-\rulepreskip=\dimen142
-\rulepostskip=\dimen143
-\Arrayrulewidth=\dimen144
-\crulepostskip=\dimen145
-\@Ldec=\dimen146
-\@Rdec=\dimen147
-\@Lpmdec=\dimen148
-\@Rpmdec=\dimen149
-\c@section=\count168
-\c@subsection=\count169
-\c@subsubsection=\count170
-\c@paragraph=\count171
-\c@subparagraph=\count172
-
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\theor
-em.sty"
+\@frontmatterwidth=\dimen102
+\@bls=\dimen103
+\eqntopsep=\skip41
+\eqnarraycolsep=\dimen104
+\labelwidthi=\dimen105
+\labelwidthii=\dimen106
+\labelwidthiii=\dimen107
+\labelwidthiv=\dimen108
+\@maxlistdepth=\count79
+\eqnbaselineskip=\skip42
+\eqnlineskip=\skip43
+\mathindent=\dimen109
+\rulepreskip=\dimen110
+\rulepostskip=\dimen111
+\Arrayrulewidth=\dimen112
+\crulepostskip=\dimen113
+\@Ldec=\dimen114
+\@Rdec=\dimen115
+\@Lpmdec=\dimen116
+\@Rpmdec=\dimen117
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+(c:/texlive/2017/texmf-dist/tex/latex/tools/theorem.sty
 Package: theorem 2014/10/28 v2.2c Theorem extension package (FMi)
-\theorem@style=\toks15
-\theorem@bodyfont=\toks16
-\theorempreskipamount=\skip50
-\theorempostskipamount=\skip51
+\theorem@style=\toks14
+\theorem@bodyfont=\toks15
+\theorempreskipamount=\skip44
+\theorempostskipamount=\skip45
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\thp.s
-ty"
+(c:/texlive/2017/texmf-dist/tex/latex/tools/thp.sty
 File: thp.sty 2014/10/28 v2.2c Theorem extension package (FMi)
 ))
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\newlfo
-nt.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/base/newlfont.sty
 Package: newlfont 1998/08/17 v2.2m Standard LaTeX package
 LaTeX Info: Redefining \em on input line 57.
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\latexs
-ym.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
@@ -63,198 +61,496 @@ LaTeX Info: Redefining \bf on input line 598.
 LaTeX Info: Redefining \it on input line 599.
 LaTeX Info: Redefining \sl on input line 600.
 LaTeX Info: Redefining \sc on input line 601.
-\c@thm=\count173
-\c@alg=\count174
-\c@algorithm=\count175
-\c@note=\count176
-\c@summ=\count177
-\c@case=\count178
-\@tempcntc=\count179
-\c@figure=\count180
-\c@table=\count181
-\t@glob@notes=\toks17
-\t@loc@notes=\toks18
-\note@cnt=\count182
-\c@author=\count183
-\n@author=\count184
-\c@collab=\count185
-\n@collab=\count186
-\c@address=\count187
-\sv@mathsurround=\dimen150
-\sv@hyphenpenalty=\count188
-\prev@elem=\count189
-\cur@elem=\count190
-\fm@box=\box45
-\fm@size=\dimen151
-\t@abstract=\box46
-\t@keyword=\box47
-\rep@mod=\count191
-\t@xtheight=\dimen152
-\@logoheight=\dimen153
-\@pubyear=\count192
-\c@firstpage=\count193
-\c@lastpage=\count194
-\slashbox=\box48
+\c@thm=\count85
+\c@alg=\count86
+\c@algorithm=\count87
+\c@note=\count88
+\c@summ=\count89
+\c@case=\count90
+\@tempcntc=\count91
+\c@figure=\count92
+\c@table=\count93
+\t@glob@notes=\toks16
+\t@loc@notes=\toks17
+\note@cnt=\count94
+\c@author=\count95
+\n@author=\count96
+\c@collab=\count97
+\n@collab=\count98
+\c@address=\count99
+\sv@mathsurround=\dimen118
+\sv@hyphenpenalty=\count100
+\prev@elem=\count101
+\cur@elem=\count102
+\fm@box=\box26
+\fm@size=\dimen119
+\t@abstract=\box27
+\t@keyword=\box28
+\rep@mod=\count103
+\t@xtheight=\dimen120
+\@logoheight=\dimen121
+\@pubyear=\count104
+\c@firstpage=\count105
+\c@lastpage=\count106
+\slashbox=\box29
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 1506.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 1506.
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 15
-06.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 1506.
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ulasy.
-fd"
+
+(c:/texlive/2017/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-\Slashbox=\box49
+\Slashbox=\box30
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 1507.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 1507.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 1507.
-\@frontindent=\dimen154
+\@frontindent=\dimen122
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\ams
-math.sty"
-Package: amsmath 2020/01/20 v2.17e AMS math features
-\@mathmargin=\skip52
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/11/05 v2.16a AMS math features
+\@mathmargin=\skip46
 
 For additional information on amsmath, use the `?' option.
-
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\ams
-text.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\ams
-gen.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks19
-\ex@=\dimen155
+\@emptytoks=\toks18
+\ex@=\dimen123
 ))
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\ams
-bsy.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen156
+\pmbraise@=\dimen124
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\ams
-opn.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 LaTeX Info: Redefining \operatorname on input line 43.
 )
-\inf@bad=\count195
-LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count196
-\leftroot@=\count197
-LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count198
-\DOTSCASE@=\count199
-LaTeX Info: Redefining \ldots on input line 486.
-LaTeX Info: Redefining \dots on input line 489.
-LaTeX Info: Redefining \cdots on input line 610.
-\Mathstrutbox@=\box50
-\strutbox@=\box51
-\big@size=\dimen157
-LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-\macc@depth=\count266
-\c@MaxMatrixCols=\count267
-\dotsspace@=\muskip16
-\c@parentequation=\count268
-\dspbrk@lvl=\count269
-\tag@help=\toks20
-\row@=\count270
-\column@=\count271
-\maxfields@=\count272
-\andhelp@=\toks21
-\eqnshift@=\dimen158
-\alignsep@=\dimen159
-\tagshift@=\dimen160
-\tagwidth@=\dimen161
-\totwidth@=\dimen162
-\lineht@=\dimen163
-\@envbody=\toks22
-\multlinegap=\skip53
-\multlinetaggap=\skip54
-\mathdisplay@stack=\toks23
-LaTeX Info: Redefining \[ on input line 2859.
-LaTeX Info: Redefining \] on input line 2860.
-) (natbib.sty
+\inf@bad=\count107
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count108
+\leftroot@=\count109
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count110
+\DOTSCASE@=\count111
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box31
+\strutbox@=\box32
+\big@size=\dimen125
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count112
+\c@MaxMatrixCols=\count113
+\dotsspace@=\muskip10
+\c@parentequation=\count114
+\dspbrk@lvl=\count115
+\tag@help=\toks19
+\row@=\count116
+\column@=\count117
+\maxfields@=\count118
+\andhelp@=\toks20
+\eqnshift@=\dimen126
+\alignsep@=\dimen127
+\tagshift@=\dimen128
+\tagwidth@=\dimen129
+\totwidth@=\dimen130
+\lineht@=\dimen131
+\@envbody=\toks21
+\multlinegap=\skip47
+\multlinetaggap=\skip48
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+) (./natbib.sty
 Package: natbib 1998/07/14 6.8c (PWD)
-\bibhang=\skip55
-\bibsep=\skip56
+\bibhang=\skip49
+\bibsep=\skip50
 LaTeX Info: Redefining \cite on input line 467.
-\c@NAT@ctr=\count273
+\c@NAT@ctr=\count119
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\gr
-aphicx.sty"
-Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\ke
-yval.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks24
+\KV@toks@=\toks23
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\gr
-aphics.sty"
-Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\tr
-ig.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cf
-g\graphics.cfg"
+(c:/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 105.
+Package graphics Info: Driver file: pdftex.def on input line 99.
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-de
-f\pdftex.def"
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
-))
-\Gin@req@height=\dimen164
-\Gin@req@width=\dimen165
+(c:/texlive/2017/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/units\units
-.sty"
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count120
+))
+\Gin@req@height=\dimen132
+\Gin@req@width=\dimen133
+)
+(c:/texlive/2017/texmf-dist/tex/latex/units/units.sty
 Package: units 1998/08/04 v0.9b Typesetting units
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ifthen
-.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/units\nicef
-rac.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/units/nicefrac.sty
 Package: nicefrac 1998/08/04 v0.9b Nice fractions
-\L@UnitsRaiseDisplaystyle=\skip57
-\L@UnitsRaiseTextstyle=\skip58
-\L@UnitsRaiseScriptstyle=\skip59
+\L@UnitsRaiseDisplaystyle=\skip51
+\L@UnitsRaiseTextstyle=\skip52
+\L@UnitsRaiseScriptstyle=\skip53
 ))
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/german\ng
-erman.sty" v2.5e 1998-07-08
+(c:/texlive/2017/texmf-dist/tex/generic/german/ngerman.sty v2.5e 1998-07-08
 Package: ngerman 1998/07/08 v2.5e Support for writing german texts (br)
-\grmnU@D=\dimen166
-ngerman -- \language number for naustrian undefined, default 51 used.
+\grmnU@D=\dimen134
+ngerman -- \language number for naustrian undefined, default 33 used.
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fonten
-c.sty"
-Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
-)
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pstricks\ps
-tricks.sty"
-Package: pstricks 2020/06/11 v0.70 LaTeX wrapper for `PSTricks' (RN,HV)
+(c:/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks24
+\inpenc@posthook=\toks25
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\ift
-ex.sty"
-Package: iftex 2020/03/06 v1.0d TeX engine tests
+(c:/texlive/2017/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
+Now handling font encoding OML ...
+... no UTF-8 mapping file for font encoding OML
+Now handling font encoding T1 ...
+... processing UTF-8 mapping file for font encoding T1
+
+(c:/texlive/2017/texmf-dist/tex/latex/base/t1enc.dfu
+File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
+   defining Unicode char U+00A0 (decimal 160)
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AB (decimal 171)
+   defining Unicode char U+00AD (decimal 173)
+   defining Unicode char U+00BB (decimal 187)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C0 (decimal 192)
+   defining Unicode char U+00C1 (decimal 193)
+   defining Unicode char U+00C2 (decimal 194)
+   defining Unicode char U+00C3 (decimal 195)
+   defining Unicode char U+00C4 (decimal 196)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00C7 (decimal 199)
+   defining Unicode char U+00C8 (decimal 200)
+   defining Unicode char U+00C9 (decimal 201)
+   defining Unicode char U+00CA (decimal 202)
+   defining Unicode char U+00CB (decimal 203)
+   defining Unicode char U+00CC (decimal 204)
+   defining Unicode char U+00CD (decimal 205)
+   defining Unicode char U+00CE (decimal 206)
+   defining Unicode char U+00CF (decimal 207)
+   defining Unicode char U+00D0 (decimal 208)
+   defining Unicode char U+00D1 (decimal 209)
+   defining Unicode char U+00D2 (decimal 210)
+   defining Unicode char U+00D3 (decimal 211)
+   defining Unicode char U+00D4 (decimal 212)
+   defining Unicode char U+00D5 (decimal 213)
+   defining Unicode char U+00D6 (decimal 214)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00D9 (decimal 217)
+   defining Unicode char U+00DA (decimal 218)
+   defining Unicode char U+00DB (decimal 219)
+   defining Unicode char U+00DC (decimal 220)
+   defining Unicode char U+00DD (decimal 221)
+   defining Unicode char U+00DE (decimal 222)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E0 (decimal 224)
+   defining Unicode char U+00E1 (decimal 225)
+   defining Unicode char U+00E2 (decimal 226)
+   defining Unicode char U+00E3 (decimal 227)
+   defining Unicode char U+00E4 (decimal 228)
+   defining Unicode char U+00E5 (decimal 229)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00E7 (decimal 231)
+   defining Unicode char U+00E8 (decimal 232)
+   defining Unicode char U+00E9 (decimal 233)
+   defining Unicode char U+00EA (decimal 234)
+   defining Unicode char U+00EB (decimal 235)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F0 (decimal 240)
+   defining Unicode char U+00F1 (decimal 241)
+   defining Unicode char U+00F2 (decimal 242)
+   defining Unicode char U+00F3 (decimal 243)
+   defining Unicode char U+00F4 (decimal 244)
+   defining Unicode char U+00F5 (decimal 245)
+   defining Unicode char U+00F6 (decimal 246)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+00F9 (decimal 249)
+   defining Unicode char U+00FA (decimal 250)
+   defining Unicode char U+00FB (decimal 251)
+   defining Unicode char U+00FC (decimal 252)
+   defining Unicode char U+00FD (decimal 253)
+   defining Unicode char U+00FE (decimal 254)
+   defining Unicode char U+00FF (decimal 255)
+   defining Unicode char U+0100 (decimal 256)
+   defining Unicode char U+0101 (decimal 257)
+   defining Unicode char U+0102 (decimal 258)
+   defining Unicode char U+0103 (decimal 259)
+   defining Unicode char U+0104 (decimal 260)
+   defining Unicode char U+0105 (decimal 261)
+   defining Unicode char U+0106 (decimal 262)
+   defining Unicode char U+0107 (decimal 263)
+   defining Unicode char U+0108 (decimal 264)
+   defining Unicode char U+0109 (decimal 265)
+   defining Unicode char U+010A (decimal 266)
+   defining Unicode char U+010B (decimal 267)
+   defining Unicode char U+010C (decimal 268)
+   defining Unicode char U+010D (decimal 269)
+   defining Unicode char U+010E (decimal 270)
+   defining Unicode char U+010F (decimal 271)
+   defining Unicode char U+0110 (decimal 272)
+   defining Unicode char U+0111 (decimal 273)
+   defining Unicode char U+0112 (decimal 274)
+   defining Unicode char U+0113 (decimal 275)
+   defining Unicode char U+0114 (decimal 276)
+   defining Unicode char U+0115 (decimal 277)
+   defining Unicode char U+0116 (decimal 278)
+   defining Unicode char U+0117 (decimal 279)
+   defining Unicode char U+0118 (decimal 280)
+   defining Unicode char U+0119 (decimal 281)
+   defining Unicode char U+011A (decimal 282)
+   defining Unicode char U+011B (decimal 283)
+   defining Unicode char U+011C (decimal 284)
+   defining Unicode char U+011D (decimal 285)
+   defining Unicode char U+011E (decimal 286)
+   defining Unicode char U+011F (decimal 287)
+   defining Unicode char U+0120 (decimal 288)
+   defining Unicode char U+0121 (decimal 289)
+   defining Unicode char U+0122 (decimal 290)
+   defining Unicode char U+0123 (decimal 291)
+   defining Unicode char U+0124 (decimal 292)
+   defining Unicode char U+0125 (decimal 293)
+   defining Unicode char U+0128 (decimal 296)
+   defining Unicode char U+0129 (decimal 297)
+   defining Unicode char U+012A (decimal 298)
+   defining Unicode char U+012B (decimal 299)
+   defining Unicode char U+012C (decimal 300)
+   defining Unicode char U+012D (decimal 301)
+   defining Unicode char U+012E (decimal 302)
+   defining Unicode char U+012F (decimal 303)
+   defining Unicode char U+0130 (decimal 304)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0132 (decimal 306)
+   defining Unicode char U+0133 (decimal 307)
+   defining Unicode char U+0134 (decimal 308)
+   defining Unicode char U+0135 (decimal 309)
+   defining Unicode char U+0136 (decimal 310)
+   defining Unicode char U+0137 (decimal 311)
+   defining Unicode char U+0139 (decimal 313)
+   defining Unicode char U+013A (decimal 314)
+   defining Unicode char U+013B (decimal 315)
+   defining Unicode char U+013C (decimal 316)
+   defining Unicode char U+013D (decimal 317)
+   defining Unicode char U+013E (decimal 318)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0143 (decimal 323)
+   defining Unicode char U+0144 (decimal 324)
+   defining Unicode char U+0145 (decimal 325)
+   defining Unicode char U+0146 (decimal 326)
+   defining Unicode char U+0147 (decimal 327)
+   defining Unicode char U+0148 (decimal 328)
+   defining Unicode char U+014A (decimal 330)
+   defining Unicode char U+014B (decimal 331)
+   defining Unicode char U+014C (decimal 332)
+   defining Unicode char U+014D (decimal 333)
+   defining Unicode char U+014E (decimal 334)
+   defining Unicode char U+014F (decimal 335)
+   defining Unicode char U+0150 (decimal 336)
+   defining Unicode char U+0151 (decimal 337)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0154 (decimal 340)
+   defining Unicode char U+0155 (decimal 341)
+   defining Unicode char U+0156 (decimal 342)
+   defining Unicode char U+0157 (decimal 343)
+   defining Unicode char U+0158 (decimal 344)
+   defining Unicode char U+0159 (decimal 345)
+   defining Unicode char U+015A (decimal 346)
+   defining Unicode char U+015B (decimal 347)
+   defining Unicode char U+015C (decimal 348)
+   defining Unicode char U+015D (decimal 349)
+   defining Unicode char U+015E (decimal 350)
+   defining Unicode char U+015F (decimal 351)
+   defining Unicode char U+0160 (decimal 352)
+   defining Unicode char U+0161 (decimal 353)
+   defining Unicode char U+0162 (decimal 354)
+   defining Unicode char U+0163 (decimal 355)
+   defining Unicode char U+0164 (decimal 356)
+   defining Unicode char U+0165 (decimal 357)
+   defining Unicode char U+0168 (decimal 360)
+   defining Unicode char U+0169 (decimal 361)
+   defining Unicode char U+016A (decimal 362)
+   defining Unicode char U+016B (decimal 363)
+   defining Unicode char U+016C (decimal 364)
+   defining Unicode char U+016D (decimal 365)
+   defining Unicode char U+016E (decimal 366)
+   defining Unicode char U+016F (decimal 367)
+   defining Unicode char U+0170 (decimal 368)
+   defining Unicode char U+0171 (decimal 369)
+   defining Unicode char U+0172 (decimal 370)
+   defining Unicode char U+0173 (decimal 371)
+   defining Unicode char U+0174 (decimal 372)
+   defining Unicode char U+0175 (decimal 373)
+   defining Unicode char U+0176 (decimal 374)
+   defining Unicode char U+0177 (decimal 375)
+   defining Unicode char U+0178 (decimal 376)
+   defining Unicode char U+0179 (decimal 377)
+   defining Unicode char U+017A (decimal 378)
+   defining Unicode char U+017B (decimal 379)
+   defining Unicode char U+017C (decimal 380)
+   defining Unicode char U+017D (decimal 381)
+   defining Unicode char U+017E (decimal 382)
+   defining Unicode char U+01CD (decimal 461)
+   defining Unicode char U+01CE (decimal 462)
+   defining Unicode char U+01CF (decimal 463)
+   defining Unicode char U+01D0 (decimal 464)
+   defining Unicode char U+01D1 (decimal 465)
+   defining Unicode char U+01D2 (decimal 466)
+   defining Unicode char U+01D3 (decimal 467)
+   defining Unicode char U+01D4 (decimal 468)
+   defining Unicode char U+01E2 (decimal 482)
+   defining Unicode char U+01E3 (decimal 483)
+   defining Unicode char U+01E6 (decimal 486)
+   defining Unicode char U+01E7 (decimal 487)
+   defining Unicode char U+01E8 (decimal 488)
+   defining Unicode char U+01E9 (decimal 489)
+   defining Unicode char U+01EA (decimal 490)
+   defining Unicode char U+01EB (decimal 491)
+   defining Unicode char U+01F0 (decimal 496)
+   defining Unicode char U+01F4 (decimal 500)
+   defining Unicode char U+01F5 (decimal 501)
+   defining Unicode char U+0218 (decimal 536)
+   defining Unicode char U+0219 (decimal 537)
+   defining Unicode char U+021A (decimal 538)
+   defining Unicode char U+021B (decimal 539)
+   defining Unicode char U+0232 (decimal 562)
+   defining Unicode char U+0233 (decimal 563)
+   defining Unicode char U+1E02 (decimal 7682)
+   defining Unicode char U+1E03 (decimal 7683)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2010 (decimal 8208)
+   defining Unicode char U+2011 (decimal 8209)
+   defining Unicode char U+2012 (decimal 8210)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2015 (decimal 8213)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201A (decimal 8218)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+   defining Unicode char U+201E (decimal 8222)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+2039 (decimal 8249)
+   defining Unicode char U+203A (decimal 8250)
+   defining Unicode char U+2423 (decimal 9251)
+   defining Unicode char U+1E20 (decimal 7712)
+   defining Unicode char U+1E21 (decimal 7713)
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xcolor\xcol
-or.sty"
+Now handling font encoding OT1 ...
+... processing UTF-8 mapping file for font encoding OT1
+
+(c:/texlive/2017/texmf-dist/tex/latex/base/ot1enc.dfu
+File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
+   defining Unicode char U+00A0 (decimal 160)
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AD (decimal 173)
+   defining Unicode char U+00B8 (decimal 184)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0174 (decimal 372)
+   defining Unicode char U+0175 (decimal 373)
+   defining Unicode char U+0176 (decimal 374)
+   defining Unicode char U+0177 (decimal 375)
+   defining Unicode char U+0218 (decimal 536)
+   defining Unicode char U+0219 (decimal 537)
+   defining Unicode char U+021A (decimal 538)
+   defining Unicode char U+021B (decimal 539)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+)
+Now handling font encoding OMS ...
+... processing UTF-8 mapping file for font encoding OMS
+
+(c:/texlive/2017/texmf-dist/tex/latex/base/omsenc.dfu
+File: omsenc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+)
+Now handling font encoding OMX ...
+... no UTF-8 mapping file for font encoding OMX
+Now handling font encoding U ...
+... no UTF-8 mapping file for font encoding U
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+02C6 (decimal 710)
+   defining Unicode char U+02DC (decimal 732)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2026 (decimal 8230)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2423 (decimal 9251)
+))
+(c:/texlive/2017/texmf-dist/tex/latex/pstricks/pstricks.sty
+Package: pstricks 2017/03/17 v0.63 LaTeX wrapper for `PSTricks' (RN,HV)
+
+(c:/texlive/2017/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cf
-g\color.cfg"
+(c:/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -268,405 +564,741 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\p
-st-xkey.tex"
+(c:/texlive/2017/texmf-dist/tex/generic/pstricks/pstricks.tex
+(c:/texlive/2017/texmf-dist/tex/generic/xkeyval/pst-xkey.tex
 File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xkeyval\xke
-yval.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\x
-keyval.tex"
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\x
-kvutils.tex"
-\XKV@toks=\toks25
-\XKV@tempa@toks=\toks26
+(c:/texlive/2017/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(c:/texlive/2017/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks26
+\XKV@tempa@toks=\toks27
 )
-\XKV@depth=\count274
+\XKV@depth=\count121
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )))
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pstricks\
-pstricks.tex"
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pstricks\
-pst-fp.tex" `pst-fp' v0.05, 2010/01/17 (hv)
-\pstFP@xs=\count275
-\pstFP@xia=\count276
-\pstFP@xib=\count277
-\pstFP@xfa=\count278
-\pstFP@xfb=\count279
-\pstFP@rega=\count280
-\pstFP@regb=\count281
-\pstFP@regs=\count282
-\pstFP@times=\count283
+(c:/texlive/2017/texmf-dist/tex/generic/pstricks/pst-fp.tex
+`pst-fp' v0.05, 2010/01/17 (hv)
+\pstFP@xs=\count122
+\pstFP@xia=\count123
+\pstFP@xib=\count124
+\pstFP@xfa=\count125
+\pstFP@xfb=\count126
+\pstFP@rega=\count127
+\pstFP@regb=\count128
+\pstFP@regs=\count129
+\pstFP@times=\count130
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utili
-ties\pgfutil-common.tex"
-\pgfutil@everybye=\toks27
-\pgfutil@tempdima=\dimen167
-\pgfutil@tempdimb=\dimen168
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks28
+\pgfutil@tempdima=\dimen135
+\pgfutil@tempdimb=\dimen136
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utili
-ties\pgfutil-common-lists.tex"))
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utili
-ties\pgfkeys.code.tex"
-\pgfkeys@pathtoks=\toks28
-\pgfkeys@temptoks=\toks29
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex)
+) (c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks29
+\pgfkeys@temptoks=\toks30
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utili
-ties\pgfkeysfiltered.code.tex"
-\pgfkeys@tmptoks=\toks30
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks31
+)) (c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
+\pgf@x=\dimen137
+\pgf@xa=\dimen138
+\pgf@xb=\dimen139
+\pgf@xc=\dimen140
+\pgf@y=\dimen141
+\pgf@ya=\dimen142
+\pgf@yb=\dimen143
+\pgf@yc=\dimen144
+\c@pgf@counta=\count131
+\c@pgf@countb=\count132
+\c@pgf@countc=\count133
+\c@pgf@countd=\count134
+\pgfutil@tempcnta=\count135
+\pgfutil@tempcntb=\count136
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen145
+\pgfmath@count=\count137
+\pgfmath@box=\box33
+\pgfmath@toks=\toks32
+\pgfmath@stack@operand=\toks33
+\pgfmath@stack@operation=\toks34
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.te
+x)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric
+.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.t
+ex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.co
+de.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.te
+x)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithm
+etics.code.tex)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count138
 ))
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utili
-ties\pgffor.code.tex"
-Loading pgffor.code.tex
+\pgffor@iter=\dimen146
+\pgffor@skip=\dimen147
+\pgffor@stack=\toks35
+\pgffor@toks=\toks36
+)
+\psLoopIndex=\count139
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmath.code.tex"
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathcalc.code.tex"
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathutil.code.tex"
-\pgf@x=\dimen169
-\pgf@xa=\dimen170
-\pgf@xb=\dimen171
-\pgf@xc=\dimen172
-\pgf@y=\dimen173
-\pgf@ya=\dimen174
-\pgf@yb=\dimen175
-\pgf@yc=\dimen176
-\c@pgf@counta=\count284
-\c@pgf@countb=\count285
-\c@pgf@countc=\count286
-\c@pgf@countd=\count287
-\pgfutil@tempcnta=\count288
-\pgfutil@tempcntb=\count289
+`PSTricks' v2.73  <2017/05/18> (tvz)
+\pst@dima=\dimen148
+\pst@dimb=\dimen149
+\pst@dimc=\dimen150
+\pst@dimd=\dimen151
+\pst@dimg=\dimen152
+\pst@dimh=\dimen153
+\pst@dimm=\dimen154
+\pst@dimn=\dimen155
+\pst@dimo=\dimen156
+\pst@dimp=\dimen157
+\pst@hbox=\box34
+\pst@ibox=\box35
+\pst@boxg=\box36
+\pst@cnta=\count140
+\pst@cntb=\count141
+\pst@cntc=\count142
+\pst@cntd=\count143
+\pst@cntg=\count144
+\pst@cnth=\count145
+\pst@cntm=\count146
+\pst@cntn=\count147
+\pst@cnto=\count148
+\pst@cntp=\count149
+\@zero=\count150
+\pst@toks=\toks37
+(c:/texlive/2017/texmf-dist/tex/generic/pstricks/pstricks.con)
+\psunit=\dimen158
+\psxunit=\dimen159
+\psyunit=\dimen160
+\pst@C@@rType=\count151
+\pslinewidth=\dimen161
+\psk@startLW=\dimen162
+\psk@endLW=\dimen163
+\pst@customdefs=\toks38
+\pslinearc=\dimen164
+\pst@symbolStep=\dimen165
+\pst@symbolWidth=\dimen166
+\pst@symbolLinewidth=\dimen167
+\everypsbox=\toks39
+\psframesep=\dimen168
+\pslabelsep=\dimen169
+\sh@wgridXunit=\dimen170
+\sh@wgridYunit=\dimen171
+\pst@shift=\dimen172
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathparser.code.tex"
-\pgfmath@dimen=\dimen177
-\pgfmath@count=\count290
-\pgfmath@box=\box52
-\pgfmath@toks=\toks31
-\pgfmath@stack@operand=\toks32
-\pgfmath@stack@operation=\toks33
-)
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathfunctions.code.tex"
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathfunctions.basic.code.tex")
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathfunctions.trigonometric.code.tex")
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathfunctions.random.code.tex")
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathfunctions.comparison.code.tex")
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathfunctions.base.code.tex")
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathfunctions.round.code.tex")
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathfunctions.misc.code.tex")
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathfunctions.integerarithmetics.code.tex")))
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\
-pgfmathfloat.code.tex"
-\c@pgfmathroundto@lastzeros=\count291
-))
-\pgffor@iter=\dimen178
-\pgffor@skip=\dimen179
-\pgffor@stack=\toks34
-\pgffor@toks=\toks35
-)
-\psLoopIndex=\count292
+File: pstricks.tex 2017/05/18 v2.73 `PSTricks' (tvz,hv)
 
-`PSTricks' v2.97  <2019/05/11> (tvz,hv)
-\pst@dima=\dimen180
-\pst@dimb=\dimen181
-\pst@dimc=\dimen182
-\pst@dimd=\dimen183
-\pst@dimg=\dimen184
-\pst@dimh=\dimen185
-\pst@dimm=\dimen186
-\pst@dimn=\dimen187
-\pst@dimo=\dimen188
-\pst@dimp=\dimen189
-\pst@hbox=\box53
-\pst@ibox=\box54
-\pst@boxg=\box55
-\pst@cnta=\count293
-\pst@cntb=\count294
-\pst@cntc=\count295
-\pst@cntd=\count296
-\pst@cntg=\count297
-\pst@cnth=\count298
-\pst@cntm=\count299
-\pst@cntn=\count300
-\pst@cnto=\count301
-\pst@cntp=\count302
-\@zero=\count303
-\pst@toks=\toks36
-
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pstricks\
-pstricks.con")
-\psunit=\dimen190
-\psxunit=\dimen191
-\psyunit=\dimen192
-\pst@C@@rType=\count304
-\pslinewidth=\dimen193
-\psk@startLW=\dimen194
-\psk@endLW=\dimen195
-\pst@customdefs=\toks37
-\pslinearc=\dimen196
-\pst@symbolStep=\dimen197
-\pst@symbolWidth=\dimen198
-\pst@symbolLinewidth=\dimen199
-\everypsbox=\toks38
-\psframesep=\dimen256
-\pslabelsep=\dimen257
-\sh@wgridXunit=\dimen258
-\sh@wgridYunit=\dimen259
-\pst@shift=\dimen260
+(c:/texlive/2017/texmf-dist/tex/generic/pstricks/pst-fp.tex)
+File: pst-fp.tex 2017/05/18 v2.73 `PST-fp' (hv)
 )
-File: pstricks.tex 2019/05/11 v2.97 `PSTricks' (tvz,hv)
-
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pstricks\
-pst-fp.tex")
-File: pst-fp.tex 2019/05/11 v2.97 `PST-fp' (hv)
-)
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pst-node\ps
-t-node.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/pst-node/pst-node.sty
 Package: pst-node 2012/09/18 v1.01 LaTeX wrapper for `pst-node' (HV)
 Package: pst-node 2010/04/22 package wrapper for pst-node.tex
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pst-node\
-pst-node.tex"  v1.42a, 2020/04/01
-\psrow=\count305
-\pscol=\count306
-\psmatrixcnt=\count307
-\psrowsep=\skip60
-\pscolsep=\skip61
-\pst@args=\count308
-\num@pts=\count309
-\pst@argcnt=\count310
+(c:/texlive/2017/texmf-dist/tex/generic/pst-node/pst-node.tex
+ v1.39, 2017/01/20
+\psrow=\count152
+\pscol=\count153
+\psmatrixcnt=\count154
+\psrowsep=\skip54
+\pscolsep=\skip55
+\pst@args=\count155
+\num@pts=\count156
+\pst@argcnt=\count157
 )
-File: pst-node.tex 2020/04/01 1.42a `pst-node' (tvz,hv)
+File: pst-node.tex 2017/01/20 1.39 `pst-node' (tvz,hv)
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pst-plot\ps
-t-plot.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/pst-plot/pst-plot.sty
 Package: pst-plot 2011/06/05 v1.00 LaTeX wrapper for `pst-plot' (HV)
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xkeyval\pst
--xkey.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/xkeyval/pst-xkey.sty
 Package: pst-xkey 2005/11/25 v1.6 package wrapper for pst-xkey.tex (HA)
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/multido\mul
-tido.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/multido/multido.sty
 Package: multido 2004/05/17 package wrapper for PSTricks `multido.tex', (HV/RN)
 
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/multido\m
-ultido.tex"  v1.42, 2010/05/14 <tvz>
-\multido@count=\count311
-\multidocount=\count312
-\multido@stuff=\toks39
+(c:/texlive/2017/texmf-dist/tex/generic/multido/multido.tex
+ v1.42, 2010/05/14 <tvz>
+\multido@count=\count158
+\multidocount=\count159
+\multido@stuff=\toks40
 )
 File: multido.tex 2010/05/14 v1.42 `multido' (tvz,hv)
 )
 Package: pst-plot 2011/04/13 package wrapper for pst-plot.tex (hv)
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pst-plot\
-pst-plot.tex"
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pst-tools
-\pst-tools.tex" `PST-tools' v0.10, 2020/03/24 (hv)
-\randomi=\count313
-\ranval=\count314
+(c:/texlive/2017/texmf-dist/tex/generic/pst-plot/pst-plot.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pst-tools/pst-tools.tex
+`PST-tools' v0.06, 2017/05/12 (hv))
+(c:/texlive/2017/texmf-dist/tex/generic/pstricks-add/pstricks-add.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pst-arrow/pst-arrow.tex
+`pst-arrow' v0.01, 2016/09/01 (dr,hv)
+\pshooklength=\dimen173
+\pshookwidth=\dimen174
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pstricks-
-add\pstricks-add.tex"
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pst-arrow
-\pst-arrow.tex" `pst-arrow' v0.01, 2016/09/01 (dr,hv)
-\pshooklength=\dimen261
-\pshookwidth=\dimen262
+(c:/texlive/2017/texmf-dist/tex/generic/pst-3d/pst-3d.tex
+`PST-3d' v1.11, 2010/02/14 (tvz))
+(c:/texlive/2017/texmf-dist/tex/generic/pst-math/pst-math.tex
+`pst-math' v0.63 , (CJ,hv)) `pstricks-add' v3.83, 2017/05/10 (dr,hv)
+\psparallelogramsep=\dimen175
+\pst@cntC=\count160
+\chart@ColorIndex=\dimen176
+\chart@ColorStep=\dimen177
+\pst@chartHeight=\dimen178
+\pst@chartStackDepth=\dimen179
+\pst@chartStackWidth=\dimen180
+\chart@Toggle=\count161
+\psVectorCtr=\count162
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pst-3d\ps
-t-3d.tex" `PST-3d' v1.11, 2010/02/14 (tvz))
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pst-math\
-pst-math.tex" `pst-math' v0.64 , (CJ,hv))
-`pstricks-add' v3.89a, 2020/02/12 (dr,hv)
-\psparallelogramsep=\dimen263
-\pst@cntC=\count315
-\pst@stepcount=\count316
-\chart@ColorIndex=\dimen264
-\chart@ColorStep=\dimen265
-\pst@chartHeight=\dimen266
-\pst@chartStackDepth=\dimen267
-\pst@chartStackWidth=\dimen268
-\chart@Toggle=\count317
-\psVectorCtr=\count318
-)  v1.92, 2019/05/16 (tvz,hv)
-\pstRadUnit=\dimen269
-\pstRadUnitInv=\dimen270
-\pst@linecnt=\count319
-\RCD@file=\read2
-\psxlabelsep=\dimen271
-\psylabelsep=\dimen272
-\psk@subticksize=\dimen273
-\pst@xticksizeA=\dimen274
-\pst@xticksizeB=\dimen275
-\pst@xticksizeC=\dimen276
-\pst@yticksizeA=\dimen277
-\pst@yticksizeB=\dimen278
-\pst@yticksizeC=\dimen279
-\@digitcounter=\count320
-\psk@llx=\dimen280
-\psk@lly=\dimen281
-\psk@urx=\dimen282
-\psk@ury=\dimen283
-\pst@xunit=\dimen284
-\pst@yunit=\dimen285
+ v1.78, 2017/04/16 (tvz,hv)
+\pstRadUnit=\dimen181
+\pstRadUnitInv=\dimen182
+\pst@linecnt=\count163
+\RCD@file=\read1
+\psxlabelsep=\dimen183
+\psylabelsep=\dimen184
+\psk@subticksize=\dimen185
+\pst@xticksizeA=\dimen186
+\pst@xticksizeB=\dimen187
+\pst@xticksizeC=\dimen188
+\pst@yticksizeA=\dimen189
+\pst@yticksizeB=\dimen190
+\pst@yticksizeC=\dimen191
+\@digitcounter=\count164
+\psk@llx=\dimen192
+\psk@lly=\dimen193
+\psk@urx=\dimen194
+\psk@ury=\dimen195
+\pst@xunit=\dimen196
+\pst@yunit=\dimen197
 )
-File: pst-plot.tex 2019/05/16 1.92 `pst-plot' (tvz,hv)
+File: pst-plot.tex 2017/04/16 1.78 `pst-plot' (tvz,hv)
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pst-circ\ps
-t-circ.sty"
-Package: pst-circ 2019/01/22 package wrapper for pst-circ.tex (hv)
+(c:/texlive/2017/texmf-dist/tex/latex/pst-circ/pst-circ.sty
+Package: pst-circ 2007/12/23 package wrapper for pst-circ.tex (hv)
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pst-circ\
-pst-circ.tex"
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pst-node\
-pst-node.tex")
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/generic/multido\m
-ultido.tex"  v1.42, 2010/05/14 <tvz>) `pst-circ' v2.17(hv)
-\Pst@position=\dimen286
-\pst@count@i=\count321
-\pst@count@ii=\count322
-\pst@count@iii=\count323
-\Pst@basesep=\dimen287
+(c:/texlive/2017/texmf-dist/tex/generic/pst-circ/pst-circ.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pst-node/pst-node.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/multido/multido.tex
+ v1.42, 2010/05/14 <tvz>) `pst-circ' v2.14(hv)
+\Pst@position=\dimen198
+\pst@count@i=\count165
+\pst@count@ii=\count166
+\pst@count@iii=\count167
+\Pst@basesep=\dimen199
 )
-File: pst-circ.tex 2020/05/26 v2.17 `PST-circ' (CJ,hv)
+File: pst-circ.tex 2016/08/21 v2.14 `PST-circ' (CJ,hv)
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/frankenstei
-n\moredefs.sty"
+(c:/texlive/2017/texmf-dist/tex/latex/frankenstein/moredefs.sty
 Package: moredefs 2001/08/31 v1.8 more defining commands (Frankenstein's brain)
 
-\sc@toks@a=\toks40
-\sc@toks@b=\toks41
+\sc@toks@a=\toks41
+\sc@toks@b=\toks42
 )
-\mlLegendThickness=\skip62
-\mlLegendHeight=\skip63
+(c:/texlive/2017/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2016/08/10 v1.14 Data Visualization (1.14)
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3backend\l
-3backend-pdfmode.def"
-File: l3backend-pdfmode.def 2020-06-03 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count324
-\l__pdf_internal_box=\box56
-) (reportGroup15.aux)
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks43
+\pgfutil@tempdima=\dimen256
+\pgfutil@tempdimb=\dimen257
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex)
+) (c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box37
+
+(c:/texlive/2017/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+\pgf@x=\dimen258
+\pgf@y=\dimen259
+\pgf@xa=\dimen260
+\pgf@ya=\dimen261
+\pgf@xb=\dimen262
+\pgf@yb=\dimen263
+\pgf@xc=\dimen264
+\pgf@yc=\dimen265
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count168
+\c@pgf@countb=\count169
+\c@pgf@countc=\count170
+\c@pgf@countd=\count171
+\t@pgf@toka=\toks44
+\t@pgf@tokb=\toks45
+\t@pgf@tokc=\toks46
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count172
+\pgfsyssoftpath@bigbuffer@items=\count173
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+)) (c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen266
+\pgf@picmaxx=\dimen267
+\pgf@picminy=\dimen268
+\pgf@picmaxy=\dimen269
+\pgf@pathminx=\dimen270
+\pgf@pathmaxx=\dimen271
+\pgf@pathminy=\dimen272
+\pgf@pathmaxy=\dimen273
+\pgf@xx=\dimen274
+\pgf@xy=\dimen275
+\pgf@yx=\dimen276
+\pgf@yy=\dimen277
+\pgf@zx=\dimen278
+\pgf@zy=\dimen279
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.cod
+e.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen280
+\pgf@path@lasty=\dimen281
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.te
+x
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen282
+\pgf@shorten@start@additional=\dimen283
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box38
+\pgf@hbox=\box39
+\pgf@layerbox@main=\box40
+\pgf@picture@serial@count=\count174
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code
+.tex
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen284
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.c
+ode.tex
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen285
+\pgf@pt@y=\dimen286
+\pgf@pt@temp=\dimen287
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.co
+de.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen288
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen289
+\pgf@sys@shading@range@num=\count175
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box41
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code
+.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box42
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.st
+y
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen290
+\pgf@nodesepend=\dimen291
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.st
+y
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+)) (c:/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen292
+\pgffor@skip=\dimen293
+\pgffor@stack=\toks47
+\pgffor@toks=\toks48
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.co
+de.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count176
+\pgfplotmarksize=\dimen294
+)
+\tikz@lastx=\dimen295
+\tikz@lasty=\dimen296
+\tikz@lastxsaved=\dimen297
+\tikz@lastysaved=\dimen298
+\tikzleveldistance=\dimen299
+\tikzsiblingdistance=\dimen300
+\tikz@figbox=\box43
+\tikz@figbox@bg=\box44
+\tikz@tempbox=\box45
+\tikz@tempbox@bg=\box46
+\tikztreelevel=\count177
+\tikznumberofchildren=\count178
+\tikznumberofcurrentchild=\count179
+\tikz@fig@count=\count180
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count181
+\pgfmatrixcurrentcolumn=\count182
+\pgf@matrix@numberofcolumns=\count183
+)
+\tikz@expandcount=\count184
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks49
+\t@pgfplots@tokb=\toks50
+\t@pgfplots@tokc=\toks51
+\pgfplots@tmpa=\dimen301
+\c@pgfplots@coordindex=\count185
+\c@pgfplots@scanlineindex=\count186
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.te
+x))
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfs
+upp_loader.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)
+Package pgfplots: loading complementary arithmetics for your pgf version...
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfs
+upp_pgflibraryfpu.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfs
+upp_pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count187
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststru
+cture.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststru
+ctureext.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.co
+de.tex
+\c@pgfplotsarray@tmp=\count188
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.c
+ode.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.c
+ode.tex
+\c@pgfplotstable@counta=\count189
+\t@pgfplotstable@a=\toks52
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.co
+de.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.
+tex))
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.te
+x)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfsh
+ading.code.tex
+\c@pgfplotslibrarysurf@no=\count190
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfsha
+ding.pgfsys-pdftex.def)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex))
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.t
+ex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex
+))) (c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.t
+ex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarydecorations.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.t
+ex
+\pgfdecoratedcompleteddistance=\dimen302
+\pgfdecoratedremainingdistance=\dimen303
+\pgfdecoratedinputsegmentcompleteddistance=\dimen304
+\pgfdecoratedinputsegmentremainingdistance=\dimen305
+\pgf@decorate@distancetomove=\dimen306
+\pgf@decorate@repeatstate=\count191
+\pgfdecorationsegmentamplitude=\dimen307
+\pgfdecorationsegmentlength=\dimen308
+)
+\tikz@lib@dec@box=\box47
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarydecorations.pathmorphing.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydec
+orations.pathmorphing.code.tex))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarydecorations.pathreplacing.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydec
+orations.pathreplacing.code.tex))
+\pgfplots@numplots=\count192
+\pgfplots@xmin@reg=\dimen309
+\pgfplots@xmax@reg=\dimen310
+\pgfplots@ymin@reg=\dimen311
+\pgfplots@ymax@reg=\dimen312
+\pgfplots@zmin@reg=\dimen313
+\pgfplots@zmax@reg=\dimen314
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.
+tex
+File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
+)))
+\mlLegendThickness=\skip56
+\mlLegendHeight=\skip57
+
+
+LaTeX Warning: Unused global option(s):
+    [pdf].
+
+(./reportGroup15.aux)
 \openout1 = `reportGroup15.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
 
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii
-\supp-pdf.mkii"
+(c:/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count325
-\scratchdimen=\dimen288
-\scratchbox=\box57
-\nofMPsegments=\count326
-\nofMParguments=\count327
-\everyMPshowfont=\toks42
-\MPscratchCnt=\count328
-\MPscratchDim=\dimen289
-\MPnumerator=\count329
-\makeMPintoPDFobject=\count330
-\everyMPtoPDFconversion=\toks43
+\scratchcounter=\count193
+\scratchdimen=\dimen315
+\scratchbox=\box48
+\nofMPsegments=\count194
+\nofMParguments=\count195
+\everyMPshowfont=\toks53
+\MPscratchCnt=\count196
+\MPscratchDim=\dimen316
+\MPnumerator=\count197
+\makeMPintoPDFobject=\count198
+\everyMPtoPDFconversion=\toks54
+) (c:/texlive/2017/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
-("C:\Users\SteffenZeile\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pk
-g\epstopdf-base.sty"
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-)
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 58.
-\c@sv@footnote=\count331
- [1
-Non-PDF special ignored!
-<special> header=pstricks.pro
-Non-PDF special ignored!
-<special> header=pst-algparser.pro
-Non-PDF special ignored!
-<special> header=pst-tools.pro
-Non-PDF special ignored!
-<special> header=pst-dots.pro
-Non-PDF special ignored!
-<special> header=pst-node.pro
-Non-PDF special ignored!
-<special> header=pst-3d.pro
-Non-PDF special ignored!
-<special> header=pst-math.pro
-Non-PDF special ignored!
-<special> header=pstricks-add.pro
-Non-PDF special ignored!
-<special> header=pst-circ.pro
-{C:/Users/SteffenZeile/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
-Non-PDF special ignored!
-<special> ps: /pssetRGBcolor /setrgbcolor load def /pssetCMYKcolor /setcmyk...
-Non-PDF special ignored!
-<special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
-Non-PDF special ignored!
-<special> ps:tx@Dict begin  gsave STV CP T /ps@refangle 0.  def grestore  e...
-Non-PDF special ignored!
-<special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
 
-] (reportGroup15.aux) ) 
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+))
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(c:/texlive/2017/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+ABD: EveryShipout initializing macros
+
+Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
+ick labels; missing features). Consider writing \pgfplotsset{compat=1.14} into 
+your preamble.
+ on input line 55.
+
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 59.
+\c@sv@footnote=\count199
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--84
+
+ []
+
+(./vTarget.tex)
+Overfull \hbox (2.75575pt too wide) in paragraph at lines 98--108
+\OT1/cmr/m/n/10 mo-ment am Rad um-ge-rech-net. Aus dem Drehmoment-
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[1
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!{c:/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdft
+ex.map}
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+
+] (./vTrackMap.tex)
+Overfull \hbox (15.5928pt too wide) in paragraph at lines 140--142
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./vActual.tex)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2] [3
+
+] (./reportGroup15.aux) ) 
 Here is how much of TeX's memory you used:
- 14577 strings out of 480763
- 258991 string characters out of 2890598
- 605999 words of memory out of 3000000
- 30421 multiletter control sequences out of 15000+200000
- 544561 words of font info for 54 fonts, out of 3000000 for 9000
+ 29284 strings out of 492995
+ 695487 string characters out of 6136403
+ 2174356 words of memory out of 5000000
+ 32329 multiletter control sequences out of 15000+600000
+ 9216 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,13n,55p,572b,269s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\SteffenZeile\AppData\Local\MiKTeX\2.9\fonts/p
-k/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\SteffenZeile\AppData\Local\M
-iKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\SteffenZeil
-e\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\
-Users\SteffenZeile\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
-ecbx0800.pk> <C:\Users\SteffenZeile\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jk
-nappen/ec/dpi600\ecti1000.pk> <C:\Users\SteffenZeile\AppData\Local\MiKTeX\2.9\f
-onts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\SteffenZeile\AppData\L
-ocal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Steff
-enZeile\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk
-><C:/Users/SteffenZeile/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmex10.pfb><C:/Users/SteffenZeile/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/SteffenZeile/AppData/Local/P
-rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/SteffenZe
-ile/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
-<C:/Users/SteffenZeile/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmmi8.pfb><C:/Users/SteffenZeile/AppData/Local/Programs/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/SteffenZeile/AppData/Local/Prog
-rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/SteffenZeile/
-AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/U
-sers/SteffenZeile/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmr8.pfb><C:/Users/SteffenZeile/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb><C:/Users/SteffenZeile/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on reportGroup15.pdf (1 page, 152343 bytes).
+ 62i,22n,96p,772b,2212s stack positions out of 5000i,500n,10000p,200000b,80000s
+<c:/texlive/2017/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
+12.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c
+:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive
+/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2017/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2017/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2017/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmti10.pfb>
+Output written on reportGroup15.pdf (3 pages, 178447 bytes).
 PDF statistics:
- 248 PDF objects out of 1000 (max. 8388607)
+ 53 PDF objects out of 1000 (max. 8388607)
+ 38 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
