@@ -3,7 +3,7 @@ function r = Simulate()
 %   Detailed explanation goes here
 
 racetrack = load('racetrack.mat');
-[s,kr] = prepareTrack(racetrack.t_r,racetrack.t_l);
+track = prepareTrack(racetrack.t_r,racetrack.t_l);
 
 states = [...
     falcon.State('t',       0,      200,    1e-2);...
