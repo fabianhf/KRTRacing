@@ -1,4 +1,4 @@
-function [v_dot, beta_dot, psi_dot_dot,n_wheel,a_r,a_f] = vehicleModel(v,beta,psi_dot,delta,fB,zeta,phi,M_wheel)
+function [v_dot,  n_wheel, a_y] = vehicleModel(v,beta,psi_dot,delta,fB,zeta,phi,M_wheel)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% function [X_dot] = singletrackVectorValues(X, U)
 %
@@ -157,10 +157,12 @@ F_y_f = D_f * sin(C_f * atan(B_f * a_f - E_f * (B_f * a_f ...
 % %% vector field (right-hand side of differential equation)
 v_dot = (F_x_r .* cos(beta) + F_x_f .* cos(delta + beta) - F_y_r .* sin(beta) ...
       - F_y_f .* sin(delta + beta))/m; % acceleration
-beta_dot = psi_dot - (F_x_r .* sin(beta) + F_x_f .* sin(delta + beta) + F_y_r .* cos(beta) ...
-         + F_y_f .* cos(delta + beta)) ./ (m * v); % side slip rate
-psi_dot_dot = (F_y_f .* l_f .* cos(delta) - F_y_r .* l_r ...
-            + F_x_f .* l_f .* sin(delta)) / I_z; % yaw angular acceleration
+% beta_dot = psi_dot - (F_x_r .* sin(beta) + F_x_f .* sin(delta + beta) + F_y_r .* cos(beta) ...
+%          + F_y_f .* cos(delta + beta)) ./ (m * v); % side slip rate
+% psi_dot_dot = (F_y_f .* l_f .* cos(delta) - F_y_r .* l_r ...
+%             + F_x_f .* l_f .* sin(delta)) / I_z; % yaw angular acceleration
+
+a_y = (F_x_r .* sin(beta) + F_x_f .* sin(delta + beta) + F_y_r .* cos(beta) + F_y_f .* cos(delta + beta)) ./m;
         
 n_wheel = n;
 

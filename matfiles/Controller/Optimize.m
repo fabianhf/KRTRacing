@@ -8,7 +8,7 @@ end
 
 if(~exist('x_0', 'var') || isempty(x_0))
     v_0 = 5;                     % Default initial Speed
-    x_0 = [0 v_0 zeros(1, 6)]';
+    x_0 = [0 v_0 zeros(1, 3)]';
 end
 
 if(~exist('options','var') || isempty(options))
@@ -21,9 +21,6 @@ track = prepareTrack(racetrack.t_r,racetrack.t_l);
 states = [...
     falcon.State('t',       0,          200,        2e-2);...
     falcon.State('v',       5,          200,        2e-2);...
-    falcon.State('psi_dot', -inf,       inf,        1);...
-    falcon.State('beta',    -7/180*pi,	7/180*pi,  2);...
-    falcon.State('n',       -inf,       inf,        0.5);...
     falcon.State('xi',      -30/180*pi,      30/180*pi,       2);...
     falcon.State('objective',0,         inf,        2e-2);...
     falcon.State('delta',   -0.51,      0.51,       2);
@@ -34,16 +31,15 @@ controls = [...
     falcon.Control('fB',    0,      15000,  1e-4);...
     falcon.Control('zeta',  0,      1,    1);...
     falcon.Control('phi',   0,      1,      1);...
+    falcon.Control('beta',   -10/180*pi,      10/180*pi,      2);...
+    falcon.Control('psi_dot',   -pi,      pi,      0.5);...
     falcon.Control('C',     -0.2,   0.2,    5,    'fixed', true);
-    falcon.Control('nCurbLeft',  0, 0.5,    1,    'fixed', true);
-    falcon.Control('nCurbRight',   0, 0.5,    1,    'fixed', true);  
 ];
 
 outputs = [...
     falcon.Output('n_wheel');...
     falcon.Output('M_wheel');...
-    falcon.Output('a_r');...
-    falcon.Output('a_f');...
+    falcon.Output('a_y');...
 ];
 
 mdl = falcon.SimulationModelBuilder('vehicle_nlp', states, controls,'Optimize',false);
@@ -54,9 +50,9 @@ mdl = falcon.SimulationModelBuilder('vehicle_nlp', states, controls,'Optimize',f
 % options.k4 = 1e-4;
 % options.k5 = 1e-6;
 
-options.k1 = 0;
+options.k1 = 1e-3;
 options.k2 = 1e-2;
-options.k3 = 1e-1;
+options.k3 = 1e-3;
 
 
 fnames = fieldnames(options);
@@ -79,21 +75,21 @@ mdl.addSubsystem(@drivePedal,...
 
 mdl.addSubsystem(@vehicleModel,...
     {'v','beta','psi_dot','delta','fB','zeta','phi','M_wheel'},...
-    {'v_dot','beta_dot','psi_dot_dot','n_wheel','a_r','a_f'});
+    {'v_dot','n_wheel','a_y'});
 
 mdl.addSubsystem(@track,...
-    {'psi_dot','v','beta','n','xi','C'},...
-    {'s_dot','n_dot','xi_dot'});
+    {'psi_dot','v','beta','xi','C'},...
+    {'s_dot','xi_dot'});
 
 mdl.addSubsystem(@objective,...
-    {'beta','psi_dot_dot','beta_dot','delta','phi','k1','k2','k3'},...
+    {'delta','beta','xi','k1','k2','k3'},...
     {'objective_dot'});
 
 mdl.addSubsystem(@transformation,...
-    {'v_dot','psi_dot_dot','beta_dot','n_dot','xi_dot','s_dot','objective_dot'},...
-    {'t_dot_s','v_dot_s','psi_dot_dot_s','beta_dot_s','n_dot_s','xi_dot_s','objective_dot_s'});
+    {'v_dot','xi_dot','s_dot','objective_dot'},...
+    {'t_dot_s','v_dot_s','xi_dot_s','objective_dot_s'});
 
-mdl.setStateDerivativeNames({'t_dot_s','v_dot_s','psi_dot_dot_s','beta_dot_s','n_dot_s','xi_dot_s','objective_dot_s','delta_dot'});
+mdl.setStateDerivativeNames({'t_dot_s','v_dot_s','xi_dot_s','objective_dot_s','delta_dot'});
 mdl.setOutputs(outputs);
 mdl.Build();
 
@@ -101,7 +97,7 @@ problem = falcon.Problem('KRTRacing');
 
 % Specify Discretization
 sStart = 0;
-sEnd = track.s(end);
+sEnd = 200; % track.s(end);
 delta_s = 0.1;
 n = round((sEnd - sStart)/delta_s) + 1;
 tau = linspace(0,1,n);
@@ -111,8 +107,6 @@ phase = problem.addNewPhase(@vehicle_nlp, states, tau, 0, sEnd-sStart);
 
 % Track input normieren 
 sKr = interp1((track.s-sStart)./(sEnd-sStart),track.kr,tau);
-sCurbLeft = interp1((track.s-sStart)./(sEnd-sStart),track.curbLeft,tau);
-sCurbRight = interp1((track.s-sStart)./(sEnd-sStart),track.curbRight,tau);
 controlgrid = phase.addNewControlGrid(controls,tau);
 
 % Set Control and State Values from given solved Problem to initialize the
@@ -122,23 +116,25 @@ if(exist('solvedProblem', 'var') && ~isempty(solvedProblem))
     phase.StateGrid.setValues(solvedProblem.RealTime, solvedProblem.StateValues, 'RealTime', true);
 else
     % Set Values for C and Curbs
-    controlgrid.setSpecificValues(controls(5:7), tau, [sKr;sCurbLeft;sCurbRight]);
+    controlgrid.setSpecificValues(controls(7), tau, sKr);
 end
 
 % Add path constraints
 pathconstraints = [...
-    falcon.Constraint('trackLimit', -2.45, 2.45)
+    falcon.Constraint('quasiStaticLateralConstraint', 0, 0)
 ];
-phase.addNewPathConstraint(@tracklimits, pathconstraints,tau);
+phase.addNewPathConstraint(@quasiStaticLateralConstraint, pathconstraints, tau);
+
 
 % Set Boundary Condition
 phase.setInitialBoundaries(states(:), x_0);
+% phase.setFinalBoundaries(states(2), 10);
 
 % Set Model Outputs
 phase.Model.setModelOutputs(outputs);
 
 % Add Cost Function
-problem.addNewStateCost(states(7));
+problem.addNewStateCost(states(4));
 
 % Diskritisierung
 discmethod = falcon.discretization.BackwardEuler();
